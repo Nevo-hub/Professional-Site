@@ -1,133 +1,472 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Sal Caramucci — Resume</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --dark:#0b0b0c;--card:#111216;--ink:#e8ebef;
-      --muted:#a7b0ba;--accent:#3b82f6;--accent2:#10b981;--border:#242833
-    }
-    *{box-sizing:border-box} html{scroll-behavior:smooth}
-    body{
-      font-family:'Inter',sans-serif;background:var(--dark);color:var(--ink);
-      margin:0;line-height:1.6; padding:2rem;
-      background-image: radial-gradient(800px 400px at 90% -10%, rgba(16,185,129,.07), transparent 60%),
-                        radial-gradient(900px 500px at -10% 20%, rgba(59,130,246,.09), transparent 60%);
-    }
-    .container{max-width:1000px;margin:auto}
-    .resume{
-      background:linear-gradient(180deg,#13151a,#0f1114);
-      border:1px solid var(--border);border-radius:16px;overflow:hidden;
-      box-shadow:0 16px 48px rgba(0,0,0,.35);position:relative
-    }
-    header{
-      padding:2rem 2rem 1.25rem;border-bottom:1px solid var(--border);
-      background:linear-gradient(135deg, rgb(253, 254, 255), rgba(16,185,129,.10))
-    }
-    h1{margin:0;font-size:2rem;letter-spacing:-.02em}
-    .subtitle{color:var(--muted);margin-top:.25rem}
-    .pill{display:inline-block;margin:.25rem .5rem .25rem 0;padding:.4rem .7rem;border:1px solid var(--border);border-radius:999px;color:var(--ink)}
-    .grid{display:grid;gap:1rem;grid-template-columns:2fr 1fr}
-    .sec{padding:1.25rem 2rem;border-top:1px solid var(--border)}
-    h2{font-size:1.05rem;text-transform:uppercase;letter-spacing:.12em;color:#dfe5ec;margin:0 0 1rem 0}
-    .job{padding:1rem;border:1px solid var(--border);border-radius:12px;background:var(--card)}
-    .job .top{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
-    .dates{background:linear-gradient(135deg,var(--accent),#2563eb);color:#fff;padding:.3rem .7rem;border-radius:999px;font-size:.85rem;font-weight:700}
-    ul{margin:.6rem 0 0 1rem}
-    li{margin:.35rem 0}
-    .skill-badges{display:flex;flex-wrap:wrap;gap:.4rem}
-    .skill-badges .pill{border-color:rgba(255,255,255,.08)}
-    .actions{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
-    .btn{
-      display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border-radius:10px;
-      background:linear-gradient(135deg,var(--accent),#2563eb);color:#fff;text-decoration:none;font-weight:700
-    }
-
-    /* print */
-    @media print{
-      body{background:#fff;color:#111;padding:0}
-      .resume{box-shadow:none;border:none}
-      header{background:#fff;border-bottom:2px solid #000}
-      .btn,.actions{display:none}
-      .pill{border-color:#ddd;color:#111}
-    }
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAL CARAMUCCI - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.4;
+            color: #2d3748;
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .resume-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .title {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        }
+        
+        .profile-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #4b5563;
+            text-align: justify;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .skill-category {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .skill-category h4 {
+            color: #1e3a8a;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 3px 0;
+            font-size: 0.85rem;
+            color: #6b7280;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .skill-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        .job {
+            margin-bottom: 20px;
+            border-left: 3px solid #e5e7eb;
+            padding-left: 20px;
+            position: relative;
+            page-break-inside: avoid;
+        }
+        
+        .job::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 2px;
+        }
+        
+        .job-company {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .job-dates {
+            font-size: 0.9rem;
+            color: #3b82f6;
+            font-weight: 500;
+            background: #eff6ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        
+        .job-summary {
+            font-size: 0.95rem;
+            color: #4b5563;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .achievements {
+            list-style: none;
+        }
+        
+        .achievements li {
+            padding: 4px 0;
+            font-size: 0.9rem;
+            color: #4b5563;
+            position: relative;
+            padding-left: 20px;
+            line-height: 1.4;
+        }
+        
+        .achievements li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .education-tech {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .education {
+            margin-bottom: 20px;
+        }
+        
+        .education h4 {
+            color: #1e3a8a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .education-details {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .tech-skills {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .tech-skill {
+            font-size: 0.85rem;
+        }
+        
+        .tech-skill strong {
+            color: #1e3a8a;
+            display: block;
+            margin-bottom: 2px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .resume-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .skills-grid,
+            .tech-skills {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    
 body {
   background-color: #ffffff !important;
-  color: #000000 !important;
+  color: #111827 !important; /* Tailwind gray-900 */
 }
 a, h1, h2, h3, h4, h5, h6, p, li, span, div {
-  color: #000000 !important;
+  color: #111827 !important;
 }
+section, .card, .container, .content {
+  background-color: #f9fafb !important; /* Tailwind gray-50 */
+}
+
+
+/* Force white text in header */
+.header, .header * { color: #ffffff !important; }
+.header .contact-item span { color: #ffffff !important; }
+.header .title { color: #ffffff !important; opacity: 1 !important; }
 </style>
 
 </head>
 <body>
-  <div class="container">
-    <div class="resume">
-      <header>
-        <h1>Sal Caramucci</h1>
-        <div class="subtitle">VP — Reporting & Analytics Lead</div>
-        <div style="margin-top:.6rem">
-          <span class="pill">✉️ Sal.Caramucci@gmail.com</span>
-          <span class="pill">📍 Tampa, FL</span>
+
+
+<div class="topbar-actions" style="display:flex; justify-content:flex-end; align-items:center; gap:.5rem; padding:10px;">
+  
+</div>
+<div class="resume-container">
+        <header class="header">
+            <h1 class="name">SAL CARAMUCCI</h1>
+            <p class="title">VICE PRESIDENT (VP) REPORTING AND ANALYTICS LEAD</p>
+            <div class="contact">
+                <div class="contact-item">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="contact-item">
+                    <span>✉️</span>
+                    <span>Sal.Caramucci@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Tampa, FL</span>
+                </div>
+            
+<div style="margin-top:12px;">
+  
+</div>
+
         </div>
-      </header>
-
-      <section class="sec">
-        <h2>Professional Summary</h2>
-        <p>Finance & risk analytics leader with 4+ years building automated, executive‑ready reporting and controls for BRCC/GBRCC. Deep experience across SQL, Python, Tableau/Cognos, and liquidity frameworks (LST/LCR). Known for cutting manual work and elevating risk visibility.</p>
-      </section>
-
-      <section class="sec grid">
-        <div>
-          <h2>Experience</h2>
-          <div class="job">
-            <div class="top">
-              <div><strong>Citi Bank</strong> — VP, Reporting & Analytics Lead</div>
-              <span class="dates">2023 – Present</span>
-            </div>
-            <ul>
-              <li>Own governance reporting and automation across Finance; drive ML‑ready data quality.</li>
-              <li>Cut manual work by ~60% with standardized pipelines & dashboards.</li>
-              <li>Forecast remediation trends for CFO scorecards; inform exec decisions.</li>
-            </ul>
-          </div>
-
-          <div class="job" style="margin-top:.8rem">
-            <div class="top">
-              <div><strong>UBS</strong> — Liquidity & Funding Input Controller (prev. Data Analyst)</div>
-              <span class="dates">2021 – 2023</span>
-            </div>
-            <ul>
-              <li>Executed LST/LCR analytics; validated models and reconciled HQLA.</li>
-              <li>Automated liquidity monitoring (SQL/Python) — 40% faster cycles.</li>
-              <li>Produced funding & stress‑scenario insights for leadership.</li>
-            </ul>
-          </div>
+        </header>
+        
+        <div class="content">
+            <section class="section">
+                <h2 class="section-title">Professional Profile</h2>
+                <p class="profile-text">Finance and risk analytics leader with 4+ years of experience in banking risk management, regulatory compliance, and data-driven decision making. Expertise in financial modeling, risk quantification, and advanced analytics using SQL, Python, and machine learning integration. Proven track record of developing automated analytical solutions, managing cross-functional collaborations, and delivering executive-level insights for risk mitigation and performance optimization.</p>
+            </section>
+            
+            <section class="section">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Risk Analytics & Modeling</h4>
+                        <ul class="skill-list">
+                            <li>Risk Quantification & Mitigation</li>
+                            <li>Financial Modeling & Reconciliation</li>
+                            <li>Liquidity Stress Testing (LST/LCR)</li>
+                            <li>KPI Monitoring & Trend Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Programming & Analytics</h4>
+                        <ul class="skill-list">
+                            <li>SQL, Python, VBA (Advanced)</li>
+                            <li>HTML, CSS (Advanced)</li>
+                            <li>Statistical Analysis & Modeling</li>
+                            <li>Machine Learning Integration</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Business Intelligence & Reporting</h4>
+                        <ul class="skill-list">
+                            <li>Tableau, Cognos, Alteryx</li>
+                            <li>Excel (Advanced), PowerPoint</li>
+                            <li>Executive Dashboard Development</li>
+                            <li>Cross-Functional Reporting</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Regulatory & Governance</h4>
+                        <ul class="skill-list">
+                            <li>Risk Control Framework Management</li>
+                            <li>Audit Preparation & Compliance</li>
+                            <li>Policy Adherence Monitoring</li>
+                            <li>Executive Committee Reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">Vice President (VP) - Reporting and Analytics Lead</h3>
+                            <p class="job-company">Citi Bank</p>
+                        </div>
+                        <span class="job-dates">2023 – Present</span>
+                    </div>
+                    <p class="job-summary">Lead comprehensive risk analytics and governance reporting across Citi's Finance organization, delivering data-driven insights for executive decision-making and risk mitigation strategies. Drive automation initiatives and cross-functional collaboration to optimize risk monitoring and control frameworks.</p>
+                    <ul class="achievements">
+                        <li>Developed sophisticated analytical models for risk assessment and trend forecasting, supporting executive decision-making across all business units through BRCC and GBRCC reporting</li>
+                        <li>Built automated risk monitoring systems using Python, SQL, and machine learning integration with Citi's AI teams, significantly improving detection accuracy and response times</li>
+                        <li>Created predictive analytics framework for the CFO Scorecard, forecasting remediation trends and identifying critical risk patterns to prevent future issues</li>
+                        <li>Designed and implemented data-driven solutions using VBA, Python, Tableau, and Cognos, reducing manual processes by 60% while improving analytical accuracy</li>
+                        <li>Led cross-functional analytics initiatives with Technology Labs and AI teams to integrate advanced analytics into risk monitoring, driving innovation in governance reporting</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">Financial & Regulatory Reporting Data Analyst → Liquidity & Funding Input Controller</h3>
+                            <p class="job-company">UBS</p>
+                        </div>
+                        <span class="job-dates">2021 – 2023</span>
+                    </div>
+                    <p class="job-summary">Managed complex liquidity risk analytics and regulatory reporting processes for UBS's U.S. operations, focusing on data integrity, model validation, and process optimization for Federal Reserve, FINRA, and other regulatory requirements. Specialized in liquidity stress testing, funding analysis, and automated risk calculation solutions.</p>
+                    <ul class="achievements">
+                        <li>Executed sophisticated liquidity risk analytics for U.S. Liquidity Stress Test (LST), LST CMB, and Liquidity Coverage Ratio (LCR) models, ensuring regulatory compliance with Federal Reserve requirements through advanced data analysis and model validation</li>
+                        <li>Developed automated liquidity monitoring systems using SQL and Python to enhance funding model accuracy and real-time liquidity position tracking, reducing processing time by 40% while improving regulatory reporting precision</li>
+                        <li>Performed complex liquidity reconciliation for High Quality Liquid Assets (HQLA) and Prime Brokerage funding positions, maintaining analytical integrity across multiple liquidity sources and regulatory frameworks</li>
+                        <li>Created comprehensive liquidity risk reports analyzing funding patterns, stress scenarios, and capital adequacy metrics, providing critical insights for liquidity management and strategic decision-making</li>
+                        <li>Collaborated with Treasury, Risk, and Compliance teams to implement enhanced liquidity monitoring processes and analytical frameworks for multi-regulatory environment (Federal Reserve, FINRA, CFTC)</li>
+                    </ul>
+                </div>
+            </section>
         </div>
-
-        <aside>
-          <h2>Technical</h2>
-          <div class="skill-badges">
-            <span class="pill">SQL</span><span class="pill">Python</span><span class="pill">VBA</span>
-            <span class="pill">HTML/CSS</span><span class="pill">Tableau</span><span class="pill">Cognos</span>
-            <span class="pill">Alteryx</span><span class="pill">Excel (Adv.)</span>
-          </div>
-          <h2 style="margin-top:1rem">Education</h2>
-          <div class="job">
-            <div><strong>Bachelor's</strong> — Middle Tennessee State University</div>
-            <div class="muted">2017 – 2021</div>
-          </div>
-          <div class="actions">
-            <a class="btn" href="#" onclick="window.print();return false;">Print / Save as PDF</a>
-          </div>
-        </aside>
-      </section>
+        
+        <div class="education-tech">
+            <div class="education">
+                <h4>Education</h4>
+                <p class="education-details">BACHELOR'S DEGREE | Middle Tennessee State University | 2017-2021</p>
+            </div>
+            
+            <h4 style="color: #1e3a8a; font-weight: 600; margin-bottom: 15px;">Technical Expertise</h4>
+            <div class="tech-skills">
+                <div class="tech-skill">
+                    <strong>Programming:</strong>
+                    <span>SQL, Python, VBA, HTML, CSS</span>
+                </div>
+                <div class="tech-skill">
+                    <strong>Analytics Tools:</strong>
+                    <span>Tableau, Cognos, Alteryx, Excel (Advanced)</span>
+                </div>
+                <div class="tech-skill">
+                    <strong>Statistical Methods:</strong>
+                    <span>Financial Modeling, Risk Quantification, Trend Analysis</span>
+                </div>
+                <div class="tech-skill">
+                    <strong>Risk Management:</strong>
+                    <span>Stress Testing, Compliance Monitoring, Control Assessment</span>
+                </div>
+                <div class="tech-skill">
+                    <strong>Collaboration:</strong>
+                    <span>Cross-functional project leadership, Executive reporting, AI/ML integration</span>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 </html>

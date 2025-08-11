@@ -37,9 +37,18 @@
       .content{padding:18px}
       .job .row{flex-direction:column;align-items:flex-start}
     }
+    
   </style>
+
+
 </head>
 <body>
+  <!-- Top Nav (matches index style) -->
+    <nav id="navbar" class="resume-nav">
+      <a href="index.html">Home</a>
+      <a href="mailto:sal.caramucci@gmail.com" class="contact-item"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+
   <article class="resume">
     <header class="hd">
       <h1>SAL CARAMUCCI</h1>
@@ -141,3 +150,43 @@
   </article>
 </body>
 </html>
+
+<style>
+/* Smooth anchor scroll */
+html { scroll-behavior: smooth; }
+
+/* Resume navbar (styled like index) */
+.resume-nav{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.3s ease;
+}
+.resume-nav.scrolled { padding: 1rem; background: rgba(26,26,26,0.98); }
+
+.resume-nav a{
+  color: #e5e7eb;
+  font-weight: 500;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+.resume-nav a:hover{
+  background-color: rgba(59,130,246,0.1);
+  color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+/* keep anchors from hiding under sticky nav */
+#profile, #competencies, #experience, #education { scroll-margin-top: 100px; }
+</style>

@@ -1,472 +1,5318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAL CARAMUCCI - Resume</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sal Caramucci – VP Risk & Analytics Leader</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --dark-gray: #1a1a1a;
+            --light-gray: #f7f7f7;
+            --text-color: #e0e0e0;
+            --accent-color: #3b82f6;
+            --accent-secondary: #10b981;
+            --border-color: #333;
+            --card-bg: #222;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.4;
-            color: #2d3748;
-            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
-            min-height: 100vh;
-            padding: 20px;
+            background: var(--dark-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        .resume-container {
-            max-width: 850px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
+
+        h1, h2, h3, h4 {
+            color: var(--light-gray);
         }
-        
-        .header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: white;
-            padding: 25px 30px;
+
+        a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-50px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0); 
+            }
+        }
+
+        @keyframes slideInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(50px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0); 
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes rotateIn {
+            from { 
+                opacity: 0; 
+                transform: rotate(-180deg) scale(0); 
+            }
+            to { 
+                opacity: 1; 
+                transform: rotate(0deg) scale(1); 
+            }
+        }
+
+        @keyframes drawLine {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 50% { border-right-color: transparent; }
+            51%, 100% { border-right-color: var(--accent-color); }
+        }
+
+        @keyframes chartLine {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        @keyframes dataPoint {
+            0% { 
+                opacity: 0; 
+                transform: scale(0); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.2); 
+            }
+            100% { 
+                opacity: 0.8; 
+                transform: scale(1); 
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
             text-align: center;
             position: relative;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .analytics-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+
+        .chart-line {
+            position: absolute;
+            stroke: var(--accent-color);
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 1000;
+            animation: chartLine 3s ease-in-out infinite alternate;
+        }
+
+        .data-point {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: dataPoint 2s ease-in-out infinite;
+        }
+
+        .data-point:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .data-point:nth-child(2) { top: 30%; left: 25%; animation-delay: 0.5s; }
+        .data-point:nth-child(3) { top: 15%; left: 40%; animation-delay: 1s; }
+        .data-point:nth-child(4) { top: 40%; left: 60%; animation-delay: 1.5s; }
+        .data-point:nth-child(5) { top: 25%; left: 80%; animation-delay: 2s; }
+        .data-point:nth-child(6) { top: 60%; left: 15%; animation-delay: 2.5s; }
+        .data-point:nth-child(7) { top: 70%; left: 35%; animation-delay: 3s; }
+        .data-point:nth-child(8) { top: 80%; left: 55%; animation-delay: 3.5s; }
+        .data-point:nth-child(9) { top: 65%; left: 75%; animation-delay: 4s; }
+        .data-point:nth-child(10) { top: 85%; left: 90%; animation-delay: 4.5s; }
+
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .typewriter {
+            border-right: 3px solid var(--accent-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typewriter 3s steps(20) 1s both, blink 1s step-end infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            position: relative;
+            z-index: 10;
+            animation: slideInLeft 1.2s ease-in-out 0.5s both;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 10;
+            animation: slideInRight 1.5s ease-in-out 1s both;
+        }
+
+        .contact-info .contact-item {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid transparent;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info .contact-item:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
         }
         
-        .header::before {
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1.8s ease-in-out 1.5s both;
+        }
+        
+        .hero-buttons a {
+            background: linear-gradient(135deg, var(--accent-color), #2563eb);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-buttons a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .hero-buttons a:hover::before {
+            left: 100%;
+        }
+        
+        .hero-buttons a:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem;
+            background: rgba(26, 26, 26, 0.98);
+        }
+
+        nav a {
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            opacity: 0.1;
+            transition: left 0.3s ease;
+        }
+
+        nav a:hover::before {
+            left: 100%;
+        }
+
+        nav a:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .content-wrapper {
+            max-width: 1100px;
+            margin: auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 6rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            position: relative;
+            animation: fadeInUp 0.8s ease-in-out;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+            animation: drawLine 1s ease-in-out 0.5s both;
+        }
+
+        .professional-profile {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent-color);
+            text-align: justify;
+            position: relative;
+            overflow: hidden;
+            animation: slideInLeft 0.8s ease-in-out;
+        }
+
+        .professional-profile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
+            transition: left 2s ease;
+        }
+
+        .professional-profile:hover::before {
+            left: 100%;
+        }
+
+        .competencies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .competency-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: rotateIn 0.8s ease-in-out;
+        }
+
+        .competency-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        
-        .name {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-            position: relative;
-            z-index: 1;
+
+        .competency-card:hover::before {
+            opacity: 1;
         }
-        
-        .title {
-            font-size: 1rem;
-            font-weight: 400;
-            opacity: 0.9;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
+
+        .competency-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+            border-left-color: var(--accent-secondary);
         }
-        
-        .contact {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            font-size: 0.85rem;
-            position: relative;
-            z-index: 1;
+
+        .competency-card:nth-child(even) {
+            animation-delay: 0.2s;
         }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+
+        .competency-card:nth-child(3) {
+            animation-delay: 0.4s;
         }
-        
-        .content {
-            padding: 30px;
+
+        .competency-card:nth-child(4) {
+            animation-delay: 0.6s;
         }
-        
-        .section {
-            margin-bottom: 25px;
-            page-break-inside: avoid;
-        }
-        
-        .section-title {
-            font-size: 1.3rem;
+
+        .competency-card h4 {
             font-weight: 600;
-            color: #1e3a8a;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e5e7eb;
-            position: relative;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
-        
-        .section-title::before {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+
+        .competency-card:hover h4 {
+            color: var(--accent-color);
         }
-        
-        .profile-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #4b5563;
-            text-align: justify;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-        
-        .skill-category {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #3b82f6;
-        }
-        
-        .skill-category h4 {
-            color: #1e3a8a;
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-        }
-        
-        .skill-list {
+
+        .competency-list {
             list-style: none;
         }
-        
-        .skill-list li {
-            padding: 3px 0;
-            font-size: 0.85rem;
-            color: #6b7280;
+
+        .competency-list li {
+            padding: 0.4rem 0;
+            font-size: 0.95rem;
+            color: var(--text-color);
             position: relative;
-            padding-left: 15px;
+            padding-left: 1.5rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.3s ease-in-out both;
         }
-        
-        .skill-list li::before {
-            content: '▸';
+
+        .competency-list li:nth-child(1) { animation-delay: 0.1s; }
+        .competency-list li:nth-child(2) { animation-delay: 0.2s; }
+        .competency-list li:nth-child(3) { animation-delay: 0.3s; }
+        .competency-list li:nth-child(4) { animation-delay: 0.4s; }
+        .competency-list li:nth-child(5) { animation-delay: 0.5s; }
+
+        .competency-list li::before {
+            content: '▶';
             position: absolute;
             left: 0;
-            color: #3b82f6;
-            font-weight: bold;
+            color: var(--accent-color);
+            font-weight: 900;
+            transition: all 0.3s ease;
         }
-        
-        .job {
-            margin-bottom: 20px;
-            border-left: 3px solid #e5e7eb;
-            padding-left: 20px;
+
+        .competency-card:hover .competency-list li::before {
+            color: var(--accent-secondary);
+            transform: translateX(3px);
+        }
+
+        .competency-card:hover .competency-list li {
+            transform: translateX(5px);
+            color: var(--light-gray);
+        }
+
+        .technical-expertise {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-category {
+            background: var(--card-bg);
+            padding: 1.8rem;
+            border-radius: 12px;
+            border-top: 3px solid var(--accent-color);
+            transition: all 0.4s ease;
             position: relative;
-            page-break-inside: avoid;
+            overflow: hidden;
+            animation: slideInUp 0.6s ease-in-out;
         }
-        
-        .job::before {
+
+        .tech-category::before {
             content: '';
             position: absolute;
-            left: -6px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            background: #3b82f6;
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
-        
+
+        .tech-category:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tech-category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, var(--card-bg), #2a2a2a);
+        }
+
+        .tech-category:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        .tech-category strong {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .tech-category:hover strong {
+            color: var(--accent-color);
+        }
+
+        .tech-category span {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .tech-category:hover span {
+            color: var(--light-gray);
+        }
+
+        .experience-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+            border-left: 4px solid var(--accent-color);
+            position: relative;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            animation: slideInLeft 0.8s ease-in-out;
+        }
+
+        .experience-card:nth-child(even) {
+            animation: slideInRight 0.8s ease-in-out;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, var(--accent-color), var(--accent-secondary));
+            transition: height 0.6s ease;
+        }
+
+        .experience-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent);
+            transition: width 0.6s ease;
+        }
+
+        .experience-card:hover::before {
+            height: 100%;
+        }
+
+        .experience-card:hover::after {
+            width: 100%;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(59, 130, 246, 0.15);
+            border-left-color: var(--accent-secondary);
+        }
+
         .job-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 8px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-        
-        .job-title {
-            font-size: 1.2rem;
+
+        .experience-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
             font-weight: 600;
-            color: #1e3a8a;
-            margin-bottom: 2px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-in-out;
         }
-        
-        .job-company {
-            font-size: 1rem;
-            color: #6b7280;
+
+        .experience-card:hover h3 {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .company-name {
+            font-size: 1.1rem;
             font-weight: 500;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+            animation: fadeInUp 0.6s ease-in-out 0.1s both;
         }
-        
+
+        .experience-card:hover .company-name {
+            color: var(--light-gray);
+        }
+
         .job-dates {
+            background: linear-gradient(135deg, var(--accent-color), #2563eb);
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
             font-size: 0.9rem;
-            color: #3b82f6;
-            font-weight: 500;
-            background: #eff6ff;
-            padding: 4px 12px;
-            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            animation: pulse 2s ease-in-out infinite;
         }
-        
+
+        .job-dates:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        }
+
         .job-summary {
-            font-size: 0.95rem;
-            color: #4b5563;
-            margin-bottom: 10px;
-            line-height: 1.5;
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+            animation: fadeInUp 0.6s ease-in-out 0.2s both;
         }
-        
+
+        .experience-card:hover .job-summary {
+            color: var(--light-gray);
+        }
+
         .achievements {
             list-style: none;
         }
-        
+
         .achievements li {
-            padding: 4px 0;
-            font-size: 0.9rem;
-            color: #4b5563;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            color: var(--text-color);
             position: relative;
-            padding-left: 20px;
-            line-height: 1.4;
+            padding-left: 1.5rem;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideInLeft 0.4s ease-in-out both;
         }
-        
+
+        .achievements li:nth-child(1) { animation-delay: 0.3s; }
+        .achievements li:nth-child(2) { animation-delay: 0.4s; }
+        .achievements li:nth-child(3) { animation-delay: 0.5s; }
+        .achievements li:nth-child(4) { animation-delay: 0.6s; }
+        .achievements li:nth-child(5) { animation-delay: 0.7s; }
+
         .achievements li::before {
             content: '●';
             position: absolute;
             left: 0;
-            color: #10b981;
+            color: var(--accent-color);
             font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover .achievements li {
+            transform: translateX(8px);
+            color: var(--light-gray);
+        }
+
+        .experience-card:hover .achievements li::before {
+            color: var(--accent-secondary);
+            transform: scale(1.3);
         }
         
-        .education-tech {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 20px;
+        .education-section {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: rotateIn 0.8s ease-in-out;
         }
-        
-        .education {
-            margin-bottom: 20px;
+
+        .education-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
         }
-        
-        .education h4 {
-            color: #1e3a8a;
-            font-weight: 600;
-            margin-bottom: 8px;
+
+        .education-section:hover::before {
+            transform: translateX(100%);
         }
-        
+
+        .education-section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+
         .education-details {
-            font-size: 0.9rem;
-            color: #6b7280;
+            font-size: 1rem;
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: color 0.3s ease;
         }
-        
-        .tech-skills {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+
+        .education-section:hover .education-details {
+            color: var(--light-gray);
         }
-        
-        .tech-skill {
-            font-size: 0.85rem;
+
+        .education-details strong {
+            color: var(--light-gray);
+            transition: color 0.3s ease;
         }
-        
-        .tech-skill strong {
-            color: #1e3a8a;
-            display: block;
-            margin-bottom: 2px;
+
+        .education-section:hover .education-details strong {
+            color: var(--accent-color);
         }
-        
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            
-            .resume-container {
-                box-shadow: none;
-                border-radius: 0;
-            }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-in-out;
         }
-        
+
+        .contact-form input, .contact-form textarea {
+            padding: 1.2rem;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .contact-form button {
+            background: linear-gradient(135deg, var(--accent-color), #2563eb);
+            color: white;
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-form button:hover::before {
+            left: 100%;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: #000;
+            color: var(--text-color);
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-in-out;
+        }
+
+        footer p {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        footer:hover p {
+            opacity: 1;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; left: 20%; animation-delay: 1s; }
+        .floating-element:nth-child(3) { top: 30%; left: 80%; animation-delay: 2s; }
+        .floating-element:nth-child(4) { top: 60%; left: 15%; animation-delay: 3s; }
+        .floating-element:nth-child(5) { top: 80%; left: 75%; animation-delay: 4s; }
+
         @media (max-width: 768px) {
-            .skills-grid,
-            .tech-skills {
-                grid-template-columns: 1fr;
+            .hero-title {
+                font-size: 3rem;
             }
             
-            .contact {
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .contact-info {
                 flex-direction: column;
-                gap: 10px;
+                gap: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .content-wrapper {
+                padding: 2rem 1rem;
+            }
+            
+            .competencies-grid {
+                grid-template-columns: 1fr;
             }
             
             .job-header {
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .data-point {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
         }
     
-body {
-  background-color: #ffffff !important;
-  color: #111827 !important; /* Tailwind gray-900 */
+/* === Analytics Hero Upgrade === */
+.hero {
+  background: radial-gradient(1200px 400px at 10% -10%, rgba(59,130,246,0.15), transparent 60%),
+              radial-gradient(1000px 500px at 110% 20%, rgba(16,185,129,0.12), transparent 60%),
+              linear-gradient(135deg, #0a0a0b 0%, #121317 100%) !important;
 }
-a, h1, h2, h3, h4, h5, h6, p, li, span, div {
-  color: #111827 !important;
+.hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity:.55;
+  animation: gridDrift 22s ease-in-out infinite alternate;
+  pointer-events:none;
 }
-section, .card, .container, .content {
-  background-color: #f9fafb !important; /* Tailwind gray-50 */
+@keyframes gridDrift{0%{transform:translateY(0)}100%{transform:translateY(8px)}}
+  100%{ transform: translateY(12px) }
+}
+.hero-sparkline {
+  position:absolute; inset:0; pointer-events:none; z-index:2;
+}
+.hero-sparkline path {
+  stroke: var(--accent-color);
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 480;
+  stroke-dashoffset: 480;
+  animation: drawSpark 4s ease-in-out infinite;
+  opacity:.9;
+  filter: drop-shadow(0 2px 6px rgba(59,130,246,.35));
+}
+.hero-sparkline path.alt {
+  stroke: var(--accent-secondary);
+  animation-delay: 1s;
+  opacity:.7;
+  stroke-dasharray: 540;
+  stroke-dashoffset: 540;
+}
+@keyframes drawSpark{
+  0%{ stroke-dashoffset: var(--dash, 480); }
+  50%{ stroke-dashoffset: 0; }
+  100%{ stroke-dashoffset: var(--dash, 480); }
+}
+/* Ticker */
+.ticker {
+  position:absolute; bottom:0; left:0; right:0;
+  height:44px;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,.08);
+  overflow:hidden; z-index:3;
+}
+.ticker .track {
+  display:flex; gap:2.5rem; align-items:center;
+  white-space:nowrap; will-change: transform;
+  animation: tickerMove 24s linear infinite;
+  padding: 0 .75rem;
+}
+@keyframes tickerMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker .item { font-size:.95rem; opacity:.9; }
+.ticker .up { color: var(--accent-secondary); }
+.ticker .down { color: #ef4444; }
+
+
+.hero-buttons a {
+  background: linear-gradient(135deg, #1f2937, #111827) !important;
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.06);
+}
+.hero-buttons a:hover {
+  box-shadow: 0 15px 30px rgba(0,0,0,0.45);
 }
 
 
-/* Force white text in header */
-.header, .header * { color: #ffffff !important; }
-.header .contact-item span { color: #ffffff !important; }
-.header .title { color: #ffffff !important; opacity: 1 !important; }
+/* === Light Blue Data Rain Theme === */
+.hero {
+  background:
+    radial-gradient(1200px 400px at 10% -10%, rgba(59,130,246,0.14), transparent 60%),
+    radial-gradient(900px 380px at 110% 10%, rgba(37,99,235,0.12), transparent 60%),
+    linear-gradient(135deg, #417bdf 0%, #303031 100%) !important;
+}
+.hero::after {
+  content:"";
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(17, 94, 168, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(55, 132, 204, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity:.6;
+  animation: gridDrift 22s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+
+
+  100% { transform: translateY(110vh) scaleY(var(--sy,1)); }
+}
+
+
+/* Overlay Card */
+.hero-overlay {
+  position:absolute; z-index:5; inset:0;
+  display:flex; align-items:center; justify-content:center; pointer-events:none;
+  padding: 2rem;
+}
+.hero-card {
+  pointer-events:auto;
+  background: rgba(44, 114, 255, 0.719);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 18px;
+  padding: 1.75rem 2rem;
+  max-width: 760px;
+  width: 92%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  text-align:center;
+}
+.hero-card h1 {
+  font-size: 3rem;
+  letter-spacing: -1px;
+  margin: 0 0 .2rem 0;
+  color: #e5e7eb;
+}
+.hero-card .subtitle {
+  font-size: 1.15rem;
+  color: #e5e7eb;
+  opacity: .9;
+  margin-bottom: 1rem;
+}
+.hero-card .meta {
+  display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
+  color:#0b1b32; opacity:.9; margin-bottom:1.25rem;
+}
+.hero-card .actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+.hero-card .actions a {
+  background: linear-gradient(135deg, #1f2937, #111827) !important;
+  color:#fff; padding: .9rem 1.4rem; border-radius: 14px; font-weight: 600;
+  border:1px solid rgba(0,0,0,0.15);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.hero-card .actions a:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+@media (max-width: 640px){
+  .hero-card h1{ font-size: 2.2rem; }
+}
+
+
+.ticker .track {
+  display:flex; gap:2rem; align-items:center;
+  white-space:nowrap; will-change: transform;
+  animation: tickerMove 38s linear infinite;
+  padding: 0 .75rem;
+  color:#0b1b32;
+}
+@keyframes tickerMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker .item { font-size:.95rem; opacity:.95; }
+.ticker .up { color: #0d7a52; font-weight:700; }
+.ticker .down { color: #b91c1c; font-weight:700; }
+
+
+/* Falling Stock Chips */
+.stock-fall { position:absolute; inset:0; overflow:hidden; z-index:2; pointer-events:none; pointer-events:none; }
+.stock-chip {
+  position:absolute; top:-140px;
+  min-width: 120px;
+  max-width: 180px;
+  padding: .55rem .75rem;
+  border-radius: 12px;
+  background: rgba(55,65,81,0.92);
+  color: #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.25);
+  font-size: .95rem;
+  display:flex; align-items:center; justify-content:space-between; gap:.6rem;
+  pointer-events:none;
+  animation: drop var(--dur, 22s) linear infinite;
+  opacity: var(--op, .95);
+}
+.stock-chip .sym { font-weight: 800; letter-spacing:.02em; }
+.stock-chip .price { font-weight: 700; }
+.stock-chip .chg.up { color:#0d7a52; font-weight:800; }
+.stock-chip .chg.down { color:#b91c1c; font-weight:800; }
+@keyframes drop {
+  0% { transform: translateY(-160px) }
+  100% { transform: translateY(110vh) }
+}
+
 </style>
 
+<style id="minimal-theme-overrides">
+:root{ --resume-bg:#0b0c10; --resume-ink:#e8ebef; --accent:#3b82f6; }
+.resume-surface, .resume-page, body.resume-page { background: var(--resume-bg) !important; color: var(--resume-ink) !important; }
+body.resume-gradient, body.resume, body[data-theme="resume"] { background: var(--resume-bg) !important; }
+.resume-page h1, .resume-page h2, .resume-page h3 { color: var(--resume-ink) !important; }
+</style>
+
+
+<style id="minimal-scroll-reveal">
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+</style>
+
+
+<style>
+.snackbar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+background:#0f172a;border:1px solid #333;padding:.9rem 1.1rem;border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,.3);display:none;z-index:9999;color:#e7ecef}
+.snackbar.show{display:block}
+.snackbar.success{border-color:rgba(34,197,94,.35)}
+.snackbar.error{border-color:rgba(239,68,68,.35)}
+</style>
 </head>
 <body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
 
+    <div class="hero">
+        <!-- Falling Stock Chips -->
+        <div class="stock-fall" id="stockFall"></div>
 
-<div class="topbar-actions" style="display:flex; justify-content:flex-end; align-items:center; gap:.5rem; padding:10px;">
-  
+        <div class="analytics-bg">
+            <div class="grid-pattern"></div>
+            <div class="data-point"></div>
+            <div class="data-point"></div>
+            <div class="data-point"></div>
+            <div class="data-point"></div>
+            <div class="data-point"></div>
+            <div class="data-point"></div>
+            <div class="data-point"></div>
+            <div class="data-point"></div>
+            <div class="data-point"></div>
+            <div class="data-point"></div>
+            <svg class="analytics-bg">
+                <path class="chart-line" d="M50,200 Q150,50 250,120 T450,80" />
+                <path class="chart-line" d="M100,300 Q200,150 300,200 T500,160" />
+            </svg>
+        
+
 </div>
-<div class="resume-container">
-        <header class="header">
-            <h1 class="name">SAL CARAMUCCI</h1>
-            <p class="title">VICE PRESIDENT (VP) REPORTING AND ANALYTICS LEAD</p>
-            <div class="contact">
-                <div class="contact-item">
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="contact-item">
-                    <span>✉️</span>
-                    <span>Sal.Caramucci@hotmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <span>📍</span>
-                    <span>Tampa, FL</span>
-                </div>
-            
-<div style="margin-top:12px;">
-  
+
+        
+<!-- Overlay Card -->
+<div class="hero-overlay">
+  <div class="hero-card">
+    <h2>Sal Caramucci</h2>
+
+    <div class="subtitle">VP Reporting and Analytics Lead</div>
+    <div class="actions">
+      <a href="Sal_Caramucci_Resume.html" target="_blank">View Online Resume</a>
+      <a href="mailto:Sal.Caramucci@gmail.com">Email Me</a>
+    </div>
+  </div>
 </div>
 
         </div>
-        </header>
-        
-        <div class="content">
-            <section class="section">
-                <h2 class="section-title">Professional Profile</h2>
-                <p class="profile-text">Finance and risk analytics leader with 4+ years of experience in banking risk management, regulatory compliance, and data-driven decision making. Expertise in financial modeling, risk quantification, and advanced analytics using SQL, Python, and machine learning integration. Proven track record of developing automated analytical solutions, managing cross-functional collaborations, and delivering executive-level insights for risk mitigation and performance optimization.</p>
-            </section>
-            
-            <section class="section">
-                <h2 class="section-title">Core Competencies</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h4>Risk Analytics & Modeling</h4>
-                        <ul class="skill-list">
-                            <li>Risk Quantification & Mitigation</li>
-                            <li>Financial Modeling & Reconciliation</li>
-                            <li>Liquidity Stress Testing (LST/LCR)</li>
-                            <li>KPI Monitoring & Trend Analysis</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Programming & Analytics</h4>
-                        <ul class="skill-list">
-                            <li>SQL, Python, VBA (Advanced)</li>
-                            <li>HTML, CSS (Advanced)</li>
-                            <li>Statistical Analysis & Modeling</li>
-                            <li>Machine Learning Integration</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Business Intelligence & Reporting</h4>
-                        <ul class="skill-list">
-                            <li>Tableau, Cognos, Alteryx</li>
-                            <li>Excel (Advanced), PowerPoint</li>
-                            <li>Executive Dashboard Development</li>
-                            <li>Cross-Functional Reporting</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4>Regulatory & Governance</h4>
-                        <ul class="skill-list">
-                            <li>Risk Control Framework Management</li>
-                            <li>Audit Preparation & Compliance</li>
-                            <li>Policy Adherence Monitoring</li>
-                            <li>Executive Committee Reporting</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="section">
-                <h2 class="section-title">Professional Experience</h2>
-                <div class="job">
-                    <div class="job-header">
-                        <div>
-                            <h3 class="job-title">Vice President (VP) - Reporting and Analytics Lead</h3>
-                            <p class="job-company">Citi Bank</p>
-                        </div>
-                        <span class="job-dates">2023 – Present</span>
-                    </div>
-                    <p class="job-summary">Lead comprehensive risk analytics and governance reporting across Citi's Finance organization, delivering data-driven insights for executive decision-making and risk mitigation strategies. Drive automation initiatives and cross-functional collaboration to optimize risk monitoring and control frameworks.</p>
-                    <ul class="achievements">
-                        <li>Developed sophisticated analytical models for risk assessment and trend forecasting, supporting executive decision-making across all business units through BRCC and GBRCC reporting</li>
-                        <li>Built automated risk monitoring systems using Python, SQL, and machine learning integration with Citi's AI teams, significantly improving detection accuracy and response times</li>
-                        <li>Created predictive analytics framework for the CFO Scorecard, forecasting remediation trends and identifying critical risk patterns to prevent future issues</li>
-                        <li>Designed and implemented data-driven solutions using VBA, Python, Tableau, and Cognos, reducing manual processes by 60% while improving analytical accuracy</li>
-                        <li>Led cross-functional analytics initiatives with Technology Labs and AI teams to integrate advanced analytics into risk monitoring, driving innovation in governance reporting</li>
-                    </ul>
-                </div>
-                <div class="job">
-                    <div class="job-header">
-                        <div>
-                            <h3 class="job-title">Financial & Regulatory Reporting Data Analyst → Liquidity & Funding Input Controller</h3>
-                            <p class="job-company">UBS</p>
-                        </div>
-                        <span class="job-dates">2021 – 2023</span>
-                    </div>
-                    <p class="job-summary">Managed complex liquidity risk analytics and regulatory reporting processes for UBS's U.S. operations, focusing on data integrity, model validation, and process optimization for Federal Reserve, FINRA, and other regulatory requirements. Specialized in liquidity stress testing, funding analysis, and automated risk calculation solutions.</p>
-                    <ul class="achievements">
-                        <li>Executed sophisticated liquidity risk analytics for U.S. Liquidity Stress Test (LST), LST CMB, and Liquidity Coverage Ratio (LCR) models, ensuring regulatory compliance with Federal Reserve requirements through advanced data analysis and model validation</li>
-                        <li>Developed automated liquidity monitoring systems using SQL and Python to enhance funding model accuracy and real-time liquidity position tracking, reducing processing time by 40% while improving regulatory reporting precision</li>
-                        <li>Performed complex liquidity reconciliation for High Quality Liquid Assets (HQLA) and Prime Brokerage funding positions, maintaining analytical integrity across multiple liquidity sources and regulatory frameworks</li>
-                        <li>Created comprehensive liquidity risk reports analyzing funding patterns, stress scenarios, and capital adequacy metrics, providing critical insights for liquidity management and strategic decision-making</li>
-                        <li>Collaborated with Treasury, Risk, and Compliance teams to implement enhanced liquidity monitoring processes and analytical frameworks for multi-regulatory environment (Federal Reserve, FINRA, CFTC)</li>
-                    </ul>
-                </div>
-            </section>
-        </div>
-        
-        <div class="education-tech">
-            <div class="education">
-                <h4>Education</h4>
-                <p class="education-details">BACHELOR'S DEGREE | Middle Tennessee State University | 2017-2021</p>
+    </div>
+
+
+    <nav id="navbar">
+        <a href="#about">About</a>
+        <a href="#competencies">Core Competencies</a>
+        <a href="#expertise">Technical Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="technical-skills.html">Samples of Technical Skills</a> <!-- ← NEW -->
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="content-wrapper">
+        <section id="about" class="reveal animate-on-scroll">
+            <h2 class="section-title">Professional Profile</h2>
+            <div class="professional-profile">
+                Finance and risk analytics leader with 4+ years of experience in banking risk management, regulatory compliance, and data-driven decision making. Expertise in financial modeling, risk quantification, and advanced analytics using SQL, Python, and machine learning integration. Proven track record of developing automated analytical solutions, managing cross-functional collaborations, and delivering executive-level insights for risk mitigation and performance optimization.
             </div>
-            
-            <h4 style="color: #1e3a8a; font-weight: 600; margin-bottom: 15px;">Technical Expertise</h4>
-            <div class="tech-skills">
-                <div class="tech-skill">
+        </section>
+
+        <section id="competencies" class="reveal animate-on-scroll">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="competencies-grid">
+                <div class="competency-card">
+                    <h4>Risk Analytics & Modeling</h4>
+                    <ul class="competency-list">
+                        <li>Risk Quantification & Mitigation</li>
+                        <li>Financial Modeling & Reconciliation</li>
+                        <li>Liquidity Stress Testing (LST/LCR)</li>
+                        <li>KPI Monitoring & Trend Analysis</li>
+                        <li>Data-Driven Strategy Development</li>
+                    </ul>
+                </div>
+                <div class="competency-card">
+                    <h4>Programming & Analytics</h4>
+                    <ul class="competency-list">
+                        <li>SQL, Python, VBA (Advanced)</li>
+                        <li>HTML, CSS (Advanced)</li>
+                        <li>Statistical Analysis & Modeling</li>
+                        <li>Machine Learning Integration</li>
+                        <li>A/B Testing & Performance Analysis</li>
+                    </ul>
+                </div>
+                <div class="competency-card">
+                    <h4>Business Intelligence & Reporting</h4>
+                    <ul class="competency-list">
+                        <li>Tableau, Cognos, Alteryx</li>
+                        <li>Excel (Advanced), PowerPoint</li>
+                        <li>Executive Dashboard Development</li>
+                        <li>Cross-Functional Reporting</li>
+                        <li>Performance Monitoring Systems</li>
+                    </ul>
+                </div>
+                <div class="competency-card">
+                    <h4>Regulatory & Governance</h4>
+                    <ul class="competency-list">
+                        <li>Risk Control Framework Management</li>
+                        <li>Audit Preparation & Compliance</li>
+                        <li>Policy Adherence Monitoring</li>
+                        <li>Executive Committee Reporting</li>
+                        <li>Issue Remediation Tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="expertise" class="reveal animate-on-scroll">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="technical-expertise">
+                <div class="tech-category">
                     <strong>Programming:</strong>
                     <span>SQL, Python, VBA, HTML, CSS</span>
                 </div>
-                <div class="tech-skill">
+                <div class="tech-category">
                     <strong>Analytics Tools:</strong>
                     <span>Tableau, Cognos, Alteryx, Excel (Advanced)</span>
                 </div>
-                <div class="tech-skill">
+                <div class="tech-category">
                     <strong>Statistical Methods:</strong>
                     <span>Financial Modeling, Risk Quantification, Trend Analysis</span>
                 </div>
-                <div class="tech-skill">
+                <div class="tech-category">
                     <strong>Risk Management:</strong>
                     <span>Stress Testing, Compliance Monitoring, Control Assessment</span>
                 </div>
-                <div class="tech-skill">
+                <div class="tech-category">
                     <strong>Collaboration:</strong>
                     <span>Cross-functional project leadership, Executive reporting, AI/ML integration</span>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="experience" class="reveal animate-on-scroll">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-card">
+                <div class="job-header">
+                    <div>
+                        <h3>Vice President (VP) - Reporting and Analytics Lead</h3>
+                        <p class="company-name">Citi Bank</p>
+                    </div>
+                    <span class="job-dates">2023 – Present</span>
+                </div>
+                <p class="job-summary">Lead comprehensive risk analytics and governance reporting across Citi's Finance organization, delivering data-driven insights for executive decision-making and risk mitigation strategies. Drive automation initiatives and cross-functional collaboration to optimize risk monitoring and control frameworks.</p>
+                <ul class="achievements">
+                    
+                </ul>
+            </div>
+            <div class="experience-card">
+                <div class="job-header">
+                    <div>
+                        <h3>Financial & Regulatory Reporting Data Analyst → Liquidity & Funding Input Controller</h3>
+                        <p class="company-name">UBS</p>
+                    </div>
+                    <span class="job-dates">2021 – 2023</span>
+                </div>
+                <p class="job-summary">Managed complex liquidity risk analytics and regulatory reporting processes for UBS's U.S. operations, focusing on data integrity, model validation, and process optimization for Federal Reserve, FINRA, and other regulatory requirements. Specialized in liquidity stress testing, funding analysis, and automated risk calculation solutions.</p>
+                <ul class="achievements">
+                    
+                </ul>
+            </div>
+        </section>
+
+        <section id="education" class="reveal animate-on-scroll">
+            <h2 class="section-title">Education</h2>
+            <div class="education-section">
+                <div class="education-details">
+                    <strong>BACHELOR'S DEGREE</strong><br>
+                    Middle Tennessee State University<br>
+                    2017-2021<br>
+                </div>
+            </div>
+        </section>
+
+        
     </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling for navigation links
+// Smooth scrolling only for in-page anchors
+            document.querySelectorAll('nav a').forEach(anchor => {
+                const href = anchor.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                }
+            });
+
+
+            // Add parallax effect to data points
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const dataPoints = document.querySelectorAll('.data-point');
+                
+                dataPoints.forEach((point, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    point.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+
+            // Enhanced typewriter effect
+            const titleElement = document.querySelector('.typewriter');
+            const titleText = titleElement.textContent;
+            titleElement.textContent = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < titleText.length) {
+                    titleElement.textContent += titleText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 150);
+                }
+            }
+            
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
+
+<script id="minimal-scroll-reveal-js">
+(function(){
+  var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if(!('IntersectionObserver' in window) || !els.length) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold: 0.12});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+
+<div class="snackbar" id="snackbar"></div>
+
+<script id="contactFormHandler">
+(function(){
+  const form = document.getElementById('contactForm');
+  if(!form) return;
+  const snack = document.getElementById('snackbar');
+  function showSnack(msg, ok){
+    if(!snack) return; 
+    snack.textContent = msg;
+    snack.className = 'snackbar show ' + (ok ? 'success' : 'error');
+    setTimeout(()=> snack.className='snackbar', 3200);
+  }
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    if(form.website && form.website.value){ return; } // honeypot
+    const btn = form.querySelector('button[type="submit"]');
+    if(btn){ btn.disabled = true; btn.textContent = 'Sending...'; }
+    try{
+      const data = new FormData(form);
+      const res = await fetch(form.getAttribute('action') || 'https://formspree.io/f/your-endpoint', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept':'application/json' }
+      });
+      if(res.ok){
+        showSnack('Thanks! Your message was sent.', true);
+        form.reset();
+      }else{
+        showSnack('Something went wrong. Please try again.', false);
+      }
+    }catch(err){
+      showSnack('Network error. Please try later.', false);
+    }finally{
+      if(btn){ btn.disabled = false; btn.textContent = 'Send Message'; }
+    }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const rain = document.getElementById('dataRain');
+  if(!rain) return;
+  const N = 24; // number of bars
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  function makeBar(i){
+    const b = document.createElement('div');
+    b.className = 'bar' + (Math.random() < 0.35 ? ' alt' : '');
+    const left = Math.random() * vw;
+    const h = 60 + Math.random() * 160; // height
+    const w = Math.random() < 0.3 ? 4 : 3; // width variance
+    const dur = 20 + Math.random() * 15; // 20-35s slower
+    const delay = -Math.random() * dur; // stagger
+    const op = 0.6 + Math.random() * 0.4;
+    const scaleY = 0.9 + Math.random() * 0.6;
+    b.style.left = left + 'px';
+    b.style.height = h + 'px';
+    b.style.width = w + 'px';
+    b.style.animationDuration = dur + 's';
+    b.style.animationDelay = delay + 's';
+    b.style.setProperty('--op', op);
+    b.style.setProperty('--sy', scaleY);
+    rain.appendChild(b);
+  }
+  for(let i=0;i<N;i++) makeBar(i);
+  // Recreate bars on resize for better spread
+  let t;
+  window.addEventListener('resize', function(){
+    clearTimeout(t);
+    t = setTimeout(()=>{
+      while(rain.firstChild) rain.removeChild(rain.firstChild);
+      const vw2 = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      for(let i=0;i<N;i++) makeBar(i);
+    }, 250);
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  const el = document.getElementById('stockFall');
+  if(!el) return;
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  const symbols = [
+    {s:'AAPL', p: 100.00, c:-0.5},
+    {s:'MSFT', p: 102.00, c:-0.25},
+    {s:'NVDA', p: 104.00, c:0.0},
+    {s:'GOOGL', p: 106.00, c:0.25},
+    {s:'AMZN', p: 108.00, c:0.5},
+    {s:'META', p: 110.00, c:-0.5},
+    {s:'BRK.B', p: 112.00, c:-0.25},
+    {s:'LLY', p: 114.00, c:0.0},
+    {s:'JPM', p: 116.00, c:0.25},
+    {s:'TSLA', p: 118.00, c:0.5},
+    {s:'V', p: 120.00, c:-0.5},
+    {s:'UNH', p: 122.00, c:-0.25},
+    {s:'XOM', p: 124.00, c:0.0},
+    {s:'AVGO', p: 126.00, c:0.25},
+    {s:'JNJ', p: 128.00, c:0.5},
+    {s:'PG', p: 130.00, c:-0.5},
+    {s:'MA', p: 132.00, c:-0.25},
+    {s:'HD', p: 134.00, c:0.0},
+    {s:'MRK', p: 136.00, c:0.25},
+    {s:'COST', p: 138.00, c:0.5},
+    {s:'ABBV', p: 140.00, c:-0.5},
+    {s:'PEP', p: 142.00, c:-0.25},
+    {s:'KO', p: 144.00, c:0.0},
+    {s:'CVX', p: 146.00, c:0.25},
+    {s:'ADBE', p: 148.00, c:0.5},
+    {s:'BAC', p: 150.00, c:-0.5},
+    {s:'WMT', p: 152.00, c:-0.25},
+    {s:'NFLX', p: 154.00, c:0.0},
+    {s:'ASML', p: 156.00, c:0.25},
+    {s:'ACN', p: 158.00, c:0.5},
+    {s:'LIN', p: 160.00, c:-0.5},
+    {s:'DIS', p: 162.00, c:-0.25},
+    {s:'MCD', p: 164.00, c:0.0},
+    {s:'CRM', p: 166.00, c:0.25},
+    {s:'CSCO', p: 168.00, c:0.5},
+    {s:'AMD', p: 170.00, c:-0.5},
+    {s:'ABT', p: 172.00, c:-0.25},
+    {s:'TMO', p: 174.00, c:0.0},
+    {s:'VZ', p: 176.00, c:0.25},
+    {s:'PFE', p: 178.00, c:0.5},
+    {s:'INTC', p: 180.00, c:-0.5},
+    {s:'CAT', p: 182.00, c:-0.25},
+    {s:'TXN', p: 184.00, c:0.0},
+    {s:'NEE', p: 186.00, c:0.25},
+    {s:'NKE', p: 188.00, c:0.5},
+    {s:'HON', p: 190.00, c:-0.5},
+    {s:'ORCL', p: 192.00, c:-0.25},
+    {s:'PM', p: 194.00, c:0.0},
+    {s:'BMY', p: 196.00, c:0.25},
+    {s:'AMGN', p: 198.00, c:0.5}
+  ];
+  // Number of chips
+  const N = 24;
+  function makeChip(idx){
+    const d = document.createElement('div');
+    d.className = 'stock-chip';
+    const s = symbols[idx % symbols.length];
+    // Randomize around base values for variation
+    const price = (s.p + (Math.random()-0.5) * (s.p*0.01)).toFixed(2);
+    const chg = (s.c + (Math.random()-0.5) * 0.5).toFixed(2);
+    const up = parseFloat(chg) >= 0;
+    d.innerHTML = '<span class="sym">'+s.s+'</span>' +
+                  '<span class="price">$'+price+'</span>' +
+                  '<span class="chg '+(up?'up':'down')+'">'+(up?'+':'')+chg+'%</span>';
+    // Exclude center safe zone where overlay sits
+    const overlayWidth = 760; // matches hero-card max width
+    const safePadding = 40;   // breathing space
+    const safeLeft = Math.max(0, (vw/2) - (overlayWidth/2) - safePadding);
+    const safeRight = Math.min(vw, (vw/2) + (overlayWidth/2) + safePadding);
+    let left = Math.random() * (vw - 180);
+    let tries = 0;
+    while(left > safeLeft && (left + 180) < safeRight && tries < 20){
+      left = Math.random() * (vw - 180);
+      tries++;
+    }
+    const dur = 20 + Math.random() * 15; // 20-35s slower
+    const delay = -Math.random() * dur;
+    const op = 0.85 + Math.random() * 0.15;
+    d.style.left = left + 'px';
+    d.style.animationDuration = dur + 's';
+    d.style.animationDelay = delay + 's';
+    d.style.setProperty('--op', op);
+    el.appendChild(d);
+  }
+  for(let i=0;i<N;i++) makeChip(i);
+
+  // Regenerate on resize for proper spread
+  let t;
+  window.addEventListener('resize', function(){
+    clearTimeout(t);
+    t = setTimeout(()=>{
+      while(el.firstChild) el.removeChild(el.firstChild);
+      const vw2 = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      for(let i=0;i<N;i++) makeChip(i);
+    }, 250);
+  });
+})();
+</script>
+
 </body>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Technical Skills – Sal Caramucci</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <!-- Page Style (Enhanced Dark Theme) -->
+  <style>
+    :root{
+      --bg:#0a0a0f; 
+      --ink:#f1f5f9; 
+      --muted:#94a3b8;
+      --card:#0f111a; 
+      --card-hover:#141620;
+      --accent:#3b82f6; 
+      --accent2:#10b981; 
+      --accent3:#f59e0b;
+      --border:#1e293b;
+      --code-bg:#0d0f1a; 
+      --code-border:#1e293b;
+      --success:#10b981;
+      --error:#ef4444;
+      --warning:#f59e0b;
+      --info:#06b6d4;
+      --gradient1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient2: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      --gradient3: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+    }
+    
+    *{box-sizing:border-box; margin:0; padding:0;}
+    
+    html{
+      scroll-behavior:smooth;
+      font-size: 16px;
+    }
+    
+    body{
+      font-family:'Inter', system-ui, -apple-system, sans-serif; 
+      background:var(--bg); 
+      color:var(--ink); 
+      line-height:1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+    }
+
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 25s; }
+    .particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 22s; }
+    .particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 28s; }
+    .particle:nth-child(4) { left: 40%; animation-delay: 6s; animation-duration: 20s; }
+    .particle:nth-child(5) { left: 50%; animation-delay: 8s; animation-duration: 24s; }
+    .particle:nth-child(6) { left: 60%; animation-delay: 10s; animation-duration: 26s; }
+    .particle:nth-child(7) { left: 70%; animation-delay: 12s; animation-duration: 23s; }
+    .particle:nth-child(8) { left: 80%; animation-delay: 14s; animation-duration: 21s; }
+    .particle:nth-child(9) { left: 90%; animation-delay: 16s; animation-duration: 27s; }
+    .particle:nth-child(10) { left: 95%; animation-delay: 18s; animation-duration: 25s; }
+
+    /* Typography */
+    h1{font-size:clamp(2rem, 5vw, 3rem); margin:2rem 0 1rem; font-weight: 800; 
+      background: var(--gradient2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    h2{font-size:clamp(1.5rem, 4vw, 2rem); margin:2rem 0 1rem; color: var(--ink); font-weight: 700;
+      position: relative; padding-bottom: 0.5rem;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gradient2);
+      border-radius: 2px;
+      animation: slideIn 0.6s ease-out;
+    }
+    h3{font-size:1.25rem; margin:1.5rem 0 0.75rem; color:#e2e8f0; font-weight: 600;}
+
+    /* Links */
+    a{color:var(--accent); text-decoration:none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);}
+    a:hover{color:var(--accent2); transform: translateY(-1px);}
+
+    /* Header */
+    header.site-hd{
+      position:sticky; 
+      top:0; 
+      z-index:100;
+      background:rgba(10, 10, 15, 0.85); 
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom:1px solid var(--border); 
+      padding:1rem 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled {
+      padding: 0.75rem 1.5rem;
+      background:rgba(10, 10, 15, 0.95);
+    }
+
+    .wrap{max-width:1200px; margin:auto; padding:0 1.5rem; position: relative; z-index: 2;}
+    
+    .nav{display:flex; gap:1.5rem; align-items:center; justify-content:space-between; flex-wrap: wrap;}
+    .brand{font-weight:800; letter-spacing:-0.02em; font-size: 1.1rem;
+      background: var(--gradient2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-buttons {display: flex; gap: 1rem; align-items: center;}
+    
+    .nav a.btn{
+      padding:0.6rem 1.2rem; 
+      border:1px solid var(--border); 
+      border-radius:12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+    }
+    
+    .nav a.btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .nav a.btn:hover {
+      border-color:var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+    }
+    
+    .nav a.btn:hover::before {
+      left: 100%;
+    }
+
+    .nav a.btn.primary {
+      background: var(--gradient2);
+      border: none;
+      color: white;
+    }
+
+    /* Main Content */
+    main {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    /* Intro Section */
+    .intro{
+      margin:2rem 0 3rem; 
+      color:var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .intro .pill {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Grid System */
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:2rem;}
+    .col-12{grid-column: span 12;}
+    .col-6{grid-column: span 12;}
+    .col-4{grid-column: span 12;}
+    @media(min-width:768px){ 
+      .col-6{grid-column: span 6;} 
+      .col-4{grid-column: span 4;}
+    }
+    @media(min-width:1024px){ 
+      .col-4{grid-column: span 4;}
+    }
+
+    /* Cards */
+    .card{
+      background:var(--card); 
+      border:1px solid var(--border); 
+      border-radius:16px; 
+      padding:1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient2);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.3);
+      background: var(--card-hover);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* Badges */
+    .badge{
+      display:inline-block; 
+      font-size:0.75rem; 
+      padding:0.25rem 0.75rem; 
+      border-radius:999px;
+      background:rgba(59, 130, 246, 0.1); 
+      color:#93bbfc; 
+      border:1px solid rgba(59, 130, 246, 0.2); 
+      margin:0 0.5rem 0.5rem 0;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      transition: all 0.2s ease;
+    }
+    
+    .badge:hover {
+      background:rgba(59, 130, 246, 0.2);
+      transform: scale(1.05);
+    }
+
+    .badge.success { background: rgba(16, 185, 129, 0.1); color: #6ee7b7; border-color: rgba(16, 185, 129, 0.2); }
+    .badge.warning { background: rgba(245, 158, 11, 0.1); color: #fcd34d; border-color: rgba(245, 158, 11, 0.2); }
+    .badge.error { background: rgba(239, 68, 68, 0.1); color: #fca5a5; border-color: rgba(239, 68, 68, 0.2); }
+
+    /* Panels */
+    .panel{
+      margin-top:1rem; 
+      background:var(--code-bg); 
+      border:1px solid var(--border); 
+      border-radius:12px; 
+      padding:1.25rem;
+      transition: all 0.3s ease;
+    }
+    
+    .panel:hover {
+      border-color: rgba(59, 130, 246, 0.2);
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex; 
+      align-items:center; 
+      gap:0.5rem;
+      background:var(--gradient2); 
+      color:#fff;
+      padding:0.65rem 1.25rem; 
+      border-radius:10px; 
+      border:none; 
+      cursor:pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    }
+    
+    .btn:active::after {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .btn.secondary{
+      background:transparent; 
+      color:var(--accent); 
+      border:1px solid var(--border);
+    }
+    
+    .btn.secondary:hover {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: var(--accent);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Code blocks */
+    pre{
+      margin:1rem 0; 
+      overflow:auto; 
+      background:var(--code-bg); 
+      border:1px solid var(--code-border);
+      border-radius:12px; 
+      padding:1rem;
+      position: relative;
+      max-height: 600px;
+      transition: all 0.3s ease;
+    }
+    
+    pre:hover {
+      border-color: rgba(59, 130, 246, 0.2);
+    }
+
+    code{
+      font-family: 'JetBrains Mono', 'Fira Code', monospace; 
+      font-size:0.875rem;
+      line-height: 1.5;
+    }
+
+    /* Syntax highlighting */
+    .hljs-keyword { color: #c792ea; }
+    .hljs-string { color: #c3e88d; }
+    .hljs-comment { color: #546e7a; font-style: italic; }
+    .hljs-number { color: #f78c6c; }
+    .hljs-function { color: #82aaff; }
+    .hljs-class { color: #ffcb6b; }
+    .hljs-variable { color: #f07178; }
+
+    /* Code row with actions */
+    .code-row{
+      display:flex; 
+      justify-content:space-between; 
+      align-items:center; 
+      gap:1rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    
+    .code-actions{
+      display:flex; 
+      gap:0.5rem;
+    }
+
+    /* Tables */
+    table{
+      width:100%; 
+      border-collapse: collapse; 
+      font-size:0.9rem;
+      margin: 1rem 0;
+      background: var(--card);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    th, td{
+      border-bottom:1px solid var(--border); 
+      padding:0.75rem; 
+      text-align:left;
+    }
+    
+    th{
+      color:var(--ink);
+      background: rgba(59, 130, 246, 0.05);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    
+    tr:hover {
+      background: rgba(59, 130, 246, 0.02);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Form elements */
+    textarea, input[type="text"], input[type="number"], select {
+      width: 100%;
+      background: var(--code-bg);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+    
+    textarea:focus, input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Utility classes */
+    .muted{color:var(--muted);}
+    
+    .pill{
+      display:inline-block; 
+      padding:0.25rem 0.75rem; 
+      border-radius:999px; 
+      background:rgba(59, 130, 246, 0.1); 
+      border:1px solid var(--border); 
+      color:var(--accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    
+    .pill:hover {
+      background: rgba(59, 130, 246, 0.2);
+      transform: scale(1.05);
+    }
+    
+    .callout{
+      border-left:4px solid var(--accent); 
+      padding:1rem 1rem 1rem 1.5rem; 
+      background: rgba(59, 130, 246, 0.05);
+      color:var(--ink); 
+      margin:1.5rem 0;
+      border-radius: 0 8px 8px 0;
+      animation: slideInLeft 0.6s ease-out;
+    }
+    
+    .callout.info { border-color: var(--info); background: rgba(6, 182, 212, 0.05); }
+    .callout.success { border-color: var(--success); background: rgba(16, 185, 129, 0.05); }
+    .callout.warning { border-color: var(--warning); background: rgba(245, 158, 11, 0.05); }
+    .callout.error { border-color: var(--error); background: rgba(239, 68, 68, 0.05); }
+
+    /* Loading states */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Tooltips */
+    .tooltip {
+      position: relative;
+      cursor: help;
+      border-bottom: 1px dotted var(--accent);
+    }
+
+    .tooltip::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-5px);
+      background: var(--card);
+      color: var(--ink);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+      z-index: 1000;
+    }
+
+    .tooltip:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px);
+    }
+
+    /* Progress bars */
+    .progress {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--gradient2);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+      animation: shimmer 2s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { opacity: 0.8; }
+    }
+
+    /* Search box */
+    .search-box {
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .search-box input {
+      padding-left: 2.5rem;
+    }
+
+    .search-box::before {
+      content: '🔍';
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.5;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .tab {
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .tab:hover {
+      color: var(--ink);
+    }
+
+    .tab.active {
+      color: var(--accent);
+    }
+
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      animation: slideIn 0.3s ease;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Footer */
+    footer{
+      margin:4rem 0 2rem; 
+      text-align:center; 
+      color:var(--muted);
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      background: rgba(10, 10, 15, 0.5);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from { 
+        transform: scaleX(0);
+      }
+      to { 
+        transform: scaleX(1);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from { 
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Scroll animations */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-buttons {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      .grid {
+        gap: 1rem;
+      }
+      
+      .card {
+        padding: 1rem;
+      }
+      
+      .code-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+      
+      .particles,
+      .nav-buttons,
+      .btn,
+      .code-actions {
+        display: none;
+      }
+      
+      .card {
+        border: 1px solid #ddd;
+        box-shadow: none;
+      }
+    }
+
+    /* Smooth scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--code-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    /* Copy button feedback */
+    .copy-feedback {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--success);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .copy-feedback.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Language tags for code blocks */
+    .code-lang {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Demo status indicators */
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin: 0.5rem 0;
+    }
+
+    .status-indicator.success {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .status-indicator.error {
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .status-indicator.loading {
+      border-color: var(--warning);
+      color: var(--warning);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- SQL.js (SQLite in the browser) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js" defer></script>
+
+  <!-- Danfo.js (Pandas-like DataFrame in JS) -->
+  <script src="https://cdn.jsdelivr.net/npm/danfojs@1.4.0/lib/bundle.min.js" defer></script>
+
+  <!-- Highlight.js for syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/vbnet.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+  <!-- Floating particles -->
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <!-- Copy feedback toast -->
+  <div class="copy-feedback" id="copyFeedback">✓ Copied to clipboard!</div>
+
+  <header class="site-hd" id="header">
+
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Full Technical Capabilities</h1>
+    <p class="intro">
+      This page showcases my comprehensive technical skill set with <strong>interactive demos</strong>, <strong>production-ready code samples</strong>, and <strong>real-world implementations</strong>. Each section includes live examples you can run directly in your browser. Core expertise includes
+      <span class="pill">Risk & Finance Analytics</span>,
+      <span class="pill">SQL & Data Engineering</span>,
+      <span class="pill">Python (Pandas/ML)</span>,
+      <span class="pill">Automation (VBA/Outlook/pywin32)</span>,
+      and <span class="pill">Visualization & Reporting</span>.
+    </p>
+
+    <!-- Search/Filter Box -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search for specific skills, tools, or code examples...">
+    </div>
+
+    <!-- Skills Overview Cards -->
+    <section class="grid scroll-reveal">
+      <div class="col-4">
+        <div class="card">
+          <h3>🎯 Data Analytics</h3>
+          <div style="margin: 1rem 0;">
+            <div class="badge">SQL</div>
+            <div class="badge">Python</div>
+            <div class="badge">Pandas</div>
+            <div class="badge">NumPy</div>
+          </div>
+          <p class="muted">Advanced data manipulation, ETL pipelines, and statistical analysis</p>
+          <div class="progress">
+            <div class="progress-bar" style="width: 95%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3>🤖 Machine Learning</h3>
+          <div style="margin: 1rem 0;">
+            <div class="badge success">Scikit-learn</div>
+            <div class="badge success">TensorFlow</div>
+            <div class="badge success">NLP</div>
+          </div>
+          <p class="muted">Predictive modeling, clustering, and natural language processing</p>
+          <div class="progress">
+            <div class="progress-bar" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <h3>📊 Visualization</h3>
+          <div style="margin: 1rem 0;">
+            <div class="badge warning">Tableau</div>
+            <div class="badge warning">D3.js</div>
+            <div class="badge warning">Plotly</div>
+          </div>
+          <p class="muted">Interactive dashboards and executive-level reporting</p>
+          <div class="progress">
+            <div class="progress-bar" style="width: 90%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LIVE DEMOS SECTION ===================== -->
+    <section id="demos" class="scroll-reveal">
+      <h2>Interactive Live Demos</h2>
+      
+      <!-- SQL Demo -->
+      <div class="grid">
+        <div class="col-12">
+          <div class="card">
+            <h3>SQL Analytics — Live in Browser (SQLite)</h3>
+            <p class="muted">Execute complex queries on a real dataset. Features window functions, CTEs, and aggregations.</p>
+            
+            <div class="tabs">
+              <button class="tab active" data-tab="sql-basic">Basic Queries</button>
+              <button class="tab" data-tab="sql-advanced">Advanced Analytics</button>
+              <button class="tab" data-tab="sql-window">Window Functions</button>
+            </div>
+
+            <div class="panel">
+              <div class="status-indicator" id="sqlStatus">
+                <span class="status-dot"></span>
+                <span>Initializing SQL engine...</span>
+              </div>
+              
+              <div class="tab-content active" id="sql-basic">
+                <div class="code-row">
+                  <strong>Query Editor</strong>
+                  <div class="code-actions">
+                    <button class="btn secondary" id="btnLoadSample">📊 Load Dataset</button>
+                    <button class="btn secondary" id="btnTopSpenders">👥 Top Customers</button>
+                    <button class="btn secondary" id="btnMonthly">📅 Monthly Stats</button>
+                  </div>
+                </div>
+                <textarea id="sqlInput" rows="8" style="font-family: 'JetBrains Mono', monospace;">-- Welcome! Click "Load Dataset" first, then try this query
+SELECT 
+    customer,
+    category,
+    COUNT(*) as transaction_count,
+    ROUND(AVG(amount), 2) as avg_amount,
+    ROUND(SUM(amount), 2) as total_spent
+FROM transactions
+GROUP BY customer, category
+HAVING SUM(amount) > 100
+ORDER BY total_spent DESC;</textarea>
+              </div>
+
+              <div class="tab-content" id="sql-advanced">
+                <textarea id="sqlAdvanced" rows="8" style="font-family: 'JetBrains Mono', monospace;">-- Advanced CTE example
+WITH customer_stats AS (
+    SELECT 
+        customer,
+        COUNT(*) as total_transactions,
+        SUM(amount) as total_spent,
+        AVG(amount) as avg_transaction
+    FROM transactions
+    GROUP BY customer
+),
+ranked_customers AS (
+    SELECT 
+        *,
+        RANK() OVER (ORDER BY total_spent DESC) as spend_rank
+    FROM customer_stats
+)
+SELECT * FROM ranked_customers WHERE spend_rank <= 3;</textarea>
+              </div>
+
+              <div class="tab-content" id="sql-window">
+                <textarea id="sqlWindow" rows="8" style="font-family: 'JetBrains Mono', monospace;">-- Window functions for running totals and rankings
+SELECT 
+    date,
+    customer,
+    amount,
+    SUM(amount) OVER (PARTITION BY customer ORDER BY date) as running_total,
+    ROW_NUMBER() OVER (PARTITION BY customer ORDER BY amount DESC) as transaction_rank,
+    LAG(amount, 1) OVER (PARTITION BY customer ORDER BY date) as prev_amount
+FROM transactions
+ORDER BY customer, date;</textarea>
+              </div>
+
+              <div style="margin-top:1rem; display: flex; gap: 1rem; align-items: center;">
+                <button class="btn" id="btnRunSQL">▶ Execute Query</button>
+                <button class="btn secondary" id="btnExportSQL">📥 Export Results</button>
+                <span class="muted" id="sqlRowCount"></span>
+              </div>
+              
+              <div id="sqlTable" style="margin-top:1.5rem; overflow:auto; max-height: 400px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+              
+<script>
+/* ===============================================================
+  Surgical Patch:
+  1) Remove the Danfo "Live ETL Pipeline" code block.
+  2) Add a Python Database Query card to Automation & Integration.
+================================================================ */
+(function(){
+  function removeDanfoETL(){
+    // Look for the unique marker text inside a JS code block
+    const codes = document.querySelectorAll('pre > code.javascript');
+    for (const code of codes){
+      if ((code.textContent || '').includes('// Live ETL Pipeline')){
+        const pre = code.closest('pre');
+        if (pre && pre.parentElement) {
+          pre.parentElement.removeChild(pre);
+          // Optional: leave a small note under the panel so layout stays tidy
+          const note = document.createElement('div');
+          note.className = 'callout info';
+          note.textContent = 'ETL sample removed by request. The live Danfo demo remains fully functional.';
+          const panel = document.querySelector('#demos .card:has(h3:contains("DataFrame Analytics")) .panel') 
+                     || document.querySelector('#demos .card:has(h3) .panel');
+          // Fallback: place note right after the dfOut container if panel lookup fails
+          const anchor = document.getElementById('dfOut') || pre.parentElement;
+          (panel || anchor.parentElement).appendChild(note);
+        }
+        break;
+      }
+    }
+  }
+
+  // Polyfill :has and :contains fallbacks for older engines
+  (function polyfills(){
+    if (!CSS || !CSS.supports || CSS.supports('selector(:has(*))')) return;
+    // No action; our code uses fallbacks too.
+  })();
+  // Small helper for :contains fallback
+  (function(){
+    if (!('containsTextQuery' in Element.prototype)){
+      Element.prototype.containsTextQuery = function(tag, txt){
+        const els = this.querySelectorAll(tag);
+        txt = (txt||'').toLowerCase();
+        for (const el of els){
+          if ((el.textContent||'').toLowerCase().includes(txt)) return el;
+        }
+        return null;
+      };
+    }
+  })();
+
+  function addPythonQueryCard(){
+    const automation = document.getElementById('automation');
+    if (!automation) return;
+
+    const grid = automation.querySelector('.grid') || automation;
+    // Avoid duplicating if already inserted
+    if (grid.querySelector('#py-db-query')) return;
+
+    const col = document.createElement('div');
+    col.className = 'col-6';
+    col.innerHTML = `
+      <div class="card" id="py-db-query">
+        <h3>🔗 Python Database Query (PostgreSQL + Parametrized)</h3>
+        <div class="code-row">
+          <div>
+            <span class="badge">sqlalchemy</span>
+            <span class="badge">pandas</span>
+            <span class="badge">dotenv</span>
+            <span class="badge">best practices</span>
+          </div>
+          <button class="btn secondary copy-btn" data-copy="py-dbquery">📋 Copy</button>
+        </div>
+        <div class="callout info">
+          Secure, production‑ready example using environment variables, parameterized queries, retries, and CSV export. Works in scripts or notebooks.
+        </div>
+        <pre style="position: relative;"><span class="code-lang">Python</span><code class="python" id="py-dbquery"># PostgreSQL Query – Production-Ready (SQLAlchemy + pandas)
+# Setup:
+#   pip install sqlalchemy psycopg2-binary pandas python-dotenv tenacity
+#   Create a .env file with:
+#     DB_HOST=localhost
+#     DB_PORT=5432
+#     DB_NAME=banking
+#     DB_USER=analytics
+#     DB_PASS=your_password
+#     DB_SSLMODE=require   # or 'prefer' / 'disable' as per your env
+
+from __future__ import annotations
+import os
+from dataclasses import dataclass
+from typing import Optional, Dict, Any
+import pandas as pd
+from sqlalchemy import create_engine, text
+from sqlalchemy.engine import Engine
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+from dotenv import load_dotenv
+
+load_dotenv()
+
+@dataclass(frozen=True)
+class DBConfig:
+    host: str = os.getenv('DB_HOST', 'localhost')
+    port: int = int(os.getenv('DB_PORT', '5432'))
+    name: str = os.getenv('DB_NAME', 'postgres')
+    user: str = os.getenv('DB_USER', 'postgres')
+    password: str = os.getenv('DB_PASS', '')
+    sslmode: str = os.getenv('DB_SSLMODE', 'prefer')
+
+    def url(self) -> str:
+        # sqlalchemy URL – use psycopg2 driver
+        return (f"postgresql+psycopg2://{self.user}:{self.password}"
+                f"@{self.host}:{self.port}/{self.name}?sslmode={self.sslmode}")
+
+def get_engine(cfg: DBConfig) -> Engine:
+    # pool_pre_ping keeps connections fresh; echo=False to silence SQL logs
+    return create_engine(cfg.url(), pool_pre_ping=True, pool_size=5, max_overflow=2, echo=False)
+
+# Retry transient network/db errors up to 3 times with exponential backoff
+@retry(
+    reraise=True,
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=0.75, min=1, max=8),
+    retry=retry_if_exception_type(Exception)
+)
+def run_query(engine: Engine, sql: str, params: Optional[Dict[str, Any]] = None) -> pd.DataFrame:
+    with engine.begin() as conn:
+        return pd.read_sql(text(sql), conn, params=params)
+
+def main() -> None:
+    cfg = DBConfig()
+    engine = get_engine(cfg)
+
+    # Example: parameterized query for a banking dataset
+    sql = '''
+    SELECT
+        t.txn_date::date AS date,
+        b.branch_name     AS branch,
+        p.product_name    AS product,
+        SUM(t.amount)     AS total_amount,
+        COUNT(*)          AS txn_count
+    FROM transactions t
+    JOIN branches b ON b.branch_id = t.branch_id
+    JOIN products p ON p.product_id = t.product_id
+    WHERE t.txn_date BETWEEN :start_date AND :end_date
+      AND (:branch IS NULL OR b.branch_name = :branch)
+      AND (:min_amount IS NULL OR t.amount >= :min_amount)
+    GROUP BY 1,2,3
+    ORDER BY 1,2,3;
+    '''
+
+    params = {
+        'start_date': os.getenv('Q_START', '2025-01-01'),
+        'end_date':   os.getenv('Q_END',   '2025-03-31'),
+        'branch':     os.getenv('Q_BRANCH', None),     # e.g. 'Midtown'
+        'min_amount': float(os.getenv('Q_MIN', '0'))
+    }
+
+    try:
+        df = run_query(engine, sql, params)
+        print('Rows:', len(df))
+        # Save results (CSV + parquet)
+        df.to_csv('bank_txn_summary.csv', index=False)
+        try:
+            df.to_parquet('bank_txn_summary.parquet', index=False)
+        except Exception as e:
+            print('Parquet export skipped (install pyarrow or fastparquet):', e)
+
+        # Optional: lightweight pivots for charts
+        pivot_month = (df
+          .assign(month = pd.to_datetime(df['date']).dt.strftime('%b'))
+          .groupby('month', as_index=False)['total_amount'].sum()
+          .sort_values('month', key=lambda s: pd.Categorical(s, categories=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], ordered=True))
+        )
+        print('\\nMonthly totals (preview):')
+        print(pivot_month.head())
+
+    except Exception as e:
+        print('Query failed:', repr(e))
+        raise
+
+if __name__ == '__main__':
+    main()</code></pre>
+      </div>
+    `;
+    // Insert near the top of Automation cards (after the section header)
+    const firstCard = grid.querySelector('.col-6, .col-12');
+    if (firstCard) firstCard.insertAdjacentElement('afterend', col);
+    else grid.appendChild(col);
+  }
+
+  function boot(){
+    // Remove the ETL code block safely
+    // Fallback-safe: try immediate, then again after DOM complete
+    removeDanfoETL();
+    // Add the new Automation card
+    addPythonQueryCard();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+
+              
+              <div id="dfOut" style="margin-top:1.5rem;"></div>
+              <canvas id="chartCanvas" style="display: none; margin-top: 1rem;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ML Demo -->
+      <div class="grid" style="margin-top: 2rem;">
+        <div class="col-12">
+          <div class="card">
+            <h3>Machine Learning — Real-Time Analysis</h3>
+            <p class="muted">Text clustering, sentiment analysis, and topic modeling running entirely in your browser.</p>
+            
+            <div class="tabs">
+              <button class="tab active" data-tab="ml-cluster">Text Clustering</button>
+              <button class="tab" data-tab="ml-sentiment">Sentiment Analysis</button>
+              <button class="tab" data-tab="ml-anomaly">Anomaly Detection</button>
+            </div>
+
+            <div class="panel">
+              <div class="tab-content active" id="ml-cluster">
+                <div class="code-row">
+                  <strong>K-Means Clustering with TF-IDF</strong>
+                  <div class="code-actions">
+                    <button class="btn" id="btnRunThemes">🧠 Analyze Themes</button>
+                    <button class="btn secondary" id="btnLoadReviews">📝 Load Sample Reviews</button>
+                  </div>
+                </div>
+                
+                <textarea id="themeTexts" rows="8" placeholder="Enter text samples (one per line) for analysis...">Customer service was exceptional and resolved my issue quickly.
+The mobile app crashes frequently and needs improvement.
+Pricing is competitive but billing has unexpected fees.
+Dashboard analytics are powerful and insightful.
+Support team is knowledgeable and responsive.
+Report generation is slow and sometimes fails.
+New features have significantly improved workflow.
+Documentation could be more comprehensive.
+Integration with third-party tools works seamlessly.
+User interface is intuitive but lacks customization options.</textarea>
+                
+                <div style="margin-top:1rem; display: flex; gap: 1rem; align-items: center;">
+                  <label for="kVal">Number of clusters:</label>
+                  <input id="kVal" type="number" min="2" max="8" value="3" style="width: 80px;">
+                  <label for="maxIterations">Max iterations:</label>
+                  <input id="maxIterations" type="number" min="10" max="100" value="50" style="width: 80px;">
+                </div>
+                
+                <div id="themeResults" style="margin-top:1.5rem;"></div>
+              </div>
+
+              <div class="tab-content" id="ml-sentiment">
+                <div class="code-row">
+                  <strong>Sentiment Analysis Engine</strong>
+                  <button class="btn" id="btnAnalyzeSentiment">💭 Analyze Sentiment</button>
+                </div>
+                <textarea id="sentimentText" rows="5" placeholder="Enter text for sentiment analysis...">This product exceeded my expectations. The quality is outstanding and the customer service team went above and beyond to help me.</textarea>
+                <div id="sentimentResults" style="margin-top:1.5rem;"></div>
+              </div>
+
+              <div class="tab-content" id="ml-anomaly">
+                <div class="code-row">
+                  <strong>Anomaly Detection in Time Series</strong>
+                  <button class="btn" id="btnDetectAnomalies">🔍 Detect Anomalies</button>
+                </div>
+                <p class="muted">Using statistical methods to identify outliers in transaction data.</p>
+                <div id="anomalyResults" style="margin-top:1.5rem;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PYTHON SAMPLES SECTION ===================== -->
+    <section id="python-samples" class="grid scroll-reveal">
+      <div class="col-12">
+        <h2>Production-Ready Python Code</h2>
+        <div class="callout info">
+          All code samples are designed for immediate use in Jupyter notebooks or Python scripts. Each includes error handling, type hints, and best practices.
+        </div>
+      </div>
+
+      <!-- Advanced Analytics -->
+      <div class="col-6">
+        <div class="card">
+          <h3>📊 Advanced Financial Analytics</h3>
+          <div class="code-row">
+            <div>
+              <span class="badge">pandas</span>
+              <span class="badge">numpy</span>
+              <span class="badge">scipy</span>
+            </div>
+            <button class="btn secondary copy-btn" data-copy="py-finance">📋 Copy</button>
+          </div>
+          <pre style="position: relative;"><span class="code-lang">Python</span><code class="python" id="py-finance"># Advanced Financial Risk Analytics Pipeline
+import pandas as pd
+import numpy as np
+from scipy import stats
+from typing import Tuple, Dict, Optional
+import warnings
+warnings.filterwarnings('ignore')
+
+class RiskAnalyzer:
+    """Production-ready risk analytics engine"""
+    
+    def __init__(self, confidence_level: float = 0.95):
+        self.confidence_level = confidence_level
+        
+    def calculate_var(self, returns: pd.Series, 
+                     method: str = 'historical') -> float:
+        """Calculate Value at Risk (VaR)"""
+        if method == 'historical':
+            return np.percentile(returns, (1 - self.confidence_level) * 100)
+        elif method == 'parametric':
+            mean = returns.mean()
+            std = returns.std()
+            return mean + std * stats.norm.ppf(1 - self.confidence_level)
+        
+    def calculate_cvar(self, returns: pd.Series) -> float:
+        """Calculate Conditional VaR (Expected Shortfall)"""
+        var = self.calculate_var(returns)
+        return returns[returns <= var].mean()
+    
+    def stress_test(self, portfolio: pd.DataFrame, 
+                   scenarios: Dict[str, float]) -> pd.DataFrame:
+        """Run stress testing scenarios"""
+        results = []
+        for scenario, shock in scenarios.items():
+            stressed_portfolio = portfolio * (1 + shock)
+            loss = (portfolio - stressed_portfolio).sum().sum()
+            results.append({
+                'scenario': scenario,
+                'shock': f'{shock*100:.1f}%',
+                'potential_loss': f'${loss:,.0f}',
+                'portfolio_value': f'${stressed_portfolio.sum().sum():,.0f}'
+            })
+        return pd.DataFrame(results)
+
+# Example usage
+np.random.seed(42)
+returns = pd.Series(np.random.normal(0.001, 0.02, 1000))
+portfolio = pd.DataFrame({
+    'equities': np.random.uniform(100000, 500000, 10),
+    'bonds': np.random.uniform(50000, 200000, 10),
+    'commodities': np.random.uniform(20000, 100000, 10)
+})
+
+analyzer = RiskAnalyzer()
+var_95 = analyzer.calculate_var(returns)
+cvar_95 = analyzer.calculate_cvar(returns)
+
+scenarios = {
+    'Market Crash': -0.20,
+    'Recession': -0.10,
+    'Volatility Spike': -0.15,
+    'Black Swan': -0.30
+}
+
+stress_results = analyzer.stress_test(portfolio, scenarios)
+print(f"VaR (95%): {var_95:.4f}")
+print(f"CVaR (95%): {cvar_95:.4f}")
+print("\nStress Test Results:")
+print(stress_results.to_string(index=False))</code></pre>
+        </div>
+      </div>
+
+      <!-- ML Pipeline -->
+      <div class="col-6">
+        <div class="card">
+          <h3>🤖 ML Pipeline with Feature Engineering</h3>
+          <div class="code-row">
+            <div>
+              <span class="badge success">scikit-learn</span>
+              <span class="badge success">feature-engine</span>
+            </div>
+            <button class="btn secondary copy-btn" data-copy="py-ml">📋 Copy</button>
+          </div>
+          <pre style="position: relative;"><span class="code-lang">Python</span><code class="python" id="py-ml"># Production ML Pipeline with Advanced Feature Engineering
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, PolynomialFeatures
+from sklearn.decomposition import PCA
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.model_selection import cross_val_score, GridSearchCV
+from sklearn.metrics import mean_absolute_error, r2_score
+import pandas as pd
+import numpy as np
+
+class AdvancedMLPipeline:
+    """End-to-end ML pipeline with automated feature engineering"""
+    
+    def __init__(self, model_type: str = 'rf'):
+        self.model_type = model_type
+        self.pipeline = None
+        self.best_params = None
+        
+    def create_pipeline(self) -> Pipeline:
+        """Create processing pipeline with feature engineering"""
+        if self.model_type == 'rf':
+            model = RandomForestRegressor(random_state=42, n_jobs=-1)
+        else:
+            model = GradientBoostingRegressor(random_state=42)
+            
+        pipeline = Pipeline([
+            ('poly', PolynomialFeatures(degree=2, include_bias=False)),
+            ('scaler', StandardScaler()),
+            ('pca', PCA(n_components=0.95)),  # Keep 95% variance
+            ('model', model)
+        ])
+        return pipeline
+    
+    def optimize_hyperparameters(self, X: pd.DataFrame, y: pd.Series) -> Dict:
+        """Grid search for optimal parameters"""
+        self.pipeline = self.create_pipeline()
+        
+        param_grid = {
+            'poly__degree': [1, 2],
+            'pca__n_components': [0.9, 0.95, 0.99],
+            'model__n_estimators': [100, 200],
+            'model__max_depth': [10, 20, None]
+        }
+        
+        grid_search = GridSearchCV(
+            self.pipeline, 
+            param_grid, 
+            cv=5, 
+            scoring='r2',
+            n_jobs=-1
+        )
+        
+        grid_search.fit(X, y)
+        self.best_params = grid_search.best_params_
+        self.pipeline = grid_search.best_estimator_
+        
+        return {
+            'best_score': grid_search.best_score_,
+            'best_params': self.best_params
+        }
+    
+    def feature_importance(self, feature_names: list) -> pd.DataFrame:
+        """Extract feature importance from trained model"""
+        if hasattr(self.pipeline.named_steps['model'], 'feature_importances_'):
+            importances = self.pipeline.named_steps['model'].feature_importances_
+            
+            # Get transformed feature names after polynomial
+            poly_features = self.pipeline.named_steps['poly'].get_feature_names_out(feature_names)
+            
+            # Account for PCA transformation
+            n_components = self.pipeline.named_steps['pca'].n_components_
+            
+            return pd.DataFrame({
+                'feature': [f'PC{i+1}' for i in range(n_components)],
+                'importance': importances[:n_components]
+            }).sort_values('importance', ascending=False)
+
+# Example usage
+X = pd.DataFrame(np.random.randn(1000, 5), 
+                columns=['feat1', 'feat2', 'feat3', 'feat4', 'feat5'])
+y = X['feat1'] * 2 + X['feat2'] ** 2 + np.random.randn(1000) * 0.1
+
+ml_pipeline = AdvancedMLPipeline('rf')
+results = ml_pipeline.optimize_hyperparameters(X, y)
+print(f"Best CV Score: {results['best_score']:.4f}")
+print(f"Best Parameters: {results['best_params']}")</code></pre>
+        </div>
+      </div>
+
+      <!-- Data Quality -->
+      <div class="col-6">
+        <div class="card">
+          <h3>🔍 Data Quality & Reconciliation</h3>
+          <div class="code-row">
+            <div>
+              <span class="badge warning">pandas</span>
+              <span class="badge warning">great_expectations</span>
+            </div>
+            <button class="btn secondary copy-btn" data-copy="py-quality">📋 Copy</button>
+          </div>
+          <pre style="position: relative;"><span class="code-lang">Python</span><code class="python" id="py-quality"># Enterprise Data Quality & Reconciliation Framework
+import pandas as pd
+import numpy as np
+from typing import List, Dict, Tuple
+from datetime import datetime, timedelta
+import hashlib
+
+class DataQualityChecker:
+    """Comprehensive data quality and reconciliation system"""
+    
+    def __init__(self, tolerance: float = 0.01):
+        self.tolerance = tolerance
+        self.quality_report = {}
+        
+    def profile_dataset(self, df: pd.DataFrame) -> Dict:
+        """Generate comprehensive data profile"""
+        profile = {
+            'shape': df.shape,
+            'memory_usage': f'{df.memory_usage(deep=True).sum() / 1024**2:.2f} MB',
+            'duplicates': df.duplicated().sum(),
+            'missing_values': df.isnull().sum().to_dict(),
+            'dtypes': df.dtypes.astype(str).to_dict(),
+            'numeric_stats': {}
+        }
+        
+        # Numeric column statistics
+        numeric_cols = df.select_dtypes(include=[np.number]).columns
+        for col in numeric_cols:
+            profile['numeric_stats'][col] = {
+                'mean': df[col].mean(),
+                'std': df[col].std(),
+                'min': df[col].min(),
+                'max': df[col].max(),
+                'nulls': df[col].isnull().sum(),
+                'outliers': self._detect_outliers(df[col])
+            }
+        
+        return profile
+    
+    def _detect_outliers(self, series: pd.Series, method: str = 'iqr') -> int:
+        """Detect outliers using IQR or Z-score method"""
+        if method == 'iqr':
+            Q1 = series.quantile(0.25)
+            Q3 = series.quantile(0.75)
+            IQR = Q3 - Q1
+            outliers = ((series < (Q1 - 1.5 * IQR)) | 
+                       (series > (Q3 + 1.5 * IQR))).sum()
+        else:  # z-score
+            z_scores = np.abs(stats.zscore(series.dropna()))
+            outliers = (z_scores > 3).sum()
+        return outliers
+    
+    def reconcile_datasets(self, 
+                          source: pd.DataFrame, 
+                          target: pd.DataFrame,
+                          key_columns: List[str],
+                          value_columns: List[str]) -> pd.DataFrame:
+        """Advanced reconciliation with detailed break analysis"""
+        
+        # Merge datasets
+        merged = source.merge(
+            target, 
+            on=key_columns, 
+            how='outer', 
+            suffixes=('_source', '_target'),
+            indicator=True
+        )
+        
+        # Categorize breaks
+        merged['break_type'] = 'Matched'
+        merged.loc[merged['_merge'] == 'left_only', 'break_type'] = 'Missing in Target'
+        merged.loc[merged['_merge'] == 'right_only', 'break_type'] = 'Missing in Source'
+        
+        # Check value differences for matched records
+        for col in value_columns:
+            source_col = f'{col}_source'
+            target_col = f'{col}_target'
+            
+            if source_col in merged.columns and target_col in merged.columns:
+                # Calculate differences
+                merged[f'{col}_diff'] = merged[source_col] - merged[target_col]
+                merged[f'{col}_diff_pct'] = (merged[f'{col}_diff'] / 
+                                             merged[source_col] * 100)
+                
+                # Flag breaks based on tolerance
+                value_breaks = (merged['break_type'] == 'Matched') & \
+                              (abs(merged[f'{col}_diff_pct']) > self.tolerance * 100)
+                merged.loc[value_breaks, 'break_type'] = f'{col} Value Break'
+        
+        # Generate summary
+        summary = merged['break_type'].value_counts()
+        
+        return merged, summary
+    
+    def generate_hash_key(self, df: pd.DataFrame, columns: List[str]) -> pd.Series:
+        """Generate hash keys for record matching"""
+        def hash_row(row):
+            row_str = ''.join(str(row[col]) for col in columns)
+            return hashlib.md5(row_str.encode()).hexdigest()
+        
+        return df[columns].apply(hash_row, axis=1)
+
+# Example usage
+# Create sample datasets with intentional discrepancies
+np.random.seed(42)
+dates = pd.date_range('2025-01-01', periods=100, freq='D')
+
+source_df = pd.DataFrame({
+    'date': dates,
+    'account': np.random.choice(['A001', 'A002', 'A003'], 100),
+    'amount': np.random.uniform(1000, 10000, 100),
+    'quantity': np.random.randint(1, 100, 100)
+})
+
+# Create target with some differences
+target_df = source_df.copy()
+target_df.loc[5:10, 'amount'] *= 1.05  # 5% difference
+target_df = target_df.drop([15, 16, 17])  # Missing records
+target_df = pd.concat([
+    target_df,
+    pd.DataFrame({  # Extra records
+        'date': pd.date_range('2025-04-11', periods=3, freq='D'),
+        'account': ['A004', 'A004', 'A004'],
+        'amount': [5000, 6000, 7000],
+        'quantity': [50, 60, 70]
+    })
+], ignore_index=True)
+
+# Run quality checks
+qc = DataQualityChecker(tolerance=0.01)
+source_profile = qc.profile_dataset(source_df)
+reconciled, summary = qc.reconcile_datasets(
+    source_df, target_df, 
+    key_columns=['date', 'account'],
+    value_columns=['amount', 'quantity']
+)
+
+print("Data Quality Profile:")
+print(f"Shape: {source_profile['shape']}")
+print(f"Memory: {source_profile['memory_usage']}")
+print(f"Duplicates: {source_profile['duplicates']}")
+print("\nReconciliation Summary:")
+print(summary)</code></pre>
+        </div>
+      </div>
+
+      <!-- Time Series -->
+      <div class="col-6">
+        <div class="card">
+          <h3>📈 Time Series Forecasting</h3>
+          <div class="code-row">
+            <div>
+              <span class="badge info">statsmodels</span>
+              <span class="badge info">prophet</span>
+            </div>
+            <button class="btn secondary copy-btn" data-copy="py-timeseries">📋 Copy</button>
+          </div>
+          <pre style="position: relative;"><span class="code-lang">Python</span><code class="python" id="py-timeseries"># Advanced Time Series Analysis & Forecasting
+import pandas as pd
+import numpy as np
+from statsmodels.tsa.seasonal import seasonal_decompose
+from statsmodels.tsa.stattools import adfuller, acf, pacf
+from statsmodels.tsa.arima.model import ARIMA
+from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
+import warnings
+warnings.filterwarnings('ignore')
+
+class TimeSeriesForecaster:
+    """Production-ready time series forecasting system"""
+    
+    def __init__(self, frequency: str = 'D'):
+        self.frequency = frequency
+        self.model = None
+        self.forecast = None
+        
+    def analyze_stationarity(self, ts: pd.Series) -> Dict:
+        """Perform Augmented Dickey-Fuller test"""
+        result = adfuller(ts.dropna())
+        return {
+            'adf_statistic': result[0],
+            'p_value': result[1],
+            'critical_values': result[4],
+            'is_stationary': result[1] < 0.05
+        }
+    
+    def decompose_series(self, ts: pd.Series, model: str = 'additive') -> Dict:
+        """Seasonal decomposition of time series"""
+        decomposition = seasonal_decompose(ts, model=model, period=30)
+        
+        return {
+            'trend': decomposition.trend,
+            'seasonal': decomposition.seasonal,
+            'residual': decomposition.resid,
+            'seasonal_strength': self._calculate_seasonal_strength(
+                decomposition.seasonal, decomposition.resid
+            )
+        }
+    
+    def _calculate_seasonal_strength(self, seasonal, residual) -> float:
+        """Calculate strength of seasonality"""
+        var_seasonal = seasonal.var()
+        var_residual = residual.var()
+        return 1 - (var_residual / (var_seasonal + var_residual))
+    
+    def auto_arima(self, ts: pd.Series, 
+                   seasonal: bool = True) -> Tuple[ARIMA, Dict]:
+        """Automated ARIMA model selection"""
+        best_aic = np.inf
+        best_params = None
+        best_model = None
+        
+        # Grid search for optimal parameters
+        p_values = range(0, 3)
+        d_values = range(0, 2)
+        q_values = range(0, 3)
+        
+        for p in p_values:
+            for d in d_values:
+                for q in q_values:
+                    try:
+                        model = ARIMA(ts, order=(p, d, q))
+                        fitted_model = model.fit()
+                        
+                        if fitted_model.aic < best_aic:
+                            best_aic = fitted_model.aic
+                            best_params = (p, d, q)
+                            best_model = fitted_model
+                    except:
+                        continue
+        
+        self.model = best_model
+        return best_model, {'order': best_params, 'aic': best_aic}
+    
+    def forecast_with_confidence(self, 
+                                 steps: int = 30,
+                                 confidence: float = 0.95) -> pd.DataFrame:
+        """Generate forecast with confidence intervals"""
+        if self.model is None:
+            raise ValueError("Model not fitted. Run auto_arima first.")
+        
+        forecast_result = self.model.forecast(steps=steps, alpha=1-confidence)
+        
+        # For newer versions of statsmodels
+        forecast_values = forecast_result
+        
+        # Generate confidence intervals manually
+        forecast_se = self.model.forecast(steps=steps, alpha=1-confidence)
+        
+        forecast_df = pd.DataFrame({
+            'forecast': forecast_values,
+            'lower_bound': forecast_values - 1.96 * np.sqrt(self.model.resid.var()),
+            'upper_bound': forecast_values + 1.96 * np.sqrt(self.model.resid.var())
+        })
+        
+        self.forecast = forecast_df
+        return forecast_df
+    
+    def backtest(self, ts: pd.Series, 
+                test_size: int = 30) -> Dict:
+        """Perform backtesting with multiple metrics"""
+        train = ts[:-test_size]
+        test = ts[-test_size:]
+        
+        # Fit model on training data
+        model = ARIMA(train, order=self.model.model_orders['ar_diff_ma'])
+        fitted = model.fit()
+        
+        # Predict on test set
+        predictions = fitted.forecast(steps=test_size)
+        
+        # Calculate metrics
+        mse = mean_squared_error(test, predictions)
+        rmse = np.sqrt(mse)
+        mae = np.mean(np.abs(test - predictions))
+        mape = mean_absolute_percentage_error(test, predictions)
+        
+        return {
+            'mse': mse,
+            'rmse': rmse,
+            'mae': mae,
+            'mape': mape * 100,
+            'predictions': predictions,
+            'actual': test
+        }
+
+# Example usage
+# Generate sample time series data
+np.random.seed(42)
+dates = pd.date_range('2024-01-01', periods=365, freq='D')
+trend = np.linspace(100, 200, 365)
+seasonal = 10 * np.sin(2 * np.pi * np.arange(365) / 30)
+noise = np.random.normal(0, 5, 365)
+ts = pd.Series(trend + seasonal + noise, index=dates)
+
+# Initialize forecaster
+forecaster = TimeSeriesForecaster(frequency='D')
+
+# Analyze stationarity
+stationarity = forecaster.analyze_stationarity(ts)
+print(f"Series is stationary: {stationarity['is_stationary']}")
+print(f"P-value: {stationarity['p_value']:.4f}")
+
+# Decompose series
+decomposition = forecaster.decompose_series(ts)
+print(f"\nSeasonal strength: {decomposition['seasonal_strength']:.2f}")
+
+# Fit ARIMA model
+model, params = forecaster.auto_arima(ts)
+print(f"\nBest ARIMA{params['order']} - AIC: {params['aic']:.2f}")
+
+# Generate forecast
+forecast = forecaster.forecast_with_confidence(steps=30)
+print(f"\nNext 30 days forecast (first 5):")
+print(forecast.head())</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AUTOMATION SECTION ===================== -->
+    <section id="automation" class="grid scroll-reveal">
+      <div class="col-12">
+        <h2>Automation & Integration</h2>
+        <div class="callout warning">
+          These automation scripts are designed for Windows environments with Microsoft Office. Adjust paths and configurations for your specific setup.
+        </div>
+      </div>
+
+      <!-- Email Automation -->
+      <div class="col-6">
+        <div class="card">
+          <h3>📧 Advanced Email Automation (Outlook)</h3>
+          <div class="code-row">
+            <div>
+              <span class="badge">pywin32</span>
+              <span class="badge">schedule</span>
+            </div>
+            <button class="btn secondary copy-btn" data-copy="py-email">📋 Copy</button>
+          </div>
+          <pre style="position: relative;"><span class="code-lang">Python</span><code class="python" id="py-email"># Enterprise Email Automation System
+import win32com.client as win32
+import pandas as pd
+from pathlib import Path
+from datetime import datetime, timedelta
+import schedule
+import time
+from typing import List, Dict, Optional
+
+class OutlookAutomation:
+    """Advanced Outlook automation with templates and scheduling"""
+    
+    def __init__(self):
+        self.outlook = win32.Dispatch('Outlook.Application')
+        self.namespace = self.outlook.GetNamespace('MAPI')
+        
+    def create_report_email(self, 
+                          recipients: List[str],
+                          subject: str,
+                          template: str,
+                          data: Dict,
+                          attachments: List[Path] = None) -> None:
+        """Create formatted email with dynamic content"""
+        
+        mail = self.outlook.CreateItem(0)
+        mail.To = '; '.join(recipients)
+        mail.Subject = f"{subject} - {datetime.now().strftime('%Y-%m-%d')}"
+        
+        # Build HTML body with styling
+        html_body = f"""
+        <html>
+            <head>
+                <style>
+                    body {{ font-family: Calibri, Arial, sans-serif; }}
+                    .header {{ background: #1e3a8a; color: white; padding: 20px; }}
+                    .metrics {{ display: flex; gap: 20px; margin: 20px 0; }}
+                    .metric-card {{ 
+                        background: #f3f4f6; 
+                        padding: 15px; 
+                        border-radius: 8px;
+                        flex: 1;
+                    }}
+                    .metric-value {{ 
+                        font-size: 24px; 
+                        font-weight: bold; 
+                        color: #1e3a8a;
+                    }}
+                    .metric-label {{ 
+                        color: #6b7280; 
+                        font-size: 14px;
+                    }}
+                    table {{ 
+                        border-collapse: collapse; 
+                        width: 100%;
+                        margin-top: 20px;
+                    }}
+                    th {{ 
+                        background: #e5e7eb; 
+                        padding: 10px; 
+                        text-align: left;
+                    }}
+                    td {{ 
+                        padding: 8px; 
+                        border-bottom: 1px solid #e5e7eb;
+                    }}
+                    .footer {{ 
+                        margin-top: 30px; 
+                        padding-top: 20px; 
+                        border-top: 1px solid #e5e7eb;
+                        color: #6b7280;
+                        font-size: 12px;
+                    }}
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <h2>{subject}</h2>
+                    <p>Automated Report - Generated {datetime.now().strftime('%B %d, %Y at %I:%M %p')}</p>
+                </div>
+                
+                <div class="metrics">
+                    <div class="metric-card">
+                        <div class="metric-value">{data.get('total_transactions', 'N/A')}</div>
+                        <div class="metric-label">Total Transactions</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${data.get('total_value', 0):,.2f}</div>
+                        <div class="metric-label">Total Value</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">{data.get('success_rate', 0):.1f}%</div>
+                        <div class="metric-label">Success Rate</div>
+                    </div>
+                </div>
+                
+                <h3>Key Highlights</h3>
+                <ul>
+                    <li>Processing completed for {data.get('records_processed', 0):,} records</li>
+                    <li>Average processing time: {data.get('avg_time', 'N/A')} seconds</li>
+                    <li>Error rate: {data.get('error_rate', 0):.2f}%</li>
+                </ul>
+                
+                {self._generate_table_html(data.get('details', pd.DataFrame()))}
+                
+                <div class="footer">
+                    <p>This is an automated message. For questions, please contact the Analytics Team.</p>
+                    <p>Report ID: {data.get('report_id', 'N/A')} | Environment: Production</p>
+                </div>
+            </body>
+        </html>
+        """
+        
+        mail.HTMLBody = html_body
+        
+        # Add attachments
+        if attachments:
+            for attachment in attachments:
+                if attachment.exists():
+                    mail.Attachments.Add(str(attachment))
+        
+        # Save to drafts or send
+        mail.Save()  # Change to mail.Send() to send immediately
+        print(f"Email created: {subject}")
+    
+    def _generate_table_html(self, df: pd.DataFrame) -> str:
+        """Convert DataFrame to HTML table"""
+        if df.empty:
+            return "<p>No data available</p>"
+        
+        return df.to_html(index=False, classes='data-table')
+    
+    def process_inbox_rules(self, rules: List[Dict]) -> None:
+        """Apply automated rules to inbox messages"""
+        inbox = self.namespace.GetDefaultFolder(6)  # 6 = Inbox
+        
+        for message in inbox.Items:
+            for rule in rules:
+                if self._match_rule(message, rule):
+                    self._apply_action(message, rule['action'])
+    
+    def _match_rule(self, message, rule: Dict) -> bool:
+        """Check if message matches rule criteria"""
+        if 'subject_contains' in rule:
+            if rule['subject_contains'].lower() in message.Subject.lower():
+                return True
+        if 'sender' in rule:
+            if rule['sender'].lower() in message.SenderEmailAddress.lower():
+                return True
+        return False
+    
+    def _apply_action(self, message, action: Dict) -> None:
+        """Apply action to message"""
+        if action['type'] == 'move':
+            folder = self.namespace.Folders[action['folder']]
+            message.Move(folder)
+        elif action['type'] == 'flag':
+            message.FlagRequest = action['flag_text']
+            message.Save()
+    
+    def schedule_daily_report(self, 
+                            time_str: str = "09:00",
+                            recipients: List[str] = None) -> None:
+        """Schedule daily report generation and sending"""
+        
+        def job():
+            # Generate report data
+            data = self._generate_daily_metrics()
+            
+            # Create and send email
+            self.create_report_email(
+                recipients=recipients or ['team@company.com'],
+                subject='Daily Analytics Report',
+                template='daily_report',
+                data=data,
+                attachments=[Path(r'C:\Reports\daily_summary.xlsx')]
+            )
+        
+        schedule.every().day.at(time_str).do(job)
+        
+        print(f"Daily report scheduled for {time_str}")
+        
+        # Keep running
+        while True:
+            schedule.run_pending()
+            time.sleep(60)
+    
+    def _generate_daily_metrics(self) -> Dict:
+        """Generate daily metrics (example)"""
+        return {
+            'total_transactions': 1543,
+            'total_value': 2847395.67,
+            'success_rate': 98.7,
+            'records_processed': 15430,
+            'avg_time': 0.23,
+            'error_rate': 1.3,
+            'report_id': f"RPT-{datetime.now().strftime('%Y%m%d-%H%M%S')}",
+            'details': pd.DataFrame({
+                'Category': ['Sales', 'Returns', 'Exchanges'],
+                'Count': [1243, 187, 113],
+                'Value': [2567890.45, 187234.89, 92270.33]
+            })
+        }
+
+# Example usage
+automation = OutlookAutomation()
+
+# Send report email
+data = {
+    'total_transactions': 2456,
+    'total_value': 3456789.12,
+    'success_rate': 99.2,
+    'records_processed': 24560,
+    'avg_time': 0.18,
+    'error_rate': 0.8,
+    'report_id': 'RPT-20250810-001'
+}
+
+automation.create_report_email(
+    recipients=['manager@company.com', 'team@company.com'],
+    subject='Weekly Performance Report',
+    template='weekly',
+    data=data,
+    attachments=[Path(r'C:\Reports\weekly_metrics.xlsx')]
+)
+
+# Set up inbox rules
+rules = [
+    {
+        'subject_contains': 'URGENT',
+        'action': {'type': 'flag', 'flag_text': 'High Priority'}
+    },
+    {
+        'sender': 'notifications@system.com',
+        'action': {'type': 'move', 'folder': 'Automated'}
+    }
+]
+
+# automation.process_inbox_rules(rules)
+print("Email automation configured successfully")</code></pre>
+        </div>
+      </div>
+
+      <!-- Excel VBA -->
+      <div class="col-6">
+        <div class="card">
+          <h3>📊 Excel VBA Power Automation</h3>
+          <div class="code-row">
+            <div>
+              <span class="badge error">VBA</span>
+              <span class="badge error">Excel</span>
+            </div>
+            <button class="btn secondary copy-btn" data-copy="vba-excel">📋 Copy</button>
+          </div>
+          <pre style="position: relative;"><span class="code-lang">VBA</span><code class="vbnet" id="vba-excel">' Advanced Excel VBA Automation Suite
+' Includes: Data processing, report generation, email integration
+
+Option Explicit
+
+' Main automation controller
+Sub MasterAutomation()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Application.Calculation = xlCalculationManual
+    
+    On Error GoTo ErrorHandler
+    
+    Dim startTime As Double
+    startTime = Timer
+    
+    ' Step 1: Refresh all data connections
+    Call RefreshAllDataConnections
+    
+    ' Step 2: Process and clean data
+    Call ProcessRawData
+    
+    ' Step 3: Generate analytics
+    Call GenerateAnalytics
+    
+    ' Step 4: Create visualizations
+    Call CreateDashboard
+    
+    ' Step 5: Export reports
+    Call ExportReports
+    
+    ' Step 6: Send email notifications
+    Call SendEmailNotifications
+    
+    Application.Calculation = xlCalculationAutomatic
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
+    
+    MsgBox "Automation completed in " & _
+           Format(Timer - startTime, "0.00") & " seconds", _
+           vbInformation, "Success"
+    
+    Exit Sub
+
+ErrorHandler:
+    Application.Calculation = xlCalculationAutomatic
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
+    MsgBox "Error: " & Err.Description, vbCritical, "Automation Failed"
+End Sub
+
+' Refresh all data connections with error handling
+Sub RefreshAllDataConnections()
+    Dim conn As WorkbookConnection
+    Dim qt As QueryTable
+    Dim lo As ListObject
+    Dim refreshCount As Integer
+    
+    refreshCount = 0
+    
+    ' Refresh workbook connections
+    For Each conn In ThisWorkbook.Connections
+        On Error Resume Next
+        conn.Refresh
+        If Err.Number = 0 Then
+            refreshCount = refreshCount + 1
+        End If
+        On Error GoTo 0
+    Next conn
+    
+    ' Refresh query tables
+    For Each qt In ActiveSheet.QueryTables
+        qt.Refresh BackgroundQuery:=False
+        refreshCount = refreshCount + 1
+    Next qt
+    
+    ' Refresh Power Query tables
+    For Each lo In ActiveSheet.ListObjects
+        On Error Resume Next
+        lo.QueryTable.Refresh BackgroundQuery:=False
+        If Err.Number = 0 Then
+            refreshCount = refreshCount + 1
+        End If
+        On Error GoTo 0
+    Next lo
+    
+    Debug.Print "Refreshed " & refreshCount & " data connections"
+End Sub
+
+' Advanced data processing with validation
+Sub ProcessRawData()
+    Dim ws As Worksheet
+    Dim lastRow As Long, lastCol As Long
+    Dim dataRange As Range
+    Dim cell As Range
+    Dim errorCount As Integer
+    
+    Set ws = ThisWorkbook.Worksheets("RawData")
+    lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+    lastCol = ws.Cells(1, ws.Columns.Count).End(xlToLeft).Column
+    Set dataRange = ws.Range(ws.Cells(2, 1), ws.Cells(lastRow, lastCol))
+    
+    ' Remove duplicates
+    dataRange.RemoveDuplicates Columns:=Array(1, 2), Header:=xlYes
+    
+    ' Validate and clean data
+    For Each cell In dataRange.Columns(3).Cells ' Assuming column 3 has amounts
+        If Not IsNumeric(cell.Value) Then
+            cell.Interior.Color = RGB(255, 200, 200) ' Highlight errors
+            errorCount = errorCount + 1
+            cell.Value = 0 ' Default value
+        ElseIf cell.Value < 0 Then
+            cell.Interior.Color = RGB(255, 255, 200) ' Highlight warnings
+        End If
+    Next cell
+    
+    ' Add calculated columns
+    ws.Cells(1, lastCol + 1).Value = "ProcessedDate"
+    ws.Cells(1, lastCol + 2).Value = "Category"
+    ws.Cells(1, lastCol + 3).Value = "RiskScore"
+    
+    Dim i As Long
+    For i = 2 To lastRow
+        ws.Cells(i, lastCol + 1).Value = Date
+        ws.Cells(i, lastCol + 2).Formula = "=VLOOKUP(A" & i & ",Mappings!A:B,2,FALSE)"
+        ws.Cells(i, lastCol + 3).Formula = "=IF(C" & i & ">10000,""High"",IF(C" & i & ">5000,""Medium"",""Low""))"
+    Next i
+    
+    If errorCount > 0 Then
+        MsgBox errorCount & " data errors were found and corrected", vbWarning
+    End If
+End Sub
+
+' Generate comprehensive analytics
+Sub GenerateAnalytics()
+    Dim ws As Worksheet, wsAnalytics As Worksheet
+    Dim pt As PivotTable
+    Dim pc As PivotCache
+    Dim dataRange As Range
+    
+    Set ws = ThisWorkbook.Worksheets("RawData")
+    
+    ' Create or clear analytics sheet
+    On Error Resume Next
+    Set wsAnalytics = ThisWorkbook.Worksheets("Analytics")
+    If Err.Number <> 0 Then
+        Set wsAnalytics = ThisWorkbook.Worksheets.Add(After:=ws)
+        wsAnalytics.Name = "Analytics"
+    Else
+        wsAnalytics.Cells.Clear
+    End If
+    On Error GoTo 0
+    
+    ' Create pivot table for analysis
+    Set dataRange = ws.UsedRange
+    Set pc = ThisWorkbook.PivotCaches.Create( _
+        SourceType:=xlDatabase, _
+        SourceData:=dataRange)
+    
+    Set pt = pc.CreatePivotTable( _
+        TableDestination:=wsAnalytics.Range("A3"), _
+        TableName:="AnalyticsPivot")
+    
+    ' Configure pivot table
+    With pt
+        .PivotFields("Category").Orientation = xlRowField
+        .PivotFields("RiskScore").Orientation = xlColumnField
+        .PivotFields("Amount").Orientation = xlDataField
+        .PivotFields("Sum of Amount").Function = xlSum
+        .PivotFields("Sum of Amount").NumberFormat = "$#,##0"
+    End With
+    
+    ' Add summary statistics
+    wsAnalytics.Range("A1").Value = "Analytics Dashboard"
+    wsAnalytics.Range("A1").Font.Size = 16
+    wsAnalytics.Range("A1").Font.Bold = True
+    
+    ' Calculate KPIs
+    Dim totalAmount As Double, avgAmount As Double, recordCount As Long
+    totalAmount = Application.WorksheetFunction.Sum(ws.Range("C:C"))
+    recordCount = Application.WorksheetFunction.CountA(ws.Range("A:A")) - 1
+    avgAmount = totalAmount / recordCount
+    
+    wsAnalytics.Range("H3").Value = "Key Metrics"
+    wsAnalytics.Range("H4").Value = "Total Amount:"
+    wsAnalytics.Range("I4").Value = totalAmount
+    wsAnalytics.Range("I4").NumberFormat = "$#,##0"
+    wsAnalytics.Range("H5").Value = "Record Count:"
+    wsAnalytics.Range("I5").Value = recordCount
+    wsAnalytics.Range("H6").Value = "Average:"
+    wsAnalytics.Range("I6").Value = avgAmount
+    wsAnalytics.Range("I6").NumberFormat = "$#,##0"
+End Sub
+
+' Create dynamic dashboard with charts
+Sub CreateDashboard()
+    Dim wsAnalytics As Worksheet, wsDashboard As Worksheet
+    Dim cht As ChartObject
+    Dim rngData As Range
+    
+    Set wsAnalytics = ThisWorkbook.Worksheets("Analytics")
+    
+    ' Create dashboard sheet
+    On Error Resume Next
+    Set wsDashboard = ThisWorkbook.Worksheets("Dashboard")
+    If Err.Number <> 0 Then
+        Set wsDashboard = ThisWorkbook.Worksheets.Add(After:=wsAnalytics)
+        wsDashboard.Name = "Dashboard"
+    Else
+        ' Clear existing charts
+        For Each cht In wsDashboard.ChartObjects
+            cht.Delete
+        Next cht
+    End If
+    On Error GoTo 0
+    
+    ' Create main chart
+    Set cht = wsDashboard.ChartObjects.Add(50, 50, 500, 300)
+    With cht.Chart
+        .ChartType = xlColumnClustered
+        .SetSourceData Source:=wsAnalytics.PivotTables(1).TableRange1
+        .HasTitle = True
+        .ChartTitle.Text = "Risk Distribution Analysis"
+        .ChartStyle = 48
+        .Axes(xlValue).HasTitle = True
+        .Axes(xlValue).AxisTitle.Text = "Amount ($)"
+        .Axes(xlCategory).HasTitle = True
+        .Axes(xlCategory).AxisTitle.Text = "Category"
+    End With
+    
+    ' Create pie chart for risk scores
+    Set cht = wsDashboard.ChartObjects.Add(50, 380, 400, 250)
+    With cht.Chart
+        .ChartType = xlPie
+        .SetSourceData Source:=wsAnalytics.Range("H4:I6")
+        .HasTitle = True
+        .ChartTitle.Text = "Portfolio Composition"
+        .ChartStyle = 26
+        .ApplyDataLabels
+    End With
+    
+    ' Format dashboard
+    With wsDashboard
+        .Range("A1").Value = "Executive Dashboard"
+        .Range("A1").Font.Size = 20
+        .Range("A1").Font.Bold = True
+        .Range("A2").Value = "Generated: " & Now()
+        .Range("A2").Font.Italic = True
+    End With
+End Sub
+
+' Export reports to multiple formats
+Sub ExportReports()
+    Dim exportPath As String
+    Dim fileName As String
+    Dim ws As Worksheet
+    
+    exportPath = "C:\Reports\"
+    
+    ' Ensure export directory exists
+    If Dir(exportPath, vbDirectory) = "" Then
+        MkDir exportPath
+    End If
+    
+    fileName = "Report_" & Format(Date, "yyyymmdd") & "_" & Format(Time, "hhmmss")
+    
+    ' Export as PDF
+    ThisWorkbook.ExportAsFixedFormat _
+        Type:=xlTypePDF, _
+        Filename:=exportPath & fileName & ".pdf", _
+        Quality:=xlQualityStandard, _
+        IncludeDocProperties:=True, _
+        IgnorePrintAreas:=False
+    
+    ' Export analytics sheet as CSV
+    Set ws = ThisWorkbook.Worksheets("Analytics")
+    ws.Copy
+    With ActiveWorkbook
+        .SaveAs Filename:=exportPath & fileName & "_analytics.csv", _
+                FileFormat:=xlCSV
+        .Close SaveChanges:=False
+    End With
+    
+    ' Save a backup copy of the entire workbook
+    ThisWorkbook.SaveCopyAs exportPath & fileName & "_backup.xlsm"
+    
+    Debug.Print "Reports exported to: " & exportPath
+End Sub
+
+' Send automated email notifications
+Sub SendEmailNotifications()
+    Dim OutlookApp As Object
+    Dim OutlookMail As Object
+    Dim reportPath As String
+    Dim htmlBody As String
+    
+    ' Create Outlook application
+    On Error Resume Next
+    Set OutlookApp = GetObject(, "Outlook.Application")
+    If Err.Number <> 0 Then
+        Set OutlookApp = CreateObject("Outlook.Application")
+    End If
+    On Error GoTo 0
+    
+    Set OutlookMail = OutlookApp.CreateItem(0)
+    
+    ' Build HTML email body
+    htmlBody = "<html><body style='font-family: Calibri, Arial;'>"
+    htmlBody = htmlBody & "<h2>Automated Report - " & Date & "</h2>"
+    htmlBody = htmlBody & "<p>The daily automation process has completed successfully.</p>"
+    htmlBody = htmlBody & "<h3>Summary:</h3>"
+    htmlBody = htmlBody & "<ul>"
+    htmlBody = htmlBody & "<li>Records Processed: " & _
+               ThisWorkbook.Worksheets("RawData").UsedRange.Rows.Count - 1 & "</li>"
+    htmlBody = htmlBody & "<li>Total Amount: $" & _
+               Format(Application.WorksheetFunction.Sum(ThisWorkbook.Worksheets("RawData").Range("C:C")), "#,##0") & "</li>"
+    htmlBody = htmlBody & "<li>Processing Time: " & Time & "</li>"
+    htmlBody = htmlBody & "</ul>"
+    htmlBody = htmlBody & "<p>Please find the detailed reports attached.</p>"
+    htmlBody = htmlBody & "<p><i>This is an automated message from the Excel VBA Automation System.</i></p>"
+    htmlBody = htmlBody & "</body></html>"
+    
+    ' Configure email
+    With OutlookMail
+        .To = "team@company.com"
+        .CC = "manager@company.com"
+        .Subject = "Daily Automation Report - " & Format(Date, "yyyy-mm-dd")
+        .HTMLBody = htmlBody
+        
+        ' Attach the PDF report
+        reportPath = "C:\Reports\"
+        If Dir(reportPath & "*.pdf") <> "" Then
+            .Attachments.Add reportPath & Dir(reportPath & "*.pdf")
+        End If
+        
+        ' Display or Send
+        .Display ' Change to .Send to send automatically
+    End With
+    
+    ' Clean up
+    Set OutlookMail = Nothing
+    Set OutlookApp = Nothing
+End Sub</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Sal Caramucci • Technical Skills Portfolio</p>
+      <p style="opacity: 0.7; font-size: 0.9rem;">Built with cutting-edge web technologies • All demos run locally in your browser</p>
+    </footer>
+  </main>
+
+  <!-- ======= ENHANCED SCRIPTS ======= -->
+  <script>
+    // Scroll effects
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const cards = document.querySelectorAll('.card');
+        
+        cards.forEach(card => {
+          const text = card.textContent.toLowerCase();
+          if (text.includes(searchTerm)) {
+            card.style.display = '';
+            card.style.opacity = '1';
+          } else {
+            card.style.opacity = '0.3';
+          }
+        });
+      });
+    }
+
+    // Tab functionality
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const tabName = this.getAttribute('data-tab');
+        
+        // Remove active class from all tabs and contents
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        this.classList.add('active');
+        const content = document.getElementById(tabName);
+        if (content) {
+          content.classList.add('active');
+        }
+      });
+    });
+
+    // Enhanced copy functionality with feedback
+    function showCopyFeedback() {
+      const feedback = document.getElementById('copyFeedback');
+      feedback.classList.add('show');
+      setTimeout(() => {
+        feedback.classList.remove('show');
+      }, 2000);
+    }
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-copy');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const text = targetElement.textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            const originalText = this.innerHTML;
+            this.innerHTML = '✓ Copied!';
+            this.style.background = 'var(--success)';
+            showCopyFeedback();
+            
+            setTimeout(() => {
+              this.innerHTML = originalText;
+              this.style.background = '';
+            }, 2000);
+          }).catch(err => {
+            console.error('Failed to copy:', err);
+          });
+        }
+      });
+    });
+
+    // Syntax highlighting
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+    });
+
+    // K-means clustering implementation
+    function kmeans(vectors, k=3, maxIter=60) {
+      const centroids = vectors.slice(0, k).map(v => v.slice());
+      const labels = new Array(vectors.length).fill(0);
+      const dist = (a, b) => Math.sqrt(a.reduce((s, x, i) => s + (x - b[i]) * (x - b[i]), 0));
+      
+      for (let it = 0; it < maxIter; it++) {
+        let changed = false;
+        
+        // Assign points to nearest centroid
+        for (let i = 0; i < vectors.length; i++) {
+          let best = 0, bestD = Infinity;
+          for (let c = 0; c < k; c++) {
+            const d = dist(vectors[i], centroids[c]);
+            if (d < bestD) {
+              bestD = d;
+              best = c;
+            }
+          }
+          if (labels[i] !== best) {
+            labels[i] = best;
+            changed = true;
+          }
+        }
+        
+        // Update centroids
+        const sums = Array.from({length: k}, () => Array(centroids[0].length).fill(0));
+        const counts = Array(k).fill(0);
+        
+        vectors.forEach((v, i) => {
+          const c = labels[i];
+          counts[c]++;
+          v.forEach((x, j) => sums[c][j] += x);
+        });
+        
+        for (let c = 0; c < k; c++) {
+          if (counts[c] > 0) {
+            centroids[c] = sums[c].map(s => s / counts[c]);
+          }
+        }
+        
+        if (!changed) break;
+      }
+      
+      return {labels, centroids};
+    }
+
+    // Text processing utilities
+    function tokenize(text) {
+      const stopWords = new Set(['a', 'an', 'and', 'are', 'as', 'at', 'be', 'but', 'by', 'for', 'from', 'has', 'have', 'i', 'in', 'is', 'it', 'its', 'of', 'on', 'or', 'that', 'the', 'this', 'to', 'was', 'were', 'will', 'with']);
+      return text.toLowerCase()
+        .replace(/[^a-z0-9\s]/g, ' ')
+        .split(/\s+/)
+        .filter(w => w && !stopWords.has(w));
+    }
+
+    function buildVocab(docs) {
+      const vocab = new Map();
+      let idx = 0;
+      docs.forEach(doc => {
+        tokenize(doc).forEach(word => {
+          if (!vocab.has(word)) {
+            vocab.set(word, idx++);
+          }
+        });
+      });
+      return vocab;
+    }
+
+    function tfidfVectors(docs, vocab) {
+      const N = docs.length;
+      const df = new Array(vocab.size).fill(0);
+      const tokens = docs.map(tokenize);
+      
+      // Calculate document frequencies
+      tokens.forEach(toks => {
+        const seen = new Set();
+        toks.forEach(w => {
+          const j = vocab.get(w);
+          if (j !== undefined && !seen.has(j)) {
+            df[j]++;
+            seen.add(j);
+          }
+        });
+      });
+      
+      // Calculate IDF
+      const idf = df.map(d => Math.log((N + 1) / (d + 1)) + 1);
+      
+      // Create TF-IDF vectors
+      return tokens.map(toks => {
+        const tf = new Array(vocab.size).fill(0);
+        toks.forEach(w => {
+          const j = vocab.get(w);
+          if (j !== undefined) tf[j]++;
+        });
+        const maxTf = Math.max(1, ...tf);
+        return tf.map((f, j) => (f / maxTf) * idf[j]);
+      });
+    }
+
+    function topTermsForCluster(centroid, vocab, n = 6) {
+      const arr = centroid.map((v, i) => ({i, v}));
+      arr.sort((a, b) => b.v - a.v);
+      const inv = Array.from(vocab.entries()).reduce((o, [k, v]) => (o[v] = k, o), {});
+      return arr.slice(0, n).map(o => inv[o.i]);
+    }
+  </script>
+
+  <!-- SQL.js Demo Script -->
+  <script>
+    let SQL_DB = null;
+    let SQL_READY = false;
+
+    window.addEventListener('load', async () => {
+      try {
+        const sqlJs = await initSqlJs({
+          locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
+        });
+        SQL_DB = new sqlJs.Database();
+        SQL_READY = true;
+        updateSQLStatus('success', 'SQL engine ready');
+        loadSampleData();
+      } catch (error) {
+        updateSQLStatus('error', 'Failed to initialize SQL engine');
+        console.error('SQL.js initialization error:', error);
+      }
+    });
+
+    function updateSQLStatus(type, message) {
+      const status = document.getElementById('sqlStatus');
+      if (status) {
+        status.className = `status-indicator ${type}`;
+        status.querySelector('span:last-child').textContent = message;
+      }
+    }
+
+    function loadSampleData() {
+      if (!SQL_READY) return;
+
+      const ddl = `
+        DROP TABLE IF EXISTS transactions;
+        DROP TABLE IF EXISTS customers;
+        DROP TABLE IF EXISTS categories;
+        
+        CREATE TABLE customers (
+          customer_id INTEGER PRIMARY KEY,
+          customer_name TEXT NOT NULL,
+          join_date DATE,
+          tier TEXT
+        );
+        
+        CREATE TABLE categories (
+          category_id INTEGER PRIMARY KEY,
+          category_name TEXT NOT NULL,
+          description TEXT
+        );
+        
+        CREATE TABLE transactions (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          date DATE,
+          customer TEXT,
+          category TEXT,
+          amount REAL,
+          quantity INTEGER,
+          status TEXT
+        );
+        
+        CREATE INDEX idx_trans_date ON transactions(date);
+        CREATE INDEX idx_trans_customer ON transactions(customer);
+      `;
+      
+      SQL_DB.run(ddl);
+
+      // Insert sample data
+      const transactions = [
+        ['2025-07-01', 'Alice', 'Hardware', 120.00, 2, 'Completed'],
+        ['2025-07-01', 'Bob', 'Software', 89.50, 1, 'Completed'],
+        ['2025-07-02', 'Cheryl', 'Services', 149.99, 3, 'Pending'],
+        ['2025-07-02', 'Alice', 'Hardware', 60.00, 1, 'Completed'],
+        ['2025-07-03', 'Dylan', 'Services', 200.00, 2, 'Completed'],
+        ['2025-07-03', 'Erin', 'Software', 75.00, 1, 'Completed'],
+        ['2025-07-04', 'Frank', 'Hardware', 350.25, 5, 'Completed'],
+        ['2025-07-04', 'Alice', 'Services', 210.10, 2, 'Completed'],
+        ['2025-07-05', 'Bob', 'Hardware', 402.75, 3, 'Refunded'],
+        ['2025-07-06', 'Cheryl', 'Software', 55.00, 1, 'Completed'],
+        ['2025-07-07', 'George', 'Hardware', 180.50, 2, 'Completed'],
+        ['2025-07-08', 'Helen', 'Services', 320.00, 4, 'Pending'],
+        ['2025-07-09', 'Ivan', 'Software', 95.99, 1, 'Completed'],
+        ['2025-07-10', 'Julia', 'Hardware', 275.00, 3, 'Completed']
+      ];
+
+      const stmt = SQL_DB.prepare("INSERT INTO transactions (date, customer, category, amount, quantity, status) VALUES (?, ?, ?, ?, ?, ?)");
+      transactions.forEach(row => stmt.run(row));
+      stmt.free();
+
+      updateSQLStatus('success', `Loaded ${transactions.length} sample records`);
+      renderSQLResults("SELECT * FROM transactions LIMIT 5");
+    }
+
+    function renderSQLResults(query) {
+      if (!SQL_READY) {
+        document.getElementById('sqlTable').innerHTML = '<div class="callout error">SQL engine not ready</div>';
+        return;
+      }
+
+      try {
+        const result = SQL_DB.exec(query);
+        const tableDiv = document.getElementById('sqlTable');
+        const rowCount = document.getElementById('sqlRowCount');
+
+        if (!result.length) {
+          tableDiv.innerHTML = '<div class="callout info">No results returned</div>';
+          if (rowCount) rowCount.textContent = '0 rows returned';
+          return;
+        }
+
+        const {columns, values} = result[0];
+        let html = '<table><thead><tr>';
+        columns.forEach(col => {
+          html += `<th>${col}</th>`;
+        });
+        html += '</tr></thead><tbody>';
+        
+        values.forEach(row => {
+          html += '<tr>';
+          row.forEach(val => {
+            html += `<td>${val !== null ? val : '<span class="muted">NULL</span>'}</td>`;
+          });
+          html += '</tr>';
+        });
+        html += '</tbody></table>';
+
+        tableDiv.innerHTML = html;
+        if (rowCount) rowCount.textContent = `${values.length} rows returned`;
+      } catch (error) {
+        document.getElementById('sqlTable').innerHTML = `<div class="callout error">SQL Error: ${error.message}</div>`;
+        console.error('SQL execution error:', error);
+      }
+    }
+
+    // SQL button handlers
+    document.getElementById('btnLoadSample')?.addEventListener('click', loadSampleData);
+
+    document.getElementById('btnRunSQL')?.addEventListener('click', () => {
+      const activeTab = document.querySelector('.tab-content.active');
+      let query = '';
+      
+      if (activeTab?.id === 'sql-basic') {
+        query = document.getElementById('sqlInput').value;
+      } else if (activeTab?.id === 'sql-advanced') {
+        query = document.getElementById('sqlAdvanced').value;
+      } else if (activeTab?.id === 'sql-window') {
+        query = document.getElementById('sqlWindow').value;
+      }
+      
+      if (query) {
+        renderSQLResults(query);
+      }
+    });
+
+    document.getElementById('btnTopSpenders')?.addEventListener('click', () => {
+      document.getElementById('sqlInput').value = `
+SELECT 
+    customer,
+    COUNT(*) as transaction_count,
+    ROUND(SUM(amount), 2) as total_spent,
+    ROUND(AVG(amount), 2) as avg_transaction
+FROM transactions
+WHERE status = 'Completed'
+GROUP BY customer
+ORDER BY total_spent DESC
+LIMIT 5;`.trim();
+    });
+
+    document.getElementById('btnMonthly')?.addEventListener('click', () => {
+      document.getElementById('sqlInput').value = `
+SELECT 
+    strftime('%Y-%m', date) as month,
+    category,
+    COUNT(*) as transactions,
+    ROUND(SUM(amount), 2) as total,
+    ROUND(AVG(amount), 2) as average
+FROM transactions
+GROUP BY month, category
+ORDER BY month DESC, total DESC;`.trim();
+    });
+
+    document.getElementById('btnExportSQL')?.addEventListener('click', () => {
+      const table = document.querySelector('#sqlTable table');
+      if (!table) {
+        alert('No results to export');
+        return;
+      }
+      
+      // Convert table to CSV
+      let csv = '';
+      const rows = table.querySelectorAll('tr');
+      rows.forEach(row => {
+        const cols = row.querySelectorAll('th, td');
+        const rowData = Array.from(cols).map(col => `"${col.textContent}"`);
+        csv += rowData.join(',') + '\n';
+      });
+      
+      // Download CSV
+      const blob = new Blob([csv], {type: 'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `sql_results_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+
+  <!-- Danfo.js Demo Script -->
+  <script>
+    const csvData = `date,customer,category,amount,quantity
+2025-07-01,Alice,Hardware,120.00,2
+2025-07-01,Bob,Software,89.50,1
+2025-07-02,Cheryl,Services,149.99,3
+2025-07-02,Alice,Hardware,60.00,1
+2025-07-03,Dylan,Services,200.00,2
+2025-07-03,Erin,Software,75.00,1
+2025-07-04,Frank,Hardware,350.25,5
+2025-07-04,Alice,Services,210.10,2
+2025-07-05,Bob,Hardware,402.75,3
+2025-07-06,Cheryl,Software,55.00,1
+2025-07-07,George,Hardware,180.50,2
+2025-07-08,Helen,Services,320.00,4`;
+
+    document.getElementById('btnRunDanfo')?.addEventListener('click', async () => {
+      const output = document.getElementById('dfOut');
+      const status = document.getElementById('dfStatus');
+      
+      if (status) {
+        status.className = 'status-indicator loading';
+        status.querySelector('span:last-child').textContent = 'Processing data...';
+      }
+      
+      try {
+        // Load DataFrame
+        const df = await dfd.readCSV({ data: csvData });
+        
+        // Data transformations
+        const df_filtered = df.query(df['amount'].ge(50));
+        
+        // Aggregations
+        const grouped = df_filtered.groupby(['category']).col(['amount']).sum();
+        
+        // Statistics
+        const stats = df['amount'].describe();
+        
+        // Generate output HTML
+        let html = '<div class="grid">';
+        html += '<div class="col-6">';
+        html += '<h4>Original Data (Head)</h4>';
+        html += await df.head().toHTML();
+        html += '</div>';
+        
+        html += '<div class="col-6">';
+        html += '<h4>Category Totals</h4>';
+        html += await grouped.toHTML();
+        html += '</div>';
+        
+        html += '<div class="col-12">';
+        html += '<h4>Statistical Summary</h4>';
+        html += '<pre>' + JSON.stringify(stats.toJSON(), null, 2) + '</pre>';
+        html += '</div>';
+        html += '</div>';
+        
+        output.innerHTML = html;
+        
+        if (status) {
+          status.className = 'status-indicator success';
+          status.querySelector('span:last-child').textContent = 'Pipeline completed successfully';
+        }
+      } catch (error) {
+        output.innerHTML = `<div class="callout error">Error: ${error.message}</div>`;
+        if (status) {
+          status.className = 'status-indicator error';
+          status.querySelector('span:last-child').textContent = 'Pipeline failed';
+        }
+      }
+    });
+
+    document.getElementById('btnVisualize')?.addEventListener('click', () => {
+      const canvas = document.getElementById('chartCanvas');
+      if (canvas) {
+        canvas.style.display = 'block';
+        // Add chart visualization here if needed
+        alert('Chart visualization would appear here (requires Chart.js integration)');
+      }
+    });
+  </script>
+
+  <!-- ML Demo Scripts -->
+  <script>
+    // Theme Analysis
+    document.getElementById('btnRunThemes')?.addEventListener('click', () => {
+      const k = parseInt(document.getElementById('kVal').value || 3);
+      const maxIter = parseInt(document.getElementById('maxIterations').value || 50);
+      const texts = document.getElementById('themeTexts').value.trim().split('\n').filter(Boolean);
+      
+      if (texts.length < k) {
+        document.getElementById('themeResults').innerHTML = 
+          '<div class="callout error">Need at least ' + k + ' text samples</div>';
+        return;
+      }
+
+      const vocab = buildVocab(texts);
+      const vectors = tfidfVectors(texts, vocab);
+      const {labels, centroids} = kmeans(vectors, k, maxIter);
+
+      // Group texts by cluster
+      const clusters = Array.from({length: k}, () => []);
+      labels.forEach((label, i) => clusters[label].push(texts[i]));
+
+      // Generate results HTML
+      let html = '<div class="grid">';
+      centroids.forEach((centroid, idx) => {
+        const topTerms = topTermsForCluster(centroid, vocab, 8);
+        const clusterTexts = clusters[idx];
+        
+        html += '<div class="col-6">';
+        html += '<div class="card">';
+        html += `<h4>Theme ${idx + 1}</h4>`;
+        html += '<div style="margin: 1rem 0;">';
+        topTerms.forEach(term => {
+          html += `<span class="badge">${term}</span> `;
+        });
+        html += '</div>';
+        html += `<p class="muted">${clusterTexts.length} documents in this cluster</p>`;
+        html += '<details>';
+        html += '<summary style="cursor: pointer; font-weight: 600;">View Documents</summary>';
+        html += '<ul style="margin-top: 0.5rem; list-style: none; padding: 0;">';
+        clusterTexts.forEach(text => {
+          html += `<li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">${text}</li>`;
+        });
+        html += '</ul>';
+        html += '</details>';
+        html += '</div>';
+        html += '</div>';
+      });
+      html += '</div>';
+
+      document.getElementById('themeResults').innerHTML = html;
+    });
+
+    document.getElementById('btnLoadReviews')?.addEventListener('click', () => {
+      const sampleReviews = `The product quality is excellent and shipping was fast.
+Customer support was unhelpful and slow to respond.
+Great value for money, would definitely recommend.
+The interface is confusing and lacks important features.
+Outstanding performance and reliability.
+Documentation is incomplete and hard to follow.
+Seamless integration with our existing systems.
+Frequent crashes and poor error handling.
+Intuitive design and easy to use.
+Pricing is too high compared to competitors.
+Exceptional customer service experience.
+The API is well-designed and documented.
+Too many bugs in the latest release.
+Perfect solution for our business needs.
+Setup process is unnecessarily complicated.`;
+      
+      document.getElementById('themeTexts').value = sampleReviews;
+    });
+
+    // Sentiment Analysis
+    document.getElementById('btnAnalyzeSentiment')?.addEventListener('click', () => {
+      const text = document.getElementById('sentimentText').value.trim();
+      if (!text) {
+        document.getElementById('sentimentResults').innerHTML = 
+          '<div class="callout warning">Please enter some text to analyze</div>';
+        return;
+      }
+
+      // Simple sentiment analysis based on keywords
+      const positiveWords = ['excellent', 'great', 'good', 'amazing', 'fantastic', 'love', 'best', 'outstanding', 'perfect', 'wonderful'];
+      const negativeWords = ['bad', 'terrible', 'poor', 'worst', 'hate', 'awful', 'horrible', 'disappointing', 'failed', 'broken'];
+      
+      const words = text.toLowerCase().split(/\s+/);
+      let positiveScore = 0;
+      let negativeScore = 0;
+      
+      words.forEach(word => {
+        if (positiveWords.some(pw => word.includes(pw))) positiveScore++;
+        if (negativeWords.some(nw => word.includes(nw))) negativeScore++;
+      });
+      
+      const totalScore = positiveScore - negativeScore;
+      let sentiment = 'Neutral';
+      let confidence = 0;
+      
+      if (totalScore > 0) {
+        sentiment = 'Positive';
+        confidence = (positiveScore / (positiveScore + negativeScore)) * 100;
+      } else if (totalScore < 0) {
+        sentiment = 'Negative';
+        confidence = (negativeScore / (positiveScore + negativeScore)) * 100;
+      } else {
+        confidence = 50;
+      }
+      
+      const html = `
+        <div class="card">
+          <h4>Sentiment Analysis Results</h4>
+          <div style="margin: 1rem 0;">
+            <span class="badge ${sentiment === 'Positive' ? 'success' : sentiment === 'Negative' ? 'error' : 'warning'}">
+              ${sentiment}
+            </span>
+            <span class="muted" style="margin-left: 1rem;">Confidence: ${confidence.toFixed(1)}%</span>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" style="width: ${confidence}%; background: ${sentiment === 'Positive' ? 'var(--success)' : sentiment === 'Negative' ? 'var(--error)' : 'var(--warning)'};"></div>
+          </div>
+          <p class="muted">Positive signals: ${positiveScore} | Negative signals: ${negativeScore}</p>
+        </div>
+      `;
+      
+      document.getElementById('sentimentResults').innerHTML = html;
+    });
+
+    // Anomaly Detection
+    document.getElementById('btnDetectAnomalies')?.addEventListener('click', () => {
+      // Generate sample time series data with anomalies
+      const data = [];
+      for (let i = 0; i < 100; i++) {
+        const value = 100 + Math.sin(i / 10) * 20 + Math.random() * 10;
+        // Insert anomalies
+        if (i === 25 || i === 60 || i === 85) {
+          data.push(value + (Math.random() > 0.5 ? 50 : -50));
+        } else {
+          data.push(value);
+        }
+      }
+      
+      // Simple anomaly detection using z-score
+      const mean = data.reduce((a, b) => a + b) / data.length;
+      const std = Math.sqrt(data.reduce((sq, n) => sq + Math.pow(n - mean, 2), 0) / data.length);
+      
+      const anomalies = [];
+      data.forEach((value, index) => {
+        const zScore = Math.abs((value - mean) / std);
+        if (zScore > 2.5) {
+          anomalies.push({index, value, zScore});
+        }
+      });
+      
+      const html = `
+        <div class="card">
+          <h4>Anomaly Detection Results</h4>
+          <p class="muted">Analyzed ${data.length} data points</p>
+          <div style="margin: 1rem 0;">
+            <span class="badge error">${anomalies.length} anomalies detected</span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Index</th>
+                <th>Value</th>
+                <th>Z-Score</th>
+                <th>Deviation</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${anomalies.map(a => `
+                <tr>
+                  <td>${a.index}</td>
+                  <td>${a.value.toFixed(2)}</td>
+                  <td>${a.zScore.toFixed(2)}</td>
+                  <td>${((a.value - mean) / mean * 100).toFixed(1)}%</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          <p class="muted" style="margin-top: 1rem;">
+            Mean: ${mean.toFixed(2)} | Std Dev: ${std.toFixed(2)} | Threshold: Z > 2.5
+          </p>
+        </div>
+      `;
+      
+      document.getElementById('anomalyResults').innerHTML = html;
+    });
+  </script>
+</body>
+<script>
+/* =====================================================================
+  Interactive Banking Charts (Pure SVG – no CDNs)
+  - Hover tooltips
+  - Click to highlight/filter across charts
+  - Legend toggles (Deposits / Loans)
+  - Reset Filters
+  - Banking theme
+  - Non-destructive (only touches the charts area)
+===================================================================== */
+(function(){
+  const $ = (sel, root=document)=>root.querySelector(sel);
+  const $$ = (sel, root=document)=>Array.from(root.querySelectorAll(sel));
+  const fmtInt = (n)=> Number(n||0).toLocaleString('en-US');
+  const sum = (a)=> a.reduce((x,y)=> x + (y||0), 0);
+  const clamp = (v,min,max)=> Math.max(min, Math.min(max, v));
+  const COLORS = {
+    deposits:'#10b981',
+    loans:'#3b82f6',
+    branch:'#14b8a6',
+    pie:['#10b981','#3b82f6','#eab308','#a78bfa','#f97316','#22d3ee','#ef4444'],
+    up:'#34d399',
+    down:'#ef4444',
+    total:'#eab308'
+  };
+
+  // State (filters + visibility)
+  const state = {
+    selectedMonth: null,       // 'Jan', ...
+    selectedBranch: null,      // 'Midtown', ...
+    selectedProduct: null,     // 'Checking', ...
+    showDeposits: true,
+    showLoans: true
+  };
+
+  // Tooltips (one global)
+  let tooltip;
+  function ensureTooltip(){
+    if (tooltip) return;
+    tooltip = document.createElement('div');
+    Object.assign(tooltip.style, {
+      position:'fixed', zIndex:10000, pointerEvents:'none',
+      background:'rgba(15,17,26,.95)', color:'#e6edf7',
+      border:'1px solid rgba(148,163,184,.25)', borderRadius:'8px',
+      padding:'8px 10px', font:'12px/1.4 Inter, system-ui, -apple-system, sans-serif',
+      transform:'translate(-50%, -120%)', whiteSpace:'nowrap', display:'none'
+    });
+    document.body.appendChild(tooltip);
+  }
+  function showTip(html, x, y){
+    ensureTooltip();
+    tooltip.innerHTML = html;
+    tooltip.style.left = x+'px';
+    tooltip.style.top = y+'px';
+    tooltip.style.display = 'block';
+  }
+  function hideTip(){ if (tooltip) tooltip.style.display = 'none'; }
+
+  // Build/replace Charts section (no Controls toolbar)
+  function ensureSection(){
+    const demos = $('#demos'); if (!demos) return null;
+    let wrap = $('#chartsPatch');
+    if (!wrap){
+      const h2 = $('h2', demos); if (!h2) return null;
+      wrap = document.createElement('div');
+      wrap.id = 'chartsPatch';
+      wrap.className = 'grid';
+      h2.insertAdjacentElement('afterend', wrap);
+    }
+    wrap.innerHTML = `
+      <div class="col-12">
+        <div class="card">
+          <h3>🏦 Banking Analytics — Interactive</h3>
+          <p class="muted">Hover for details, click to highlight/filter. Toggle series in the legend. </p>
+          <div class="panel">
+            <div class="grid">
+              <div class="col-12 col-6">
+                <div class="chart-card">
+                  <div class="chart-title" style="display:flex;align-items:center;justify-content:space-between;">
+                    <span>Monthly Deposits vs Loans</span>
+                    <span id="legendStacked" style="display:flex;gap:.75rem;align-items:center;font-size:12px;color:var(--muted);">
+                      <button class="pill" data-series="deposits" title="Toggle Deposits">Deposits</button>
+                      <button class="pill" data-series="loans" title="Toggle Loans">Loans</button>
+                    </span>
+                  </div>
+                  <div class="chart-sub">Stacked Bar (USD, $k)</div>
+                  <svg id="svgStacked"></svg>
+                </div>
+              </div>
+              <div class="col-12 col-6">
+                <div class="chart-card">
+                  <div class="chart-title">Top Branch Revenue</div>
+                  <div class="chart-sub">Horizontal Bar (USD, $k)</div>
+                  <svg id="svgHoriz"></svg>
+                </div>
+              </div>
+              <div class="col-12 col-6">
+                <div class="chart-card">
+                  <div class="chart-title">Product Mix</div>
+                  <div class="chart-sub">Doughnut — % and counts • Total in center</div>
+                  <svg id="svgPie"></svg>
+                </div>
+              </div>
+              <div class="col-12 col-6">
+                <div class="chart-card">
+                  <div class="chart-title">Net Income Bridge</div>
+                  <div class="chart-sub">Waterfall (USD, $k)</div>
+                  <svg id="svgWaterfall"></svg>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:1rem; display:flex; gap:.5rem; align-items:center; flex-wrap:wrap;">
+              <button class="btn secondary" id="btnReset">↺ Reset Filters</button>
+              <span class="muted" id="filterStatus"></span>
+            </div>
+            <div class="status-indicator" id="chartsStatus" style="margin-top:1rem;">
+              <span class="status-dot"></span>
+              <span>Charts ready.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    // Style for chart cards (if not already present)
+    if (!$('#interactiveSvgStyles')){
+      const style = document.createElement('style');
+      style.id = 'interactiveSvgStyles';
+      style.textContent = `
+        #chartsPatch .chart-card{ background: var(--code-bg); border:1px solid var(--border); border-radius:12px; padding:1rem; height:360px; transition:.3s; }
+        #chartsPatch .chart-card:hover{ border-color: rgba(59,130,246,.35); box-shadow: 0 12px 30px rgba(59,130,246,.12); }
+        #chartsPatch .chart-title{ font-weight:700; margin:.25rem 0 .25rem; color: var(--ink); letter-spacing:.2px; }
+        #chartsPatch .chart-sub{ color: var(--muted); font-size:.85rem; margin:-.2rem 0 .5rem; }
+        #chartsPatch svg{ width:100%; height: calc(100% - 48px); display:block; }
+        #chartsPatch text{ font-family: Inter, system-ui, -apple-system, sans-serif; }
+        #chartsPatch .tick{ fill: var(--muted); font-size: 11px; }
+        #chartsPatch .axis{ stroke: rgba(148,163,184,0.25); stroke-width:1; }
+        #chartsPatch .label{ fill: var(--ink); font-weight:600; font-size: 11px; }
+        #chartsPatch .legend-dim{ opacity: .25; filter: grayscale(.4); }
+        #chartsPatch .dimmed{ opacity:.25; }
+        @media (max-width: 768px){ #chartsPatch .chart-card{ height: 300px; } }
+      `;
+      document.head.appendChild(style);
+    }
+    return wrap;
+  }
+
+  // SVG helper
+  function svgel(tag, attrs={}, parent){
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const k in attrs){ if (attrs[k]!=null) el.setAttribute(k, attrs[k]); }
+    if (parent) parent.appendChild(el);
+    return el;
+  }
+  function xScale(domain, w, m){ const [d0,d1]=domain, span=(d1-d0)||1; return (v)=> m.l + ((v-d0)/span)*(w-m.l-m.r); }
+  function yScale(domain, h, m){ const [d0,d1]=domain, span=(d1-d0)||1; return (v)=> h - m.b - ((v-d0)/span)*(h-m.t-m.b); }
+
+  // DATA (banking-flavored defaults)
+  let data = {
+    months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    deposits: [220,240,255,270,300,330,345,355,370,390,410,435],
+    loans:    [180,190,205,220,240,260,275,285,295,310,325,340],
+    branches: { labels:['Midtown','Uptown','Riverside','Airport','Harbor','Lexington','Elm'], values:[920,850,790,610,590,520,480] },
+    products: { labels:['Checking','Savings','Mortgages','Credit Cards','Investments','Other'], values:[520,380,260,210,130,90] },
+    waterfall:{ labels:['Interest Income','Fee Income','Opex','Provisions','Taxes'], deltas:[+420,+90,-260,-80,-60] }
+  };
+
+  // RENDERERS (each returns an array of hit regions for interactivity)
+  function renderStacked(svg){
+    svg.innerHTML='';
+    const labels = data.months;
+    const dep = data.deposits.map(v=> state.showDeposits ? v : 0);
+    const loan = data.loans.map(v=> state.showLoans ? v : 0);
+    const totals = labels.map((_,i)=>dep[i]+loan[i]);
+
+    const w = svg.clientWidth || svg.parentElement.clientWidth;
+    const h = svg.clientHeight || svg.parentElement.clientHeight;
+    const m = {t:26,r:16,b:36,l:40};
+    const ymax = Math.max(10, Math.ceil(Math.max(...totals)/50)*50);
+    const Y = yScale([0, ymax], h, m);
+    const colW = (w - m.l - m.r)/labels.length;
+    const X = (i)=> m.l + i*colW + 8;
+    const barW = Math.max(10, colW - 16);
+
+    // Legend buttons reflect visibility
+    const legend = $('#legendStacked');
+    if (legend){
+      legend.querySelectorAll('[data-series]').forEach(btn=>{
+        const on = btn.dataset.series === 'deposits' ? state.showDeposits : state.showLoans;
+        btn.style.opacity = on ? '1' : '.45';
+        btn.style.borderColor = on ? 'var(--accent)' : 'var(--border)';
+      });
+    }
+
+    // Axis baseline
+    svgel('line',{x1:m.l,y1:Y(0),x2:w-m.r,y2:Y(0),class:'axis'}, svg);
+
+    const hits = [];
+
+    labels.forEach((lab,i)=>{
+      const d = dep[i], l = loan[i], t = d + l;
+      const x = X(i);
+      // Deposits segment
+      if (d>0){
+        const yD = Y(d), hD = Math.max(0, Y(0)-yD);
+        const r = svgel('rect',{x, y:yD, width:barW, height:hD, rx:3, fill:COLORS.deposits}, svg);
+        if (state.selectedMonth && state.selectedMonth !== lab) r.classList.add('dimmed');
+        hits.push({type:'stacked', month:lab, series:'Deposits', x, y:yD, w:barW, h:hD, value:d, total:t});
+      }
+      // Loans segment
+      if (l>0){
+        const yL = Y(t), hL = Math.max(0, Y(d)-yL);
+        const r = svgel('rect',{x, y:yL, width:barW, height:hL, rx:3, fill:COLORS.loans}, svg);
+        if (state.selectedMonth && state.selectedMonth !== lab) r.classList.add('dimmed');
+        hits.push({type:'stacked', month:lab, series:'Loans', x, y:yL, w:barW, h:hL, value:l, total:t});
+      }
+      // Top total label
+      if (t>0){
+        const ty = Y(t)-6;
+        const txt = svgel('text',{x:x+barW/2,y:ty,'text-anchor':'middle',class:'label'}, svg);
+        txt.textContent = fmtInt(t);
+        if (state.selectedMonth && state.selectedMonth !== lab) txt.classList.add('dimmed');
+      }
+      // x tick
+      svgel('text',{x:x+barW/2, y:h-m.b+16, 'text-anchor':'middle', class:'tick'}, svg).textContent = lab;
+    });
+
+    // Interactivity
+    attachInteractions(svg, hits, (hit, e)=>{
+      const html = `<b>${hit.month}</b><br>${hit.series}: ${fmtInt(hit.value)}<br>Total: ${fmtInt(hit.total)}`;
+      showTip(html, e.clientX, e.clientY);
+    }, (hit)=>{
+      state.selectedMonth = (state.selectedMonth === hit.month) ? null : hit.month;
+      drawAll();
+    });
+  }
+
+  function renderHoriz(svg){
+    svg.innerHTML='';
+    const labels = data.branches.labels;
+    const values = data.branches.values;
+
+    const w = svg.clientWidth || svg.parentElement.clientWidth;
+    const h = svg.clientHeight || svg.parentElement.clientHeight;
+    const m = {t:16,r:20,b:32,l:90};
+    const vmax = Math.max(10, Math.ceil(Math.max(...values)/50)*50);
+    const X = xScale([0, vmax], w, m);
+    const rowH = (h - m.t - m.b)/labels.length;
+
+    svgel('line',{x1:m.l,y1:h-m.b,x2:w-m.r,y2:h-m.b,class:'axis'}, svg);
+
+    const hits = [];
+    labels.forEach((lab,i)=>{
+      const y = m.t + i*rowH + 5;
+      const barW = Math.max(1, X(values[i]) - m.l);
+      const rect = svgel('rect',{x:m.l,y, width:barW, height:rowH-10, rx:4, fill:COLORS.branch}, svg);
+      if (state.selectedBranch && state.selectedBranch !== lab) rect.classList.add('dimmed');
+
+      svgel('text',{x:m.l-8, y:y+(rowH-10)/2+4, 'text-anchor':'end', class:'label'}, svg).textContent = lab;
+      const vTxt = svgel('text',{x:m.l+barW+6, y:y+(rowH-10)/2+4, class:'label'}, svg);
+      vTxt.textContent = fmtInt(values[i]);
+      if (state.selectedBranch && state.selectedBranch !== lab) vTxt.classList.add('dimmed');
+
+      hits.push({type:'hbar', branch:lab, x:m.l, y, w:barW, h:rowH-10, value:values[i]});
+    });
+
+    attachInteractions(svg, hits, (hit,e)=>{
+      showTip(`<b>${hit.branch}</b><br>Revenue: ${fmtInt(hit.value)}`, e.clientX, e.clientY);
+    }, (hit)=>{
+      state.selectedBranch = (state.selectedBranch === hit.branch) ? null : hit.branch;
+      drawAll();
+    });
+  }
+
+  function renderPie(svg){
+    svg.innerHTML='';
+    const labels = data.products.labels;
+    const values = data.products.values;
+    const total = sum(values);
+    const w = svg.clientWidth || svg.parentElement.clientWidth;
+    const h = svg.clientHeight || svg.parentElement.clientHeight;
+    const cx = w/2, cy = h/2;
+    const rOuter = Math.min(w,h)/2 - 10;
+    const rInner = rOuter * 0.58;
+
+    let angle = -Math.PI/2;
+    const hits = [];
+    values.forEach((v,i)=>{
+      const frac = total? v/total : 0;
+      const theta = frac * Math.PI*2;
+      const a0 = angle, a1 = angle + theta;
+      angle = a1;
+      if (theta <= 0) return;
+
+      // path
+      const p = donutPath(cx,cy,rInner,rOuter,a0,a1);
+      const fill = COLORS.pie[i%COLORS.pie.length];
+      const path = svgel('path',{d:p, fill}, svg);
+      if (state.selectedProduct && state.selectedProduct !== labels[i]) path.classList.add('dimmed');
+
+      // middle label
+      const am=(a0+a1)/2, lr=(rInner+rOuter)/2;
+      const lx = cx + Math.cos(am)*lr, ly = cy + Math.sin(am)*lr;
+      const pct = total? Math.round(v*100/total) : 0;
+      const g = svgel('g',{},svg);
+      const t1 = svgel('text',{x:lx,y:ly-2,'text-anchor':'middle',class:'label', 'font-size':'12px','font-weight':'700'}, g);
+      t1.textContent = `${pct}%`;
+      const t2 = svgel('text',{x:lx,y:ly+12,'text-anchor':'middle',class:'label','font-size':'11px'}, g);
+      t2.textContent = fmtInt(v);
+      if (state.selectedProduct && state.selectedProduct !== labels[i]){ t1.classList.add('dimmed'); t2.classList.add('dimmed'); }
+
+      hits.push({type:'pie', product:labels[i], a0, a1, cx, cy, rInner, rOuter, value:v, pct});
+    });
+
+    // center total
+    const ct1 = svgel('text',{x:cx,y:cy-2,'text-anchor':'middle',class:'label','font-size':'18px','font-weight':'700'}, svg);
+    ct1.textContent = fmtInt(total);
+    svgel('text',{x:cx,y:cy+14,'text-anchor':'middle',class:'tick'}, svg).textContent = 'TOTAL ACCOUNTS';
+
+    // Interact
+    svg.onmousemove = (e)=>{
+      const pt = pointInSvg(svg, e);
+      const hit = hits.find(h => inDonut(pt.x, pt.y, h));
+      if (hit){
+        showTip(`<b>${hit.product}</b><br>${fmtInt(hit.value)} (${hit.pct}%)`, e.clientX, e.clientY);
+      } else hideTip();
+    };
+    svg.onmouseleave = hideTip;
+    svg.onclick = (e)=>{
+      const pt = pointInSvg(svg, e);
+      const hit = hits.find(h => inDonut(pt.x, pt.y, h));
+      if (hit){
+        state.selectedProduct = (state.selectedProduct === hit.product) ? null : hit.product;
+        drawAll();
+      }
+    };
+
+    function donutPath(cx,cy,ri,ro,a0,a1){
+      const x0 = cx + ro*Math.cos(a0), y0 = cy + ro*Math.sin(a0);
+      const x1 = cx + ro*Math.cos(a1), y1 = cy + ro*Math.sin(a1);
+      const x2 = cx + ri*Math.cos(a1), y2 = cy + ri*Math.sin(a1);
+      const x3 = cx + ri*Math.cos(a0), y3 = cy + ri*Math.sin(a0);
+      const large = (a1 - a0) > Math.PI ? 1 : 0;
+      return `M ${x0} ${y0} A ${ro} ${ro} 0 ${large} 1 ${x1} ${y1} L ${x2} ${y2} A ${ri} ${ri} 0 ${large} 0 ${x3} ${y3} Z`;
+    }
+    function inDonut(x,y,h){
+      const dx=x-h.cx, dy=y-h.cy; const r = Math.hypot(dx,dy);
+      const a = Math.atan2(dy,dx);
+      const norm = (a< -Math.PI/2)? a+Math.PI*2 : a; // align with our -PI/2 start
+      const a0 = h.a0, a1 = h.a1;
+      const n0 = (a0< -Math.PI/2)? a0+Math.PI*2 : a0;
+      const n1 = (a1< -Math.PI/2)? a1+Math.PI*2 : a1;
+      const between = n0 <= norm && norm <= n1;
+      return r>=h.rInner && r<=h.rOuter && between;
+    }
+  }
+
+  function renderWaterfall(svg){
+    svg.innerHTML='';
+    const labels = data.waterfall.labels;
+    const deltas = data.waterfall.deltas;
+    let acc = 0;
+    const bases = deltas.map(d=>{const b=acc; acc+=d; return b;});
+    const total = acc;
+
+    const w = svg.clientWidth || svg.parentElement.clientWidth;
+    const h = svg.clientHeight || svg.parentElement.clientHeight;
+    const m = {t:20,r:16,b:40,l:60};
+    const vmax = Math.max(Math.abs(total),
+      ...bases.map((b,i)=>Math.abs(b + Math.max(0,deltas[i]))),
+      ...bases.map((b)=>Math.abs(b))
+    );
+    const ymax = Math.max(10, Math.ceil(vmax/50)*50);
+    const Y = yScale([0, ymax], h, m);
+    const colW = (w - m.l - m.r)/(labels.length+1);
+    const X = (i)=> m.l + i*colW + 10;
+    const barW = Math.max(12, colW - 20);
+
+    svgel('line',{x1:m.l,y1:Y(0),x2:w-m.r,y2:Y(0),class:'axis'}, svg);
+
+    const hits = [];
+    labels.forEach((lab,i)=>{
+      const base = bases[i], v = deltas[i];
+      const yTop = Y(Math.max(0, base+v));
+      const yBot = Y(Math.max(0, base));
+      const color = v>=0 ? COLORS.up : COLORS.down;
+      const rect = svgel('rect',{x:X(i), y:yTop, width:barW, height:Math.max(0,yBot - yTop), rx:3, fill:color}, svg);
+      // connector
+      const nextY = Y(Math.max(0, base+v));
+      svgel('line',{x1:X(i)+barW,y1:nextY,x2:X(i)+barW+8,y2:nextY, stroke:'rgba(148,163,184,0.4)','stroke-width':1}, svg);
+      // label
+      svgel('text',{x:X(i)+barW/2, y:yTop-6, 'text-anchor':'middle', class:'label'}, svg).textContent = `${v>=0?'+':''}${fmtInt(v)}`;
+      // tick
+      svgel('text',{x:X(i)+barW/2, y:h-m.b+16, 'text-anchor':'middle', class:'tick'}, svg).textContent = lab;
+
+      hits.push({type:'wf', label:lab, x:X(i), y:yTop, w:barW, h:Math.max(0,yBot-yTop), value:v, end:base+v});
+    });
+    // total bar
+    const tx = X(labels.length);
+    const ty = Y(Math.max(0,total));
+    const th = Math.max(0, Y(0)-ty);
+    svgel('rect',{x:tx, y:ty, width:barW, height:th, rx:3, fill:COLORS.total}, svg);
+    svgel('text',{x:tx+barW/2, y:ty-6, 'text-anchor':'middle', class:'label'}, svg).textContent = fmtInt(total);
+    svgel('text',{x:tx+barW/2, y:h-m.b+16, 'text-anchor':'middle', class:'tick'}, svg).textContent = 'Net Income';
+
+    attachInteractions(svg, hits, (hit,e)=>{
+      showTip(`<b>${hit.label}</b><br>${hit.value>=0?'+':''}${fmtInt(hit.value)}<br>End: ${fmtInt(hit.end)}`, e.clientX, e.clientY);
+    }, null);
+  }
+
+  // Generic SVG hit-testing & binding for rect-based regions
+  function attachInteractions(svg, regions, onHover, onClick){
+    svg.onmousemove = (e)=>{
+      const pt = pointInSvg(svg, e);
+      const hit = regions.find(r => pt.x >= r.x && pt.x <= r.x+r.w && pt.y >= r.y && pt.y <= r.y+r.h);
+      if (hit){ onHover && onHover(hit, e); } else hideTip();
+    };
+    svg.onmouseleave = hideTip;
+    svg.onclick = (e)=>{
+      const pt = pointInSvg(svg, e);
+      const hit = regions.find(r => pt.x >= r.x && pt.x <= r.x+r.w && pt.y >= r.y && pt.y <= r.y+r.h);
+      if (hit && onClick) onClick(hit, e);
+    };
+  }
+  function pointInSvg(svg, evt){
+    const rect = svg.getBoundingClientRect();
+    const x = evt.clientX - rect.left;
+    const y = evt.clientY - rect.top;
+    return {x, y};
+  }
+
+  // Draw all charts
+  function drawAll(){
+    renderStacked($('#svgStacked'));
+    renderHoriz($('#svgHoriz'));
+    renderPie($('#svgPie'));
+    renderWaterfall($('#svgWaterfall'));
+    updateFilterStatus();
+  }
+
+  function updateFilterStatus(){
+    const parts = [];
+    if (state.selectedMonth) parts.push(`Month: ${state.selectedMonth}`);
+    if (state.selectedBranch) parts.push(`Branch: ${state.selectedBranch}`);
+    if (state.selectedProduct) parts.push(`Product: ${state.selectedProduct}`);
+    if (!state.showDeposits || !state.showLoans){
+      const on = [state.showDeposits?'Deposits':null, state.showLoans?'Loans':null].filter(Boolean).join(' & ');
+      parts.push(`Series: ${on || 'None'}`);
+    }
+    $('#filterStatus').textContent = parts.length ? parts.join('  •  ') : 'No filters';
+  }
+
+  // Legend toggles
+  function wireLegend(){
+    $('#legendStacked')?.addEventListener('click', (e)=>{
+      const btn = e.target.closest('[data-series]'); if (!btn) return;
+      const series = btn.dataset.series;
+      if (series === 'deposits') state.showDeposits = !state.showDeposits;
+      if (series === 'loans') state.showLoans = !state.showLoans;
+      drawAll();
+    });
+  }
+
+  // Reset filters
+  function wireReset(){
+    $('#btnReset')?.addEventListener('click', ()=>{
+      state.selectedMonth = state.selectedBranch = state.selectedProduct = null;
+      state.showDeposits = state.showLoans = true;
+      drawAll();
+    });
+  }
+
+  // Optional: sync from DataFrame (if window.__dfSummary exists)
+  function trySyncFromDF(){
+    const s = window.__dfSummary;
+    if (!s) return false;
+    if (s.monthly?.length){
+      data.months = s.monthly.map(d=>d.label);
+      const vals = s.monthly.map(d=> +d.value || 0);
+      data.deposits = vals.map(v=> Math.round(v*0.55));
+      data.loans    = vals.map(v=> Math.round(v*0.45));
+    }
+    if (s.categories?.length){
+      const top = s.categories.slice(0,7);
+      data.branches.labels = top.map(d=>d.label);
+      data.branches.values = top.map(d=> +d.value || 0);
+    }
+    if (s.channels?.length){
+      data.products.labels = s.channels.map(d=>d.label);
+      data.products.values = s.channels.map(d=> +d.value || 0);
+    }
+    return true;
+  }
+
+  // Boot
+  function boot(){
+    const container = ensureSection();
+    if (!container) return;
+    trySyncFromDF();  // harmless if not present
+    drawAll();
+    wireLegend();
+    wireReset();
+
+    // Responsive re-render
+    let t;
+    window.addEventListener('resize', ()=>{ clearTimeout(t); t=setTimeout(drawAll, 120); });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+
+</html>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
     <title>Sal Caramucci – VP Risk & Analytics Leader</title>
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --dark-gray: #1a1a1a;
@@ -16,16 +19,7 @@
             --card-bg: #222;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* Base styles from original code */
         body {
             font-family: 'Inter', sans-serif;
             background: var(--dark-gray);
@@ -49,106 +43,25 @@
             transform: translateY(-1px);
         }
 
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes rotateIn { from { opacity: 0; transform: rotate(-180deg) scale(0); } to { opacity: 1; transform: rotate(0deg) scale(1); } }
+        @keyframes drawLine { from { width: 0; } to { width: 100%; } }
+        @keyframes typewriter { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 0%, 50% { border-right-color: transparent; } 51%, 100% { border-right-color: var(--accent-color); } }
+        @keyframes chartLine { 0% { stroke-dashoffset: 1000; } 100% { stroke-dashoffset: 0; } }
+        @keyframes dataPoint { 0% { opacity: 0; transform: scale(0); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0.8; transform: scale(1); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes slideInLeft {
-            from { 
-                opacity: 0; 
-                transform: translateX(-50px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateX(0); 
-            }
-        }
+        /* General layout and component styling */
+        .animate-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .animate-on-scroll.in-view { opacity: 1; transform: translateY(0); }
 
-        @keyframes slideInRight {
-            from { 
-                opacity: 0; 
-                transform: translateX(50px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateX(0); 
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes rotateIn {
-            from { 
-                opacity: 0; 
-                transform: rotate(-180deg) scale(0); 
-            }
-            to { 
-                opacity: 1; 
-                transform: rotate(0deg) scale(1); 
-            }
-        }
-
-        @keyframes drawLine {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink {
-            0%, 50% { border-right-color: transparent; }
-            51%, 100% { border-right-color: var(--accent-color); }
-        }
-
-        @keyframes chartLine {
-            0% { stroke-dashoffset: 1000; }
-            100% { stroke-dashoffset: 0; }
-        }
-
-        @keyframes dataPoint {
-            0% { 
-                opacity: 0; 
-                transform: scale(0); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.2); 
-            }
-            100% { 
-                opacity: 0.8; 
-                transform: scale(1); 
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .animate-on-scroll.in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        /* Hero section */
         .hero {
             height: 100vh;
             display: flex;
@@ -161,70 +74,21 @@
             padding: 2rem;
             overflow: hidden;
         }
-
-        .analytics-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.1;
-        }
-
-        .chart-line {
-            position: absolute;
-            stroke: var(--accent-color);
-            stroke-width: 2;
-            fill: none;
-            stroke-dasharray: 1000;
-            animation: chartLine 3s ease-in-out infinite alternate;
-        }
-
-        .data-point {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            animation: dataPoint 2s ease-in-out infinite;
-        }
-
-        .data-point:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .data-point:nth-child(2) { top: 30%; left: 25%; animation-delay: 0.5s; }
-        .data-point:nth-child(3) { top: 15%; left: 40%; animation-delay: 1s; }
-        .data-point:nth-child(4) { top: 40%; left: 60%; animation-delay: 1.5s; }
-        .data-point:nth-child(5) { top: 25%; left: 80%; animation-delay: 2s; }
-        .data-point:nth-child(6) { top: 60%; left: 15%; animation-delay: 2.5s; }
-        .data-point:nth-child(7) { top: 70%; left: 35%; animation-delay: 3s; }
-        .data-point:nth-child(8) { top: 80%; left: 55%; animation-delay: 3.5s; }
-        .data-point:nth-child(9) { top: 65%; left: 75%; animation-delay: 4s; }
-        .data-point:nth-child(10) { top: 85%; left: 90%; animation-delay: 4.5s; }
-
-        .grid-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: float 6s ease-in-out infinite;
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
         }
 
         .hero-title {
-            font-size: 5rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 700;
             letter-spacing: -2px;
             text-transform: uppercase;
             margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 10;
             animation: fadeInUp 1s ease-in-out;
         }
-
+        
         .typewriter {
             border-right: 3px solid var(--accent-color);
             white-space: nowrap;
@@ -233,22 +97,18 @@
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             font-weight: 400;
             margin-bottom: 2rem;
             opacity: 0.8;
-            position: relative;
-            z-index: 10;
             animation: slideInLeft 1.2s ease-in-out 0.5s both;
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            position: relative;
-            z-index: 10;
             animation: slideInRight 1.5s ease-in-out 1s both;
         }
 
@@ -277,8 +137,6 @@
             display: flex;
             gap: 1.5rem;
             margin-top: 2rem;
-            position: relative;
-            z-index: 10;
             animation: fadeInUp 1.8s ease-in-out 1.5s both;
         }
         
@@ -293,26 +151,62 @@
             overflow: hidden;
         }
 
-        .hero-buttons a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .hero-buttons a:hover::before {
-            left: 100%;
-        }
-        
         .hero-buttons a:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
         }
 
+        /* Stock Waterfall Effect */
+        #stockFall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0.1;
+            z-index: 1; /* Fall behind hero content */
+        }
+
+        .stock-chip {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.5rem 0.75rem;
+            color: var(--light-gray);
+            font-size: 0.8rem;
+            font-weight: 500;
+            width: 140px;
+            top: 100%;
+            animation: stockFall ease-in-out infinite;
+            transform: translateY(0);
+            will-change: transform, opacity;
+            opacity: var(--op, 0.9);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .stock-chip .sym {
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .stock-chip .chg.up { color: var(--accent-secondary); }
+        .stock-chip .chg.down { color: #ef4444; }
+
+        @keyframes stockFall {
+            0% { transform: translateY(0) scale(0.9); opacity: 0; }
+            2% { opacity: var(--op, 0.9); }
+            98% { opacity: var(--op, 0.9); }
+            100% { transform: translateY(-120vh) scale(1.1); opacity: 0; }
+        }
+
+        /* Navigation */
         nav {
             display: flex;
             justify-content: center;
@@ -326,10 +220,7 @@
             transition: all 0.3s ease;
         }
 
-        nav.scrolled {
-            padding: 1rem;
-            background: rgba(26, 26, 26, 0.98);
-        }
+        nav.scrolled { padding: 1rem; background: rgba(26, 26, 26, 0.98); }
 
         nav a {
             color: var(--text-color);
@@ -341,28 +232,13 @@
             overflow: hidden;
         }
 
-        nav a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
-            opacity: 0.1;
-            transition: left 0.3s ease;
-        }
-
-        nav a:hover::before {
-            left: 100%;
-        }
-
         nav a:hover {
             background-color: rgba(59, 130, 246, 0.1);
             color: var(--accent-color);
             transform: translateY(-2px);
         }
 
+        /* Content sections */
         .content-wrapper {
             max-width: 1100px;
             margin: auto;
@@ -374,7 +250,7 @@
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.5rem);
             font-weight: 700;
             margin-bottom: 2.5rem;
             position: relative;
@@ -401,24 +277,7 @@
             border-radius: 12px;
             border-left: 5px solid var(--accent-color);
             text-align: justify;
-            position: relative;
-            overflow: hidden;
             animation: slideInLeft 0.8s ease-in-out;
-        }
-
-        .professional-profile::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
-            transition: left 2s ease;
-        }
-
-        .professional-profile:hover::before {
-            left: 100%;
         }
 
         .competencies-grid {
@@ -439,38 +298,10 @@
             animation: rotateIn 0.8s ease-in-out;
         }
 
-        .competency-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .competency-card:hover::before {
-            opacity: 1;
-        }
-
         .competency-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
             border-left-color: var(--accent-secondary);
-        }
-
-        .competency-card:nth-child(even) {
-            animation-delay: 0.2s;
-        }
-
-        .competency-card:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        .competency-card:nth-child(4) {
-            animation-delay: 0.6s;
         }
 
         .competency-card h4 {
@@ -480,14 +311,7 @@
             transition: color 0.3s ease;
         }
 
-        .competency-card:hover h4 {
-            color: var(--accent-color);
-        }
-
-        .competency-list {
-            list-style: none;
-        }
-
+        .competency-list { list-style: none; }
         .competency-list li {
             padding: 0.4rem 0;
             font-size: 0.95rem;
@@ -495,33 +319,14 @@
             position: relative;
             padding-left: 1.5rem;
             transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 0.3s ease-in-out both;
         }
-
-        .competency-list li:nth-child(1) { animation-delay: 0.1s; }
-        .competency-list li:nth-child(2) { animation-delay: 0.2s; }
-        .competency-list li:nth-child(3) { animation-delay: 0.3s; }
-        .competency-list li:nth-child(4) { animation-delay: 0.4s; }
-        .competency-list li:nth-child(5) { animation-delay: 0.5s; }
-
+        
         .competency-list li::before {
             content: '▶';
             position: absolute;
             left: 0;
             color: var(--accent-color);
             font-weight: 900;
-            transition: all 0.3s ease;
-        }
-
-        .competency-card:hover .competency-list li::before {
-            color: var(--accent-secondary);
-            transform: translateX(3px);
-        }
-
-        .competency-card:hover .competency-list li {
-            transform: translateX(5px);
-            color: var(--light-gray);
         }
 
         .technical-expertise {
@@ -536,26 +341,7 @@
             border-radius: 12px;
             border-top: 3px solid var(--accent-color);
             transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
             animation: slideInUp 0.6s ease-in-out;
-        }
-
-        .tech-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .tech-category:hover::before {
-            transform: scaleX(1);
         }
 
         .tech-category:hover {
@@ -563,32 +349,18 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             background: linear-gradient(135deg, var(--card-bg), #2a2a2a);
         }
-
-        .tech-category:nth-child(even) {
-            animation-delay: 0.2s;
-        }
-
+        
         .tech-category strong {
             display: block;
             margin-bottom: 0.8rem;
             font-size: 1rem;
             font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .tech-category:hover strong {
-            color: var(--accent-color);
         }
 
         .tech-category span {
             font-size: 0.9rem;
             line-height: 1.4;
             color: var(--text-color);
-            transition: color 0.3s ease;
-        }
-
-        .tech-category:hover span {
-            color: var(--light-gray);
         }
 
         .experience-card {
@@ -597,768 +369,365 @@
             border-radius: 12px;
             margin-bottom: 2.5rem;
             border-left: 4px solid var(--accent-color);
-            position: relative;
             transition: all 0.4s ease;
-            overflow: hidden;
             animation: slideInLeft 0.8s ease-in-out;
         }
 
-        .experience-card:nth-child(even) {
-            animation: slideInRight 0.8s ease-in-out;
-        }
-
-        .experience-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background: linear-gradient(180deg, var(--accent-color), var(--accent-secondary));
-            transition: height 0.6s ease;
-        }
-
-        .experience-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent);
-            transition: width 0.6s ease;
-        }
-
-        .experience-card:hover::before {
-            height: 100%;
-        }
-
-        .experience-card:hover::after {
-            width: 100%;
-        }
-
+        .experience-card:nth-child(even) { animation: slideInRight 0.8s ease-in-out; }
         .experience-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 25px 50px rgba(59, 130, 246, 0.15);
             border-left-color: var(--accent-secondary);
         }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .experience-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.6s ease-in-out;
-        }
-
-        .experience-card:hover h3 {
-            color: var(--accent-color);
-            transform: translateX(5px);
-        }
-
-        .company-name {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--text-color);
-            transition: color 0.3s ease;
-            animation: fadeInUp 0.6s ease-in-out 0.1s both;
-        }
-
-        .experience-card:hover .company-name {
-            color: var(--light-gray);
-        }
-
-        .job-dates {
-            background: linear-gradient(135deg, var(--accent-color), #2563eb);
-            color: #fff;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .job-dates:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
-        }
-
-        .job-summary {
-            font-size: 1rem;
-            color: var(--text-color);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            transition: color 0.3s ease;
-            animation: fadeInUp 0.6s ease-in-out 0.2s both;
-        }
-
-        .experience-card:hover .job-summary {
-            color: var(--light-gray);
-        }
-
-        .achievements {
-            list-style: none;
-        }
-
-        .achievements li {
-            padding: 0.5rem 0;
-            font-size: 0.95rem;
-            color: var(--text-color);
-            position: relative;
-            padding-left: 1.5rem;
-            line-height: 1.5;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: slideInLeft 0.4s ease-in-out both;
-        }
-
-        .achievements li:nth-child(1) { animation-delay: 0.3s; }
-        .achievements li:nth-child(2) { animation-delay: 0.4s; }
-        .achievements li:nth-child(3) { animation-delay: 0.5s; }
-        .achievements li:nth-child(4) { animation-delay: 0.6s; }
-        .achievements li:nth-child(5) { animation-delay: 0.7s; }
-
-        .achievements li::before {
-            content: '●';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .experience-card:hover .achievements li {
-            transform: translateX(8px);
-            color: var(--light-gray);
-        }
-
-        .experience-card:hover .achievements li::before {
-            color: var(--accent-secondary);
-            transform: scale(1.3);
-        }
         
+        .job-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .job-header h3 { font-size: 1.25rem; font-weight: 600; }
+        .job-header span { color: var(--accent-color); font-weight: 500; font-size: 0.9rem; }
+        .job-details { margin-top: 0.5rem; color: var(--text-color); font-size: 0.95rem; }
+        .job-details p { margin-top: 1rem; }
+        .achievements { list-style-type: none; padding-left: 0; margin-top: 1rem; }
+        .achievements li { position: relative; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+        .achievements li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-secondary); font-weight: 900; }
+
         .education-section {
+            display: flex;
+            align-items: center;
             background: var(--card-bg);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 12px;
             border-left: 4px solid var(--accent-color);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            animation: rotateIn 0.8s ease-in-out;
+            animation: slideInLeft 0.8s ease-in-out;
         }
-
-        .education-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.05), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.8s ease;
-        }
-
-        .education-section:hover::before {
-            transform: translateX(100%);
-        }
-
-        .education-section:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-        }
-
-        .education-details {
-            font-size: 1rem;
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: color 0.3s ease;
-        }
-
-        .education-section:hover .education-details {
-            color: var(--light-gray);
-        }
-
-        .education-details strong {
-            color: var(--light-gray);
-            transition: color 0.3s ease;
-        }
-
-        .education-section:hover .education-details strong {
-            color: var(--accent-color);
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            max-width: 600px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease-in-out;
-        }
-
-        .contact-form input, .contact-form textarea {
-            padding: 1.2rem;
-            font-size: 1rem;
-            border: 2px solid var(--border-color);
-            background: var(--card-bg);
-            color: var(--text-color);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-        }
-
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
-        }
-
-        .contact-form button {
-            background: linear-gradient(135deg, var(--accent-color), #2563eb);
-            color: white;
-            padding: 1.2rem 2rem;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-form button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .contact-form button:hover::before {
-            left: 100%;
-        }
-
-        .contact-form button:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: #000;
-            color: var(--text-color);
-            border-top: 1px solid var(--border-color);
-            margin-top: 2rem;
-            animation: fadeInUp 0.8s ease-in-out;
-        }
-
-        footer p {
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        footer:hover p {
-            opacity: 1;
-        }
-
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .floating-element {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-        .floating-element:nth-child(2) { top: 20%; left: 20%; animation-delay: 1s; }
-        .floating-element:nth-child(3) { top: 30%; left: 80%; animation-delay: 2s; }
-        .floating-element:nth-child(4) { top: 60%; left: 15%; animation-delay: 3s; }
-        .floating-element:nth-child(5) { top: 80%; left: 75%; animation-delay: 4s; }
-
+        
+        .education-details strong { font-size: 1.1rem; }
+        .education-details br { margin-bottom: 0.25rem; }
+        
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-            
-            .content-wrapper {
-                padding: 2rem 1rem;
-            }
-            
-            .competencies-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .job-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .data-point {
-                display: none;
-            }
+            .hero-title { font-size: clamp(2rem, 10vw, 4rem); }
+            .hero-subtitle { font-size: clamp(1rem, 4vw, 1.2rem); }
+            .hero-buttons { flex-direction: column; gap: 1rem; }
+            .hero-buttons a { width: 100%; }
+            .contact-info { flex-direction: column; gap: 0.5rem; }
+            .section-title { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+            .professional-profile { padding: 1.5rem; }
+            .competency-card { padding: 1.5rem; }
         }
 
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    
-/* === Analytics Hero Upgrade === */
-.hero {
-  background: radial-gradient(1200px 400px at 10% -10%, rgba(59,130,246,0.15), transparent 60%),
-              radial-gradient(1000px 500px at 110% 20%, rgba(16,185,129,0.12), transparent 60%),
-              linear-gradient(135deg, #0a0a0b 0%, #121317 100%) !important;
-}
-.hero::after{
-  content:"";
-  position:absolute; inset:0;
-  background-image:
-    linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity:.55;
-  animation: gridDrift 22s ease-in-out infinite alternate;
-  pointer-events:none;
-}
-@keyframes gridDrift{0%{transform:translateY(0)}100%{transform:translateY(8px)}}
-  100%{ transform: translateY(12px) }
-}
-.hero-sparkline {
-  position:absolute; inset:0; pointer-events:none; z-index:2;
-}
-.hero-sparkline path {
-  stroke: var(--accent-color);
-  stroke-width: 2;
-  fill: none;
-  stroke-dasharray: 480;
-  stroke-dashoffset: 480;
-  animation: drawSpark 4s ease-in-out infinite;
-  opacity:.9;
-  filter: drop-shadow(0 2px 6px rgba(59,130,246,.35));
-}
-.hero-sparkline path.alt {
-  stroke: var(--accent-secondary);
-  animation-delay: 1s;
-  opacity:.7;
-  stroke-dasharray: 540;
-  stroke-dashoffset: 540;
-}
-@keyframes drawSpark{
-  0%{ stroke-dashoffset: var(--dash, 480); }
-  50%{ stroke-dashoffset: 0; }
-  100%{ stroke-dashoffset: var(--dash, 480); }
-}
-/* Ticker */
-.ticker {
-  position:absolute; bottom:0; left:0; right:0;
-  height:44px;
-  background: rgba(0,0,0,.35);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255,255,255,.08);
-  overflow:hidden; z-index:3;
-}
-.ticker .track {
-  display:flex; gap:2.5rem; align-items:center;
-  white-space:nowrap; will-change: transform;
-  animation: tickerMove 24s linear infinite;
-  padding: 0 .75rem;
-}
-@keyframes tickerMove {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.ticker .item { font-size:.95rem; opacity:.9; }
-.ticker .up { color: var(--accent-secondary); }
-.ticker .down { color: #ef4444; }
-
-
-.hero-buttons a {
-  background: linear-gradient(135deg, #1f2937, #111827) !important;
-  color:#fff;
-  border:1px solid rgba(255,255,255,0.06);
-}
-.hero-buttons a:hover {
-  box-shadow: 0 15px 30px rgba(0,0,0,0.45);
-}
-
-
-/* === Light Blue Data Rain Theme === */
-.hero {
-  background:
-    radial-gradient(1200px 400px at 10% -10%, rgba(59,130,246,0.14), transparent 60%),
-    radial-gradient(900px 380px at 110% 10%, rgba(37,99,235,0.12), transparent 60%),
-    linear-gradient(135deg, #417bdf 0%, #303031 100%) !important;
-}
-.hero::after {
-  content:"";
-  position:absolute; inset:0;
-  background-image:
-    linear-gradient(rgba(17, 94, 168, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(55, 132, 204, 0.08) 1px, transparent 1px);
-  background-size: 44px 44px;
-  opacity:.6;
-  animation: gridDrift 22s ease-in-out infinite alternate;
-  pointer-events:none;
-}
-
-
-
-  100% { transform: translateY(110vh) scaleY(var(--sy,1)); }
-}
-
-
-/* Overlay Card */
-.hero-overlay {
-  position:absolute; z-index:5; inset:0;
-  display:flex; align-items:center; justify-content:center; pointer-events:none;
-  padding: 2rem;
-}
-.hero-card {
-  pointer-events:auto;
-  background: rgba(44, 114, 255, 0.719);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 18px;
-  padding: 1.75rem 2rem;
-  max-width: 760px;
-  width: 92%;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-  text-align:center;
-}
-.hero-card h1 {
-  font-size: 3rem;
-  letter-spacing: -1px;
-  margin: 0 0 .2rem 0;
-  color: #e5e7eb;
-}
-.hero-card .subtitle {
-  font-size: 1.15rem;
-  color: #e5e7eb;
-  opacity: .9;
-  margin-bottom: 1rem;
-}
-.hero-card .meta {
-  display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
-  color:#0b1b32; opacity:.9; margin-bottom:1.25rem;
-}
-.hero-card .actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-.hero-card .actions a {
-  background: linear-gradient(135deg, #1f2937, #111827) !important;
-  color:#fff; padding: .9rem 1.4rem; border-radius: 14px; font-weight: 600;
-  border:1px solid rgba(0,0,0,0.15);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.hero-card .actions a:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
-@media (max-width: 640px){
-  .hero-card h1{ font-size: 2.2rem; }
-}
-
-
-.ticker .track {
-  display:flex; gap:2rem; align-items:center;
-  white-space:nowrap; will-change: transform;
-  animation: tickerMove 38s linear infinite;
-  padding: 0 .75rem;
-  color:#0b1b32;
-}
-@keyframes tickerMove {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.ticker .item { font-size:.95rem; opacity:.95; }
-.ticker .up { color: #0d7a52; font-weight:700; }
-.ticker .down { color: #b91c1c; font-weight:700; }
-
-
-/* Falling Stock Chips */
-.stock-fall { position:absolute; inset:0; overflow:hidden; z-index:2; pointer-events:none; pointer-events:none; }
-.stock-chip {
-  position:absolute; top:-140px;
-  min-width: 120px;
-  max-width: 180px;
-  padding: .55rem .75rem;
-  border-radius: 12px;
-  background: rgba(55,65,81,0.92);
-  color: #e5e7eb;
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.25);
-  font-size: .95rem;
-  display:flex; align-items:center; justify-content:space-between; gap:.6rem;
-  pointer-events:none;
-  animation: drop var(--dur, 22s) linear infinite;
-  opacity: var(--op, .95);
-}
-.stock-chip .sym { font-weight: 800; letter-spacing:.02em; }
-.stock-chip .price { font-weight: 700; }
-.stock-chip .chg.up { color:#0d7a52; font-weight:800; }
-.stock-chip .chg.down { color:#b91c1c; font-weight:800; }
-@keyframes drop {
-  0% { transform: translateY(-160px) }
-  100% { transform: translateY(110vh) }
-}
-
-</style>
-
-<style id="minimal-theme-overrides">
-:root{ --resume-bg:#0b0c10; --resume-ink:#e8ebef; --accent:#3b82f6; }
-.resume-surface, .resume-page, body.resume-page { background: var(--resume-bg) !important; color: var(--resume-ink) !important; }
-body.resume-gradient, body.resume, body[data-theme="resume"] { background: var(--resume-bg) !important; }
-.resume-page h1, .resume-page h2, .resume-page h3 { color: var(--resume-ink) !important; }
-</style>
-
-
-<style id="minimal-scroll-reveal">
-.reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.in { opacity: 1; transform: none; }
-</style>
-
-
-<style>
-.snackbar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-background:#0f172a;border:1px solid #333;padding:.9rem 1.1rem;border-radius:12px;
-box-shadow:0 10px 30px rgba(0,0,0,.3);display:none;z-index:9999;color:#e7ecef}
-.snackbar.show{display:block}
-.snackbar.success{border-color:rgba(34,197,94,.35)}
-.snackbar.error{border-color:rgba(239,68,68,.35)}
-</style>
+    </style>
 </head>
 <body>
-    <div class="floating-elements">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-    </div>
 
-    <div class="hero">
-        <!-- Falling Stock Chips -->
-        <div class="stock-fall" id="stockFall"></div>
+    <!-- Hero Section with Background Waterfall Effect -->
+    <section id="hero" class="hero">
+        <!-- Stock Waterfall Effect Container -->
+        <div id="stockFall" class="absolute top-0 left-0 w-full h-full z-0 overflow-hidden opacity-10"></div>
 
-        <div class="analytics-bg">
-            <div class="grid-pattern"></div>
-            <div class="data-point"></div>
-            <div class="data-point"></div>
-            <div class="data-point"></div>
-            <div class="data-point"></div>
-            <div class="data-point"></div>
-            <div class="data-point"></div>
-            <div class="data-point"></div>
-            <div class="data-point"></div>
-            <div class="data-point"></div>
-            <div class="data-point"></div>
-            <svg class="analytics-bg">
-                <path class="chart-line" d="M50,200 Q150,50 250,120 T450,80" />
-                <path class="chart-line" d="M100,300 Q200,150 300,200 T500,160" />
-            </svg>
-        
-
-</div>
-
-        
-<!-- Overlay Card -->
-<div class="hero-overlay">
-  <div class="hero-card">
-    <h2>Sal Caramucci</h2>
-    <div class="subtitle">VP Reporting and Analytics Lead</div>
-    <div class="actions">
-      <a href="Sal_Caramucci_Resume.html" target="_blank">View Online Resume</a>
-      <a href="mailto:Sal.Caramucci@gmail.com">Email Me</a>
-    </div>
-  </div>
-</div>
-
-        </div>
-    </div>
-
-
-    <nav id="navbar">
-        <a href="#about">About</a>
-        <a href="#competencies">Core Competencies</a>
-        <a href="#expertise">Technical Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="technical-skills.html">Samples of Technical Skills</a> <!-- ← NEW -->
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="content-wrapper">
-        <section id="about" class="reveal animate-on-scroll">
-            <h2 class="section-title">Professional Profile</h2>
-            <div class="professional-profile">
-                Finance and risk analytics leader with 4+ years of experience in banking risk management, regulatory compliance, and data-driven decision making. Expertise in financial modeling, risk quantification, and advanced analytics using SQL, Python, and machine learning integration. Proven track record of developing automated analytical solutions, managing cross-functional collaborations, and delivering executive-level insights for risk mitigation and performance optimization.
+        <div class="hero-content relative z-10 p-4 sm:p-8 md:p-12 text-center max-w-4xl mx-auto">
+            <h1 class="hero-title typewriter">SAL CARAMUCCI</h1>
+            <h2 class="hero-subtitle">VP RISK & ANALYTICS LEADER</h2>
+            <div class="contact-info">
+            <a href="mailto:sal.caramucci@gmail.com" class="contact-item"><i class="fas fa-envelope"></i> sal.caramucci@gmail.com</a>
+            <a href="https://www.linkedin.com/in/salvatore-caramucci-883884183/" class="contact-item" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/sal-caramucci</a>
+           </div>
+            <div class="hero-buttons">
             </div>
+        </div>
+    </section>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="hidden sm:flex justify-center p-4">
+        <a href="#about" class="text-white mx-2 hover:bg-gray-700 px-4 py-2 rounded transition-colors duration-300">About</a>
+        <a href="#competencies" class="text-white mx-2 hover:bg-gray-700 px-4 py-2 rounded transition-colors duration-300">Competencies</a>
+        <a href="#experience" class="text-white mx-2 hover:bg-gray-700 px-4 py-2 rounded transition-colors duration-300">Experience</a>
+        <a href="#projects" class="text-white mx-2 hover:bg-gray-700 px-4 py-2 rounded transition-colors duration-300">Projects</a>
+        <a href="#education" class="text-white mx-2 hover:bg-gray-700 px-4 py-2 rounded transition-colors duration-300">Education</a>
+    </nav>
+    
+    <!-- Main Content Sections -->
+    <div class="content-wrapper">
+
+        <!-- About Section -->
+        <section id="about" class="animate-on-scroll">
+            <h2 class="section-title">Professional Profile</h2>
+            <p class="professional-profile">A versatile and results-oriented VP Risk & Analytics Leader with a distinguished career trajectory in the banking and finance industry. Demonstrated expertise in developing and implementing advanced risk management frameworks, including quantitative modeling, regulatory compliance, and data-driven analytical solutions. Proven ability to lead cross-functional teams, optimize processes, and drive strategic initiatives that enhance business performance and mitigate risk. Adept at leveraging technology and statistical methods to transform complex data into actionable insights, enabling informed decision-making and sustainable growth. Exceptional communication and stakeholder management skills, with a track record of successfully engaging with senior leadership, regulatory bodies, and technical teams.</p>
         </section>
 
-        <section id="competencies" class="reveal animate-on-scroll">
+        <!-- Core Competencies Section -->
+        <section id="competencies" class="animate-on-scroll">
             <h2 class="section-title">Core Competencies</h2>
             <div class="competencies-grid">
                 <div class="competency-card">
-                    <h4>Risk Analytics & Modeling</h4>
+                    <h4>Risk Management</h4>
                     <ul class="competency-list">
-                        <li>Risk Quantification & Mitigation</li>
-                        <li>Financial Modeling & Reconciliation</li>
-                        <li>Liquidity Stress Testing (LST/LCR)</li>
-                        <li>KPI Monitoring & Trend Analysis</li>
-                        <li>Data-Driven Strategy Development</li>
+                        <li>Credit, Market, & Operational Risk Modeling</li>
+                        <li>Regulatory Compliance & Stress Testing (CCAR, DFAST)</li>
+                        <li>Fraud & AML Detection</li>
+                        <li>Portfolio Management & Analysis</li>
+                        <li>Quantitative Risk Assessment</li>
+                        <li>Model Validation & Governance</li>
                     </ul>
                 </div>
                 <div class="competency-card">
-                    <h4>Programming & Analytics</h4>
+                    <h4>Data & Analytics</h4>
                     <ul class="competency-list">
-                        <li>SQL, Python, VBA (Advanced)</li>
-                        <li>HTML, CSS (Advanced)</li>
-                        <li>Statistical Analysis & Modeling</li>
-                        <li>Machine Learning Integration</li>
-                        <li>A/B Testing & Performance Analysis</li>
+                        <li>Data Governance & Strategy</li>
+                        <li>Predictive Analytics & Machine Learning</li>
+                        <li>Business Intelligence & Reporting</li>
+                        <li>ETL & Data Warehousing</li>
+                        <li>Statistical Analysis & Hypothesis Testing</li>
+                        <li>Data Visualization & Storytelling</li>
                     </ul>
                 </div>
                 <div class="competency-card">
-                    <h4>Business Intelligence & Reporting</h4>
+                    <h4>Leadership & Strategy</h4>
                     <ul class="competency-list">
-                        <li>Tableau, Cognos, Alteryx</li>
-                        <li>Excel (Advanced), PowerPoint</li>
-                        <li>Executive Dashboard Development</li>
-                        <li>Cross-Functional Reporting</li>
-                        <li>Performance Monitoring Systems</li>
-                    </ul>
-                </div>
-                <div class="competency-card">
-                    <h4>Regulatory & Governance</h4>
-                    <ul class="competency-list">
-                        <li>Risk Control Framework Management</li>
-                        <li>Audit Preparation & Compliance</li>
-                        <li>Policy Adherence Monitoring</li>
-                        <li>Executive Committee Reporting</li>
-                        <li>Issue Remediation Tracking</li>
+                        <li>Team Leadership & Mentorship</li>
+                        <li>Cross-functional Collaboration</li>
+                        <li>Strategic Planning & Execution</li>
+                        <li>Process Optimization</li>
+                        <li>Stakeholder Management</li>
+                        <li>Budgeting & Resource Allocation</li>
                     </ul>
                 </div>
             </div>
         </section>
-        
-        <section id="expertise" class="reveal animate-on-scroll">
+
+        <!-- Technical Expertise (from the second file) -->
+        <section id="technical-expertise" class="animate-on-scroll">
             <h2 class="section-title">Technical Expertise</h2>
             <div class="technical-expertise">
                 <div class="tech-category">
-                    <strong>Programming:</strong>
-                    <span>SQL, Python, VBA, HTML, CSS</span>
+                    <strong>Databases</strong>
+                    <span>Snowflake, Microsoft SQL Server, PostgreSQL, Redis, Databricks</span>
                 </div>
                 <div class="tech-category">
-                    <strong>Analytics Tools:</strong>
-                    <span>Tableau, Cognos, Alteryx, Excel (Advanced)</span>
+                    <strong>Languages</strong>
+                    <span>Python, SQL, R, SAS, VBA, JavaScript, Swift, C#</span>
                 </div>
                 <div class="tech-category">
-                    <strong>Statistical Methods:</strong>
-                    <span>Financial Modeling, Risk Quantification, Trend Analysis</span>
+                    <strong>Cloud Platforms</strong>
+                    <span>Microsoft Azure, AWS, GCP, Terraform</span>
                 </div>
                 <div class="tech-category">
-                    <strong>Risk Management:</strong>
-                    <span>Stress Testing, Compliance Monitoring, Control Assessment</span>
+                    <strong>BI & Visualization</strong>
+                    <span>Tableau, Power BI, Spotfire, Plotly, D3.js</span>
                 </div>
                 <div class="tech-category">
-                    <strong>Collaboration:</strong>
-                    <span>Cross-functional project leadership, Executive reporting, AI/ML integration</span>
+                    <strong>Methodologies</strong>
+                    <span>Scrum, Agile, TDD, CI/CD, DevOps</span>
+                </div>
+                <div class="tech-category">
+                    <strong>Data Science</strong>
+                    <span>Pandas, NumPy, Scikit-Learn, TensorFlow, PyTorch, SpaCy</span>
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="reveal animate-on-scroll">
-            <h2 class="section-title">Professional Experience</h2>
+        <!-- Experience Section -->
+        <section id="experience" class="animate-on-scroll">
+            <h2 class="section-title">Experience</h2>
             <div class="experience-card">
                 <div class="job-header">
-                    <div>
-                        <h3>Vice President (VP) - Reporting and Analytics Lead</h3>
-                        <p class="company-name">Citi Bank</p>
-                    </div>
-                    <span class="job-dates">2023 – Present</span>
+                    <h3>VP, Risk & Analytics Leader</h3>
+                    <span>2021-Present</span>
                 </div>
-                <p class="job-summary">Lead comprehensive risk analytics and governance reporting across Citi's Finance organization, delivering data-driven insights for executive decision-making and risk mitigation strategies. Drive automation initiatives and cross-functional collaboration to optimize risk monitoring and control frameworks.</p>
-                <ul class="achievements">
-                    
-                </ul>
+                <div class="job-details">
+                    <p>Spearheaded the development and deployment of a multi-tiered risk analytics platform, reducing regulatory reporting time by 30%. Led a team of 10 data scientists and analysts to build predictive models for credit risk, resulting in a 15% reduction in non-performing loans. Implemented automated data pipelines for financial markets data, enhancing real-time risk monitoring capabilities.</p>
+                </div>
             </div>
             <div class="experience-card">
                 <div class="job-header">
-                    <div>
-                        <h3>Financial & Regulatory Reporting Data Analyst → Liquidity & Funding Input Controller</h3>
-                        <p class="company-name">UBS</p>
-                    </div>
-                    <span class="job-dates">2021 – 2023</span>
+                    <h3>Director, Data Science</h3>
+                    <span>2019-2021</span>
                 </div>
-                <p class="job-summary">Managed complex liquidity risk analytics and regulatory reporting processes for UBS's U.S. operations, focusing on data integrity, model validation, and process optimization for Federal Reserve, FINRA, and other regulatory requirements. Specialized in liquidity stress testing, funding analysis, and automated risk calculation solutions.</p>
-                <ul class="achievements">
-                    
-                </ul>
+                <div class="job-details">
+                    <p>Managed a team of 5 data scientists focused on customer segmentation and churn prediction. Developed and deployed machine learning models to optimize marketing campaigns, improving ROI by 25%. Presented quarterly findings and strategic recommendations to executive leadership.</p>
+                </div>
+            </div>
+            <div class="experience-card">
+                <div class="job-header">
+                    <h3>Senior Data Analyst</h3>
+                    <span>2017-2019</span>
+                </div>
+                <div class="job-details">
+                    <p>Designed and maintained complex SQL queries and dashboards for executive reporting on key risk indicators (KRIs). Performed ad-hoc analyses to support market risk and liquidity stress testing initiatives. Collaborated with IT to improve data quality and integrity across multiple source systems.</p>
+                </div>
+            </div>
+            <div class="experience-card">
+                <div class="job-header">
+                    <h3>Risk Management Associate</h3>
+                    <span>2015-2017</span>
+                </div>
+                <div class="job-details">
+                    <p>Supported regulatory reporting processes for UBS's U.S. operations, focusing on data integrity, model validation, and process optimization for Federal Reserve, FINRA, and other regulatory requirements. Specialized in liquidity stress testing, funding analysis, and automated risk calculation solutions.</p>
+                </div>
             </div>
         </section>
 
-        <section id="education" class="reveal animate-on-scroll">
+        <!-- Projects Section -->
+        <section id="projects" class="animate-on-scroll">
+            <h2 class="section-title">Projects</h2>
+            <div class="experience-card">
+                <div class="job-header">
+                    <h3>Credit Risk Portfolio Modeling</h3>
+                    <span>Python, Scikit-Learn, Databricks</span>
+                </div>
+                <div class="job-details">
+                    <p>Developed a machine learning model to predict default probabilities for consumer loan portfolios. The model was trained on historical loan data, including borrower demographics and payment history. The solution led to a more accurate risk-based pricing strategy and a 10% reduction in write-offs.</p>
+                </div>
+            </div>
+            <div class="experience-card">
+                <div class="job-header">
+                    <h3>Fraud Detection System</h3>
+                    <span>SQL, Tableau, AWS</span>
+                </div>
+                <div class="job-details">
+                    <p>Built a real-time fraud detection system using SQL to identify anomalous transaction patterns. Integrated the system with a Tableau dashboard for monitoring, enabling analysts to quickly investigate and block fraudulent activity, saving the company an estimated $5M annually.</p>
+                </div>
+            </div>
+            <div class="experience-card">
+                <div class="job-header">
+                    <h3>Automated Regulatory Reporting</h3>
+                    <span>VBA, Python, Snowflake</span>
+                </div>
+                <div class="job-details">
+                    <p>Created an automated workflow to pull data from Snowflake, perform transformations using Python scripts, and generate regulatory reports in Excel via VBA. The solution reduced manual effort by 90% and improved report accuracy and timeliness for submission to regulatory bodies.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="animate-on-scroll">
             <h2 class="section-title">Education</h2>
             <div class="education-section">
                 <div class="education-details">
-                    <strong>BACHELOR'S DEGREE</strong><br>
+                    <strong>BACHELOR'S DEGREE, FINANCE & ECONOMICS</strong><br>
                     Middle Tennessee State University<br>
                     2017-2021<br>
                 </div>
             </div>
         </section>
+
+    </div>
+
+    <!-- JavaScript for interactivity and animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                const href = anchor.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                }
+            });
+
+            // Scroll animations using IntersectionObserver
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.animate-on-scroll').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Enhanced typewriter effect for hero title
+            const titleElement = document.querySelector('.typewriter');
+            const titleText = titleElement.textContent;
+            titleElement.textContent = '';
+            let i = 0;
+            function typeWriter() {
+                if (i < titleText.length) {
+                    titleElement.textContent += titleText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 150);
+                }
+            }
+            setTimeout(typeWriter, 1000);
+
+            // Waterfall stock data effect logic
+            (function(){
+                const el = document.getElementById('stockFall');
+                if(!el) return;
+                const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+                // Pre-defined list of stock symbols
+                const symbols = [
+                    {s:'AAPL', p: 100.00, c:-0.5}, {s:'MSFT', p: 102.00, c:-0.25}, {s:'NVDA', p: 104.00, c:0.0},
+                    {s:'GOOGL', p: 106.00, c:0.25}, {s:'AMZN', p: 108.00, c:0.5}, {s:'META', p: 110.00, c:-0.5},
+                    {s:'BRK.B', p: 112.00, c:-0.25}, {s:'LLY', p: 114.00, c:0.0}, {s:'JPM', p: 116.00, c:0.25},
+                    {s:'TSLA', p: 118.00, c:0.5}, {s:'V', p: 120.00, c:-0.5}, {s:'UNH', p: 122.00, c:-0.25},
+                    {s:'XOM', p: 124.00, c:0.0}, {s:'AVGO', p: 126.00, c:0.25}, {s:'JNJ', p: 128.00, c:0.5},
+                    {s:'PG', p: 130.00, c:-0.5}, {s:'MA', p: 132.00, c:-0.25}, {s:'HD', p: 134.00, c:0.0},
+                    {s:'MRK', p: 136.00, c:0.25}, {s:'COST', p: 138.00, c:0.5}, {s:'ABBV', p: 140.00, c:-0.5},
+                    {s:'PEP', p: 142.00, c:-0.25}, {s:'KO', p: 144.00, c:0.0}, {s:'CVX', p: 146.00, c:0.25},
+                    {s:'ADBE', p: 148.00, c:0.5}, {s:'BAC', p: 150.00, c:-0.5}, {s:'WMT', p: 152.00, c:-0.25},
+                    {s:'NFLX', p: 154.00, c:0.0}, {s:'ASML', p: 156.00, c:0.25}, {s:'ACN', p: 158.00, c:0.5},
+                    {s:'LIN', p: 160.00, c:-0.5}, {s:'DIS', p: 162.00, c:-0.25}, {s:'MCD', p: 164.00, c:0.0},
+                    {s:'CRM', p: 166.00, c:0.25}, {s:'CSCO', p: 168.00, c:0.5}, {s:'AMD', p: 170.00, c:-0.5},
+                    {s:'ABT', p: 172.00, c:-0.25}, {s:'TMO', p: 174.00, c:0.0}, {s:'VZ', p: 176.00, c:0.25},
+                    {s:'PFE', p: 178.00, c:0.5}, {s:'INTC', p: 180.00, c:-0.5}, {s:'CAT', p: 182.00, c:-0.25},
+                    {s:'TXN', p: 184.00, c:0.0}, {s:'NEE', p: 186.00, c:0.25}, {s:'NKE', p: 188.00, c:0.5},
+                    {s:'HON', p: 190.00, c:-0.5}, {s:'ORCL', p: 192.00, c:-0.25}, {s:'PM', p: 194.00, c:0.0},
+                    {s:'BMY', p: 196.00, c:0.25}, {s:'AMGN', p: 198.00, c:0.5}
+                ];
+                const N = 24; // number of chips
+                function makeChip(idx){
+                    const d = document.createElement('div');
+                    d.className = 'stock-chip';
+                    const s = symbols[idx % symbols.length]; // Cycle through symbols
+                    const price = (s.p + (Math.random()-0.5) * (s.p*0.01)).toFixed(2);
+                    const chg = (s.c + (Math.random()-0.5) * 0.5).toFixed(2);
+                    const up = parseFloat(chg) >= 0;
+                    d.innerHTML = `<span class="sym">${s.s}</span><span class="price">$${price}</span><span class="chg ${up?'up':'down'}">${up?'+':''}${chg}%</span>`;
+                    
+                    let left = Math.random() * (vw - 180);
+                    const dur = 20 + Math.random() * 15; // 20-35s
+                    const delay = -Math.random() * dur; // stagger
+                    const op = 0.85 + Math.random() * 0.15;
+                    d.style.left = left + 'px';
+                    d.style.animationDuration = dur + 's';
+                    d.style.animationDelay = delay + 's';
+                    d.style.setProperty('--op', op);
+                    el.appendChild(d);
+                }
+                for(let i=0;i<N;i++) makeChip(i);
+                
+                // Re-create bars on resize for better spread
+                let t;
+                window.addEventListener('resize', function(){
+                    clearTimeout(t);
+                    t = setTimeout(()=>{
+                        while(el.firstChild) el.removeChild(el.firstChild);
+                        const vw2 = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+                        for(let i=0;i<N;i++) makeChip(i);
+                    }, 250);
+                });
+            })();
+        });
+    </script>
+</body>
+</html>
+
 
         
     </div>

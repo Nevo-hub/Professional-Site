@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
     <style>
         :root {
             --dark-gray: #1a1a1a;
@@ -428,9 +429,12 @@
             <div class="contact-info">
             <a href="mailto:sal.caramucci@gmail.com" class="contact-item"><i class="fas fa-envelope"></i> sal.caramucci@gmail.com</a>
             <a href="https://www.linkedin.com/in/salvatore-caramucci-883884183/" class="contact-item" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/sal-caramucci</a>
-           </div>
             <div class="hero-buttons">
+            <a id="btnResume" class="resume-gradient" href="Sal_Caramucci_Resume.html" target="_blank">
+                📄 View Resume
+            </a>
             </div>
+
         </div>
     </section>
 
@@ -570,6 +574,7 @@
 
     <!-- JavaScript for interactivity and animations -->
     <script>
+        
         document.addEventListener("DOMContentLoaded", function() {
             // Smooth scrolling for navigation links
             document.querySelectorAll('nav a').forEach(anchor => {
@@ -784,6 +789,37 @@
   els.forEach(function(el){ io.observe(el); });
 })();
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const contactWrap = document.querySelector('.contact-info');
+  const emailLink   = document.querySelector('.contact-info a[href^="mailto:"]');
+  const liLink      = document.querySelector('.contact-info a[href*="linkedin.com"]');
+  const resumeBtn   = document.getElementById('btnResume');
+
+  function setResumeWidth() {
+    if (!contactWrap || !emailLink || !liLink || !resumeBtn) return;
+
+    const r1 = emailLink.getBoundingClientRect();
+    const r2 = liLink.getBoundingClientRect();
+    const sameRow = Math.abs(r1.top - r2.top) < (r1.height / 2);
+
+    if (!sameRow) { // chips wrapped; make it full width on mobile
+      resumeBtn.style.width = '100%';
+      return;
+    }
+
+    const gapPx = parseFloat(getComputedStyle(contactWrap).gap) || 0;
+    const total = Math.ceil(r1.width + r2.width + gapPx);
+    const max = contactWrap.getBoundingClientRect().width;
+    resumeBtn.style.width = Math.min(total, max) + 'px';
+  }
+
+  setResumeWidth();
+  window.addEventListener('resize', setResumeWidth);
+});
+</script>
+
 
 
 <div class="snackbar" id="snackbar"></div>
@@ -1812,6 +1848,28 @@
       background: currentColor;
       animation: pulse 2s ease-in-out infinite;
     }
+    /* Résumé button: blue→purple gradient like your theme */
+    #btnResume.resume-gradient{
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    color: #fff;
+    padding: 1.2rem 2.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    margin: 1rem auto 0;
+    }
+    #btnResume.resume-gradient:hover{
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(59,130,246,0.4);
+    }
+
+
   </style>
 
   <!-- SQL.js (SQLite in the browser) -->
@@ -1852,7 +1910,7 @@
   </header>
 
   <main class="wrap">
-    <h1>Full Technical Capabilities</h1>
+    <h1>Samples of Technical Capabilities</h1>
     <p class="intro">
       This page showcases my comprehensive technical skill set with <strong>interactive demos</strong>, <strong>production-ready code samples</strong>, and <strong>real-world implementations</strong>. Each section includes live examples you can run directly in your browser. Core expertise includes
       <span class="pill">Risk & Finance Analytics</span>,
